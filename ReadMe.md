@@ -1,6 +1,7 @@
 # DoPahiya
 
 Server Deployed Link : https://s56-ayush-capstone-dopahiya.onrender.com/
+Frontend Deployed Link : https://dopahiya.netlify.app/
 
 ## Introduction
 
