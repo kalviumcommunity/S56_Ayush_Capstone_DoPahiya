@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap');
+
+/* font-family: "Inknut Antiqua", serif; */
+/* font-family: "Fuzzy Bubbles", sans-serif; */
+
+.loginbody{
+    width: 100vw;
+    height: 100vh;
+    padding: 5px 10px;
+}
+
+.login-logo{
+    width: 125px;
+}
+
+.login-main{
+    width: 100%;
+}
+
+.loginImg img{
+    height: 70vh;
+}
+
+.loginformcont{
+    padding: 30px 50px;
+    text-align: center;
+    background-color: #EFEFEF;
+    height: 70vh;
+}
+
+.loginformcont h1{
+    font-family: "Inknut Antiqua", serif;
+    font-size: 30px;
+    margin: 0;
+}
+
+.loginformcont h4{
+    font-family: "Inknut Antiqua", serif;
+    line-height: 20px;
+    font-size: 12px;
+}
+
+label{
+    font-family: "Fuzzy Bubbles", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+input[type="text"] , input[type="password"]{
+    font-family: "Fuzzy Bubbles", sans-serif;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    margin: 3px 0px;
+}
+
+input[type="submit"]{
+    font-family: "Fuzzy Bubbles", sans-serif;
+    background-color: #FF8A00;
+    border: none;
+    padding: 10px 30px;
+    color: white;
+    cursor: pointer;
+}
+
+input[type="submit"]:active{
+    transform: scale(0.8);
+}
+
+.cancelbtn{
+    cursor: pointer;
+    padding: 10px 30px;
+    font-family: "Fuzzy Bubbles", sans-serif;
+    background-color: white;
+    border: none;
+}
+
+.registertext{
+    font-family: "Fuzzy Bubbles", sans-serif;
+}
+
+.loginformcont form{
+    margin: 50px 0px;
+}
+
+.login-btndiv{
+    gap: 30px;
+    margin: 0;
+}
+
+.registertext{
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.registertext span{
+    color: #FF8A00;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+form div{
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.alert{
+    color: red;
+}
+
+@media all and (max-width:820px){
+    .loginImg{
+        display: none;
+    }
+
+    input[type="text"] , input[type="password"]{
+        padding: 20px;
+    }
+}
