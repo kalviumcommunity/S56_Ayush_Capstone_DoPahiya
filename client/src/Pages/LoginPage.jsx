@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import "./LoginPage.css"
 import Logo from "../assets/Logo.png"
 import LoginImg from "../assets/LoginImg.png"
@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
 
+    var time;
     const navigate = useNavigate()
 
     const showSuccessToast = (msg) => {
@@ -19,14 +20,18 @@ const LoginPage = () => {
       };
 
     const {register, handleSubmit, formState: { errors }} = useForm()
-
+    
     let onSubmit = (inputvals) =>{
         console.log(inputvals)
         showSuccessToast("Logged In Successfully..!!")
-        setTimeout(()=>{
+        time = setTimeout(()=>{
             navigate("/")
-        },1000)
+        },1500)
     }
+
+    useEffect(() => {
+        return () => clearTimeout(time);
+    }, [navigate]);
 
   return (
     <div className='loginbody'>
