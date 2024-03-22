@@ -1,6 +1,6 @@
 import React , {useEffect} from 'react'
 import "./LoginPage.css"
-import Logo from "../assets/Logo.png"
+import Logo from "../assets/LogoNoBg.png"
 import LoginImg from "../assets/LoginImg.png"
 import {useForm} from "react-hook-form"
 import { Link , useNavigate } from 'react-router-dom'
@@ -20,7 +20,7 @@ const LoginPage = () => {
       };
 
     const {register, handleSubmit, formState: { errors }} = useForm()
-    
+
     let onSubmit = (inputvals) =>{
         console.log(inputvals)
         showSuccessToast("Logged In Successfully..!!")
@@ -35,7 +35,9 @@ const LoginPage = () => {
 
   return (
     <div className='loginbody'>
-      <img src={Logo} className='login-logo'/>
+        <div className='logodiv'>
+            <img src={Logo} className='login-logo'/>
+        </div>
 
         <div className='login-main flex jus-cen align-cen'>
             <div className='login-container flex'>

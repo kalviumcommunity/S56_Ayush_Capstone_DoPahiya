@@ -110,6 +110,15 @@ form div{
     color: red;
 }
 
+.logodiv{
+    display: flex;
+    justify-content: center;
+}
+
+.login-logo{
+    width: 150px;
+}
+
 @media all and (max-width:820px){
     .loginImg{
         display: none;
@@ -118,4 +127,21 @@ form div{
     input[type="text"] , input[type="password"]{
         padding: 20px;
     }
-}
+
+    .loginbody{
+        background-color: #EFEFEF;
+    }
+
+    .logodiv{
+        display: flex;
+        justify-content: center;
+    }
+
+    .login-logo{
+        width: 150px;
+    }
+
+    .loginformcont{
+        padding-top: 0;
+    }
+}   
