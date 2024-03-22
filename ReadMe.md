@@ -1,5 +1,7 @@
 # DoPahiya
 
+Server Deployed Link : https://s56-ayush-capstone-dopahiya.onrender.com/
+
 ## Introduction
 
 DoPahiya is a website where you can discover detailed specifications of various motorbike models. From engine power and torque to mileage and fuel capacity, our huge database collection provides all the essential information you need to choose the perfect ride for your needs. Whether you're interested in sports bikes, cruisers, or adventure motorcycles, our extensive collection of motorbike specs will help you make informed decisions before choosing a bike.
