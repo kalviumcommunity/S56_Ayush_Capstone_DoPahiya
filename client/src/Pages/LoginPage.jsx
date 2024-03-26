@@ -1,7 +1,6 @@
-import React , {useEffect} from 'react'
+import React , {useEffect , useContext} from 'react'
 import "./LoginPage.css"
-import Logo from "../assets/LogoNoBg.png"
-import LoginImg from "../assets/LoginImg.png"
+import {Context} from "../App.jsx"
 import {useForm} from "react-hook-form"
 import { Link , useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
@@ -9,42 +8,49 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
 
-    var time;
+    const {ShowModal , setShowModal} = useContext(Context)
+
+    let display = {
+        display : ShowModal ? "inline-flex" : "none"
+    }
+
+    var time;   
     const navigate = useNavigate()
 
-    const showSuccessToast = (msg) => {
-        toast.success(msg, {
-          position: "top-center",
-          autoClose:1000
-        });
-      };
+    
 
     const {register, handleSubmit, formState: { errors }} = useForm()
 
-    let onSubmit = (inputvals) =>{
+    let onSubmit = (inputvals,event) =>{
+        console.log('helloo')
+        event.preventDefault();
         console.log(inputvals)
-        showSuccessToast("Logged In Successfully..!!")
+        toast.success('Logged in successfully!', {
+            position: "top-center",
+            autoClose: 1000
+            });
         time = setTimeout(()=>{
-            navigate("/")
+            setShowModal(!ShowModal)
+            window.location.reload()
         },1500)
+
     }
 
-    useEffect(() => {
-        return () => clearTimeout(time);
-    }, [navigate]);
+    // useEffect(()=>{
+    //     console.log("Hello")
+    //     showSuccessToast("Logged In Successfully..!!")
+    // },[onsubmit])
 
+    let handleCancel = ()=>{setShowModal(!ShowModal)}
+    
   return (
-    <div className='loginbody'>
-        <div className='logodiv'>
-            <img src={Logo} className='login-logo'/>
-        </div>
-
-        <div className='login-main flex jus-cen align-cen'>
-            <div className='login-container flex'>
-                <div className='loginImg'>
-                    <img src={LoginImg}/>
-                </div>
-                <div className='loginformcont'>
+    <div className='loginbody flex jus-cen align-cen' style={display}>
+        <div className='login-container flex'>
+            <div className='loginImg'>
+                {/* <img src={LoginImg}/> */}
+            </div>
+            <div className='loginformcont flex jus-cen align-cen'>
+                <div>
                     <h1>Welcome Back..!!</h1>
 
                     <h4>Rev Up Your Ride: <br /> Access Exclusive Bike Info Here!</h4>
@@ -75,10 +81,11 @@ const LoginPage = () => {
 
                         <div className='login-btndiv flex jus-cen'>
                             <input type="submit" value={"LOGIN"}/>
-                            <Link to={"/"}><button className='cancelbtn'>CANCEL</button></Link>
+                            {/* <Link to={"/"}><button className='cancelbtn'>CANCEL</button></Link> */}
+                            <button type="button" className='cancelbtn' onClick={handleCancel}>CANCEL</button>
                         </div>
 
-                        <p className='registertext'>Don't have a Account ? <Link to={"/register"}><span>Register</span></Link></p>
+                        <p className='registertext'>Don't have a Account ? <span>Register</span></p>
                     </form>
                 </div>
             </div>

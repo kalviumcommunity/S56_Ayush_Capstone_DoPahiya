@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Fuzzy+Bubbles:wght@400;700&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap');
+
+.navbar-body{
+    box-sizing: border-box;
+    background: transparent;
+    width: calc(100vw-17px);
+    height: 100px;
+    padding: 0vw 10vw;
+    /* background-color: red; */
+}
+
+.navbar-logo-div{
+    /* height: 150px; */
+    width: fit-content;
+    background-color: #D9D9D9;
+    border-radius: 0 0 10px 10px;
+}
+
+.navbar-logo-div img{
+    width: 100px;
+}
+
+.navbar-links-list{
+    list-style-type: none;
+    gap: 30px;
+    font-family: "Fuzzy Bubbles", sans-serif;
+    font-weight: 700;
+}
+
+.navbar-links-list li{
+    cursor: pointer;
+}
+
+.navbar-btn-div{
+    gap: 30px;
+}
+
+.hamburger{
+    width: 40px;
+    height: 40px;
+    display: none;
+}
+
+.navbar-btn-div button{
+    padding: 10px 20px;
+    font-family: "Fuzzy Bubbles", sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    background-color: #FF8A00;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+@media all and (max-width:850px){
+    .hamburger{
+        display: block;
+    }
+
+    .navbar-links-div{
+        display: none;
+    }
+}
