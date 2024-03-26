@@ -4,21 +4,32 @@
 /* font-family: "Fuzzy Bubbles", sans-serif; */
 
 .loginbody{
-    width: 100vw;
+    width: calc(100vw-17px);
     height: 100vh;
     padding: 5px 10px;
+    position: absolute;
+    top: 0;
 }
 
 .login-logo{
     width: 125px;
 }
 
-.login-main{
+/* .login-main{
     width: 100%;
+} */
+
+.loginImg{
+    height: 70vh;
+    width: 350px;
+    background-image: url("../assets/LoginImg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* overflow: hidden; */
 }
 
-.loginImg img{
-    height: 70vh;
+.login-container{
+    box-shadow: 0 0 0 500px #000000d7;
 }
 
 .loginformcont{
@@ -120,6 +131,13 @@ form div{
 }
 
 @media all and (max-width:820px){
+    .loginbody{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    
     .loginImg{
         display: none;
     }
@@ -135,6 +153,7 @@ form div{
     .logodiv{
         display: flex;
         justify-content: center;
+        height: 20vh;
     }
 
     .login-logo{
@@ -142,6 +161,10 @@ form div{
     }
 
     .loginformcont{
-        padding-top: 0;
+        height: 65vh;
+    }
+
+    .loginformcont h1{
+        font-size: 27px;
     }
 }   

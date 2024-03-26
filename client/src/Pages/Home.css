@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&family=Jua&display=swap');
+
+.home-hero-section-body{
+    box-sizing: border-box;
+    text-align: center;
+    width: calc(100vw-17px);
+    height: 740px;
+}
+
+.home-hero-section-body h1{
+    font-family: "Khula", sans-serif;
+    font-size: 3vw;
+    width: 58vw;
+    margin: auto;
+    color: white;
+}
+
+.home-hero-section-body{
+    background-image: url("../assets/HomeBg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    box-shadow: inset 100vw 0 0 0 rgba(0, 0, 0, 0.596);
+}
+
+.home-hero-section{
+    padding: 10vw 0vw;
+}
+
+.home-section{
+    margin-top: 15vw;
+}
+
+.home-section1-content , .home-section2-content{
+    text-align: center;
+}
+
+.home-section1-content h1 , .home-section2-content h1{
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    color: #FF8A00;
+    font-size: 4vw;
+    margin-bottom: 40px;
+}
+
+.home-section1-content p , .home-section2-content p{
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    width: 35vw;
+    margin: auto;
+    font-size: 1.3vw;
+}
+
+.home-section2-img img{
+    width: 40vw;
+}
+
+.home-section2-content{
+    margin-left: 100px;
+}
+
+.section2{
+    flex-direction: row-reverse;
+}
+
+.home-section-btn{
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    padding: 15px 35px;
+    background-color: #FF8A00;
+    color: white;
+    border: none;
+    margin-top: 30px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.home-brands-section-main{
+    text-align: center;
+    margin-top: 190px;
+    padding: 0px 200px;
+}
+
+.home-brands-section-main h1{
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    color: #FF8A00;
+    font-size: 3vw;
+}
+
+.home-brands-section-main h4{
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    margin-top: 20px;
+    text-align: end;
+    cursor: pointer;
+}
+
+.home-brands{
+    margin-top: 80px;
+    gap: 60px;
+}
+
+.home-brands div{
+    width: 250px;
+    height: 150px;
+    box-shadow: 0 0 9px 4px #a2a2a2d6;
+    cursor: pointer;
+}

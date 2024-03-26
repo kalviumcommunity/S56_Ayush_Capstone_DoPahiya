@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&family=Jua&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap'); */
+
+.searchbike-body{
+    width: calc(100vw-17px);
+    text-align: left;
+    position: absolute;
+    bottom: -58.9px;
+}
+
+.searchbike-body > div{
+    background-color: #FF8A00;
+    padding: 1.5vw 3vw;
+    border-radius: 5px;
+    width: fit-content;
+}
+
+.searchbike-body h3{
+    font-family: "Khula", sans-serif;
+    color: white;
+}
+
+.searchbike-btn-div{
+    gap: 2vw;
+    border-radius: 5px;
+}
+
+.searchbike-btn-div select{
+    /* width: 10vw; */
+    padding: 0 5vw;
+    border-radius: 5px;
+    font-size: 13px;
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-size: 1vw;
+    border: none;
+}
+
+.searchbike-btn-div button{
+    padding: 1vw 2vw;
+    background-color: transparent;
+    border: 2px solid white;
+    border-radius: 5px;
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    color: white;
+    cursor: pointer;
+}

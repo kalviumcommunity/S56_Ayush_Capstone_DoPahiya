@@ -6,8 +6,30 @@
     justify-content: center;
 }
 
+.jus-spBet{
+    justify-content: space-between;
+}
+
+.jus-spAro{
+    justify-content: space-around;
+}
+
+.jus-spEven{
+    justify-content: space-evenly;
+}
+
 .align-cen{
     align-items: center;
+}
+
+.align-start{
+    align-items: start;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 button:active{
