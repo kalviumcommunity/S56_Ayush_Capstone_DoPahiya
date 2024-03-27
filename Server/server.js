@@ -38,7 +38,7 @@ app.post("/register" , async (req , res)=>{
         res.send("User already Exists")
     }
     else{
-        let hashedPassword = await bcrypt.hash(password,process.env.LEVEL)
+        let hashedPassword = await bcrypt.hash(password,parseInt(process.env.LEVEL))
         await userModel.create({email:email , password:hashedPassword})
         res.send("Registration Successful")
     }
