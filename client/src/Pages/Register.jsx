@@ -20,19 +20,13 @@ const Register = () => {
     let onSubmit = (inputvals,event) =>{
         event.preventDefault();
         console.log(inputvals)
-
+        let note = toast.loading("Please Wait ..." , {position:"top-center"})
         axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/register" , inputvals)
           .then((res)=>{
             if (res.data == "User already Exists"){
-              toast.warning("User Already Exists..!!" , {
-                position: "top-center",
-                autoClose: 1000
-              })
+              toast.update(note, {render: "User Already Exists.!!", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true})
             }else{
-              toast.success('Registered successfully!', {
-                position: "top-center",
-                autoClose: 1000
-              });
+              toast.update(note, {render: "Registration Successful..! Login to Continue", type: "success", isLoading: false , autoClose: 1000 , hideProgressBar:true});
               setTimeout(()=>{
                 setRegisterModal(!RegisterModal)
                 setLoginModal(!LoginModal)

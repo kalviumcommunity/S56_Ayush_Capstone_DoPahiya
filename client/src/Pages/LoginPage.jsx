@@ -20,24 +20,17 @@ const LoginPage = () => {
     let onSubmit = (inputvals,event) =>{
         event.preventDefault();
         console.log(inputvals)
-
+        let note = toast.loading("Please Wait ..." , {
+            position: "top-center"
+        })
         axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/login" , inputvals)
             .then((res)=>{
                 if (res.data == "User Does not exist"){
-                    toast.warning("User Does not Exist..!!" , {
-                        position: "top-center",
-                        autoClose: 1000
-                    })
+                    toast.update(note, {render: "User Does not Exist", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true})
                 }else if (res.data == "Wrong Password"){
-                    toast.error("Wrong Password..!!" , {
-                        position: "top-center",
-                        autoClose: 1000
-                    })
+                    toast.update(note, {render: "Wrong Password..!", type: "error", isLoading: false , autoClose:1000 , hideProgressBar:true})
                 }else{
-                    toast.success('Logged in successfully!', {
-                        position: "top-center",
-                        autoClose: 1000
-                    });
+                    toast.update(note, {render: "Logged in Successfully", type: "success", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
                     setTimeout(()=>{
                         sessionStorage.setItem("loggedin" , true)
                         setLoginModal(!LoginModal)
