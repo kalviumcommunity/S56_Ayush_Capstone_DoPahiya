@@ -17,8 +17,6 @@ app.get("/" , (req , res)=>{
 })
 
 app.post("/login" , async (req , res)=>{
-    console.log(req.body)
-    // res.send(req.body)
     let {email , password} = req.body
     let user = await userModel.findOne({ email: email })
     if (user){
@@ -34,15 +32,13 @@ app.post("/login" , async (req , res)=>{
 })
 
 app.post("/register" , async (req , res)=>{
-    console.log(req.body)
-    // res.send(req.body)
     let {email , password} = req.body
     let user = await userModel.findOne({ email: email })
     if (user){
         res.send("User already Exists")
     }
     else{
-        let hashedPassword = await bcrypt.hash(password,5)
+        let hashedPassword = await bcrypt.hash(password,process.env.LEVEL)
         await userModel.create({email:email , password:hashedPassword})
         res.send("Registration Successful")
     }
