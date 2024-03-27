@@ -21,7 +21,7 @@ const Register = () => {
         event.preventDefault();
         console.log(inputvals)
 
-        axios.post("http://localhost:3200/register" , inputvals)
+        axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/register" , inputvals)
           .then((res)=>{
             if (res.data == "User already Exists"){
               toast.warning("User Already Exists..!!" , {

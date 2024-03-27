@@ -21,7 +21,7 @@ const LoginPage = () => {
         event.preventDefault();
         console.log(inputvals)
 
-        axios.post("http://localhost:3200/login" , inputvals)
+        axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/login" , inputvals)
             .then((res)=>{
                 if (res.data == "User Does not exist"){
                     toast.warning("User Does not Exist..!!" , {
