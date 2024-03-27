@@ -7,11 +7,12 @@ export const Context = createContext(null)
 
 function App() {
 
-  const [ShowModal , setShowModal] = useState(false)
+  const [LoginModal , setLoginModal] = useState(false)
+  const [RegisterModal , setRegisterModal] = useState(false)
 
   return (
     <>
-    <Context.Provider value={{ ShowModal , setShowModal }}>
+    <Context.Provider value={{ LoginModal , setLoginModal , RegisterModal , setRegisterModal}}>
       <Routes>
         <Route path='/' element={<Home />}></Route>
       </Routes>

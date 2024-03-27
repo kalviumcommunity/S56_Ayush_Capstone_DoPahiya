@@ -1,0 +1,37 @@
+.registerformcont h4{
+    font-size: 15px;
+    line-height: 0;
+}
+
+.headings{
+    text-align: left;
+}
+
+.registerformcont h1{
+    font-size: 35px;
+    line-height: 2;
+}
+
+.registerformcont input[type="text"] , .registerformcont input[type="password"]{
+    margin: 0;
+}
+
+.registerformcont form{
+    margin: 10px 0px;
+}
+
+.registerImg{
+    height: 70vh;
+    width: 350px;
+    background-image: url("../assets/RegisterImg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.registerformcont form div{
+    margin-bottom: 10px;
+}
+
+.registerformcont .login-btndiv{
+    margin-top: 25px;
+}

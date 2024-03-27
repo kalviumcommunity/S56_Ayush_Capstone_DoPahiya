@@ -6,7 +6,17 @@ import { GiHamburgerMenu } from "react-icons/gi";
 
 const Navbar = ({color}) => {
 
-    const {ShowModal , setShowModal} = useContext(Context)
+    const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
+
+    let handleLoginBtn = () =>{
+        console.log(sessionStorage.getItem("loggedin"))
+        if (sessionStorage.getItem("loggedin") == "true"){
+            sessionStorage.setItem("loggedin" , false)
+            window.location.reload()
+        }else{
+            setLoginModal(!LoginModal)
+        }
+    }
 
   return (
     <div className='navbar-body flex jus-spBet align-cen'>
@@ -25,7 +35,7 @@ const Navbar = ({color}) => {
         </div>
 
         <div className='navbar-btn-div flex align-cen'>
-            <button onClick={()=>{setShowModal(!ShowModal)}}>Login</button>
+            <button onClick={handleLoginBtn}>{sessionStorage.getItem("loggedin") == "true" ? "Logout" : "Login"}</button>
             <GiHamburgerMenu className='hamburger'/>
         </div>
     </div>
