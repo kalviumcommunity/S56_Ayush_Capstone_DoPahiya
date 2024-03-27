@@ -1,6 +1,7 @@
 import React , {useContext, useState} from 'react'
 import { Link } from 'react-router-dom'
 import LoginPage from './LoginPage'
+import Register from './Register.jsx'
 import Navbar from '../Components/Navbar'
 import { Context } from "../App.jsx"
 import SearchBike from '../Components/SearchBike.jsx'
@@ -15,8 +16,8 @@ import Footer from '../Components/Footer.jsx'
 
 const Home = () => {
   
-  const {ShowModal , setShowModal} = useContext(Context)
-  
+  const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
+
   return (
     <div>
       <div className='home-hero-section-body'>
@@ -72,7 +73,7 @@ const Home = () => {
 
 {/* ------------------------------------------------------------------------------------------------------- */}
       <div className='flex jus-cen align-cen'>
-        <LoginPage />
+        {LoginModal ? <LoginPage /> : <Register />}
       </div>
     </div>
   )

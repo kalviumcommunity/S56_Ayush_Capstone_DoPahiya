@@ -3,36 +3,53 @@ import "./LoginPage.css"
 import {Context} from "../App.jsx"
 import {useForm} from "react-hook-form"
 import { Link , useNavigate } from 'react-router-dom'
+import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const LoginPage = () => {
 
-    const {ShowModal , setShowModal} = useContext(Context)
+    const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
 
     let display = {
-        display : ShowModal ? "inline-flex" : "none"
+        display : LoginModal ? "inline-flex" : "none"
     }
-
-    var time;   
-    const navigate = useNavigate()
-
-    
 
     const {register, handleSubmit, formState: { errors }} = useForm()
 
     let onSubmit = (inputvals,event) =>{
-        console.log('helloo')
         event.preventDefault();
         console.log(inputvals)
-        toast.success('Logged in successfully!', {
-            position: "top-center",
-            autoClose: 1000
-            });
-        time = setTimeout(()=>{
-            setShowModal(!ShowModal)
-            window.location.reload()
-        },1500)
+
+        axios.post("http://localhost:3200/login" , inputvals)
+            .then((res)=>{
+                if (res.data == "User Does not exist"){
+                    toast.warning("User Does not Exist..!!" , {
+                        position: "top-center",
+                        autoClose: 1000
+                    })
+                }else if (res.data == "Wrong Password"){
+                    toast.error("Wrong Password..!!" , {
+                        position: "top-center",
+                        autoClose: 1000
+                    })
+                }else{
+                    toast.success('Logged in successfully!', {
+                        position: "top-center",
+                        autoClose: 1000
+                    });
+                    setTimeout(()=>{
+                        sessionStorage.setItem("loggedin" , true)
+                        setLoginModal(!LoginModal)
+                        // window.location.reload()
+                    },1500)
+                }
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+
+        
 
     }
 
@@ -41,7 +58,12 @@ const LoginPage = () => {
     //     showSuccessToast("Logged In Successfully..!!")
     // },[onsubmit])
 
-    let handleCancel = ()=>{setShowModal(!ShowModal)}
+    let handleCancel = ()=>{setLoginModal(!LoginModal)}
+
+    let handleRegisterClick = () =>{
+        setLoginModal(!LoginModal)
+        setRegisterModal(!RegisterModal)
+    }
     
   return (
     <div className='loginbody flex jus-cen align-cen' style={display}>
@@ -85,7 +107,7 @@ const LoginPage = () => {
                             <button type="button" className='cancelbtn' onClick={handleCancel}>CANCEL</button>
                         </div>
 
-                        <p className='registertext'>Don't have a Account ? <span>Register</span></p>
+                        <p className='registertext'>Don't have a Account ? <span onClick={handleRegisterClick}>Register</span></p>
                     </form>
                 </div>
             </div>
