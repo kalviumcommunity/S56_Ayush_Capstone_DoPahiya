@@ -19,7 +19,7 @@ const Explore = () => {
         <h1>Explore Bike Brands</h1>
         <div className='explore-grid-cont'>
             {BikeBrandLogo.map((el)=>{
-                return <div className='explore-card flex jus-cen align-cen' key={el.name}><img src={el.logo} /></div>
+                return <div className='explore-card flex jus-cen align-cen' key={el.name}><img src={el.logo} alt={el.name} /></div>
             })}
         </div>
 

@@ -147,3 +147,10 @@
 .slide-out-right{
     animation: slide-out-right 1s ease-in-out 600ms both;
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .slide-out-bck-bottom,
+    .slide-out-right {
+      animation: none !important;
+    }
+}
