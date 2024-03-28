@@ -11,7 +11,7 @@ const Footer = () => {
             <div className='footer-img'>
                 <img src={LogoNoBg}/>
             </div>
-            <div className='flex jus-spAro'>
+            <div className='footer-maincontent flex jus-spAro'>
                 <div className='footer-links'>
                     <h2>Quick Links</h2>
 
