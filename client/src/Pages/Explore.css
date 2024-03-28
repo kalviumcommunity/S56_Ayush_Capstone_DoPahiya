@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&family=Jua&display=swap');
+
+.explore-main-div{
+    width: 100%;
+    flex-direction: column;
+}
+
+.explore-main{
+    /* width: 100%; */
+    margin-top: 100px;
+    flex-direction: column;
+}
+
+.explore-main h1{
+    font-family: "Jua", sans-serif;
+    font-weight: 400;
+    font-size: 45px;
+}
+
+.explore-grid-cont{
+    /* width: 100%; */
+    margin-top: 50px;
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(4 , auto);
+    gap: 5vw;
+}
+
+.explore-card{
+    border-radius: 5px;
+    width: 250px;
+    height: 150px;
+    box-shadow: 0 10px 30.4px 0px #0000003c;
+    cursor: pointer;
+}
+
+.explore-card img{
+    width: 165px;
+    height: 100px;
+}
+
+@media all and (max-width:500px){
+    .explore-main h1{
+        font-size: 8vw;
+    }
+}
+
+@media all and (min-width:900px) and (max-width:1210px){
+    .explore-grid-cont{
+        grid-template-columns: repeat(3,auto);
+    }
+}
+
+@media all and (min-width:580px) and (max-width:900px){
+    .explore-grid-cont{
+        grid-template-columns: repeat(2,auto);
+    }
+}
+
+@media all and (max-width:580px){
+    .explore-grid-cont{
+        grid-template-columns: repeat(1,auto);
+    }
+}

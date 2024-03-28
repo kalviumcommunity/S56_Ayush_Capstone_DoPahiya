@@ -1,5 +1,5 @@
 import React , {useContext, useState} from 'react'
-import { Link } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import LoginPage from './LoginPage'
 import Register from './Register.jsx'
 import Navbar from '../Components/Navbar'
@@ -13,10 +13,25 @@ import Img4 from "../assets/Re.png"
 import Img1 from "../assets/bajaj.png"
 import "./Home.css"
 import Footer from '../Components/Footer.jsx'
+import MB from "../assets/Motorcycle.png"
 
 const Home = () => {
   
+  const navigate = useNavigate()
+
+  window.scrollTo({
+    top:0
+  })
   const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
+
+  let handleExplore = () =>{
+    document.getElementById("bike-img").style.visibility = "visible"
+    document.getElementById("explore-text").classList.add("slide-out-bck-bottom")
+    document.getElementById("bike-img").classList.add("slide-out-right")
+    setTimeout(()=>{
+      navigate("/bikebrands")
+    },1500)
+  }
 
   return (
     <div>
@@ -66,7 +81,10 @@ const Home = () => {
           <div className='flex jus-cen align-cen'><img src={Img4} /></div>
         </div>
 
-        <h4>Explore More</h4>
+        <div className='flex explore-btn-div'>
+          <h4 onClick={handleExplore} id='explore-text'>Explore More</h4>
+          <img src={MB} id="bike-img" style={{visibility:"hidden"}}/>
+        </div>
       </div>
 
       <Footer />
