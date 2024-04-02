@@ -10,6 +10,9 @@ const Navbar = ({color}) => {
     const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
     let navigate = useNavigate()
 
+
+    
+
     let handleLoginBtn = () =>{
         console.log(sessionStorage.getItem("loggedin"))
         if (sessionStorage.getItem("loggedin") == "true"){
