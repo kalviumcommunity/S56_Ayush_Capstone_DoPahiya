@@ -1,10 +1,10 @@
 import React from 'react'
 import "./SearchBike.css"
 
-const SearchBike = ({position , background}) => {
+const SearchBike = () => {
   return (
-    <div className='searchbike-body flex jus-cen align-cen' style={{position:position}}>
-        <div style={{background : background}}>
+    <div className='searchbike-body flex jus-cen align-cen'>
+        <div>
             <h3>Search Bike</h3>
 
             <div className='searchbike-btn-div flex'>
