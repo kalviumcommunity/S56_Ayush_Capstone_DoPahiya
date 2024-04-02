@@ -40,7 +40,7 @@ const Home = () => {
         <div className='home-hero-section'>
           <h1>Find Your Perfect Ride with “DoPahiya” Where Every Journey Begins</h1>
           <div className='flex jus-cen align-cen'>
-            <SearchBike />
+            <SearchBike position="absolute"/>
           </div>
         </div>
       </div>

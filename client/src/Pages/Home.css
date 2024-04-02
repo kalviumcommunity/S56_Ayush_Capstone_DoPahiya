@@ -8,11 +8,12 @@
 }
 
 .home-hero-section-body h1{
-    font-family: "Khula", sans-serif;
+    font-family: "Khula", sans-serif !important;
     font-size: 3vw;
     width: 58vw;
     margin: auto;
     color: white;
+    font-weight: bold;
 }
 
 .home-hero-section-body{
