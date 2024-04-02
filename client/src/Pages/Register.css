@@ -1,5 +1,5 @@
 .registerformcont h4{
-    font-size: 15px !important;
+    font-size: 15px;
     line-height: 0;
 }
 
@@ -7,26 +7,21 @@
     text-align: left;
 }
 
-.registerformcont{
-    height: 80vh;
-    padding-top: 50px;
-}
-
 .registerformcont h1{
-    font-size: 35px !important;
-    line-height: 2 !important;
+    font-size: 35px;
+    line-height: 2;
 }
 
 .registerformcont input[type="text"] , .registerformcont input[type="password"]{
-    margin: 0 !important;
+    margin: 0;
 }
 
 .registerformcont form{
-    margin: 10px 0px !important;
+    margin: 10px 0px;
 }
 
 .registerImg{
-    height: 80vh;
+    height: 70vh;
     width: 350px;
     background-image: url("../assets/RegisterImg.png");
     background-repeat: no-repeat;
@@ -34,9 +29,9 @@
 }
 
 .registerformcont form div{
-    margin-bottom: 10px !important;
+    margin-bottom: 10px;
 }
 
 .registerformcont .login-btndiv{
-    margin-top: 25px !important;
+    margin-top: 25px;
 }

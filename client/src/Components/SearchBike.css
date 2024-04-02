@@ -4,6 +4,7 @@
 .searchbike-body{
     width: calc(100vw-17px);
     text-align: left;
+    position: absolute;
     bottom: -58.9px;
 }
 
@@ -12,7 +13,6 @@
     padding: 1.5vw 3vw;
     border-radius: 5px;
     width: fit-content;
-    backdrop-filter: blur(3px);
 }
 
 .searchbike-body h3{
@@ -23,7 +23,6 @@
 .searchbike-btn-div{
     gap: 2vw;
     border-radius: 5px;
-    flex-wrap: wrap;
 }
 
 .searchbike-btn-div select{
