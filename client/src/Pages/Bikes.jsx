@@ -6,6 +6,7 @@ import Pulsar from "../assets/Pulsar.webp"
 import MB from "../assets/Motorcycle.png"
 import { useNavigate } from 'react-router-dom'
 import Footer from '../Components/Footer.jsx'
+import BikePageCard from '../Components/BikePageCard.jsx'
 
 const Bikes = () => {
 
@@ -42,138 +43,38 @@ const Bikes = () => {
             <div className="tab-content" id="nav-tabContent">
                 <div className="tab-pane fade show active" id="nav-pop-1" role="tabpanel" aria-labelledby="nav-home-tab" tabIndex="0">
                     <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-pop-2" role="tabpanel" aria-labelledby="nav-profile-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-pop-3" role="tabpanel" aria-labelledby="nav-contact-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-pop-4" role="tabpanel" aria-labelledby="nav-disabled-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
             </div>
@@ -198,172 +99,47 @@ const Bikes = () => {
             <div className="tab-content" id="nav-tabContent">
                 <div className="tab-pane fade show active" id="nav-price-1" role="tabpanel" aria-labelledby="nav-home-tab" tabIndex="0">
                     <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-price-2" role="tabpanel" aria-labelledby="nav-profile-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-price-3" role="tabpanel" aria-labelledby="nav-contact-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-price-4" role="tabpanel" aria-labelledby="nav-disabled-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-price-5" role="tabpanel" aria-labelledby="nav-disabled-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
             </div>
@@ -387,138 +163,38 @@ const Bikes = () => {
             <div className="tab-content" id="nav-tabContent">
                 <div className="tab-pane fade show active" id="nav-mil-1" role="tabpanel" aria-labelledby="nav-home-tab" tabIndex="0">
                     <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-mil-2" role="tabpanel" aria-labelledby="nav-profile-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-mil-3" role="tabpanel" aria-labelledby="nav-contact-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-mil-4" role="tabpanel" aria-labelledby="nav-disabled-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
-                        <div className="card">
-                            <img src={Pulsar} />
-                            <div className="card-body">
-                                <h4 className="card-text">Pulsar NS160</h4>
-                            </div>
-                        </div>
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
+                        <BikePageCard />
                     </div>
                 </div>
             </div>
