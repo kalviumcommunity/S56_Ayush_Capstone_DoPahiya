@@ -51,6 +51,10 @@
     font-size: 12px;
 }
 
+.loginformcont > div{
+    padding-top: 40px;
+}
+
 label{
     font-family: "Fuzzy Bubbles", sans-serif;
     font-size: 15px;
