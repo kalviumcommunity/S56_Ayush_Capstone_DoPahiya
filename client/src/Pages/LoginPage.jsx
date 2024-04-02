@@ -65,7 +65,7 @@ const LoginPage = () => {
                 {/* <img src={LoginImg}/> */}
             </div>
             <div className='loginformcont flex jus-cen align-cen'>
-                <div>
+                <div style={{paddingTop:"40px"}}>
                     <h1>Welcome Back..!!</h1>
 
                     <h4>Rev Up Your Ride: <br /> Access Exclusive Bike Info Here!</h4>
