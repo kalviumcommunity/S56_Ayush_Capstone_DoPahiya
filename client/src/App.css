@@ -1,3 +1,8 @@
+:root{
+    --primary-color: #FF8A00;
+    --table-col-width: 26.66vw;
+}
+
 .flex{
     display: flex;
 }

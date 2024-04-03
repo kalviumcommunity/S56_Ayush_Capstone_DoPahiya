@@ -16,7 +16,7 @@
 
 .compare-main-content h1{
     font-size: 3.5vw;
-    color: #FF8A00;
+    color: var(--primary-color);
 }
 
 .compare-main-content h4{
@@ -37,7 +37,7 @@
 }
 
 .compare-select-div select{
-    width: 26.66vw;
+    width: var(--table-col-width);
     text-align: center;
     padding: 10px 0px;
     border: none;
@@ -56,7 +56,7 @@
 }
 
 .compare-img-div div{
-    width: 26.667vw;
+    width: var(--table-col-width);
 }
 
 .compare-table-div table{
@@ -64,7 +64,7 @@
 }
 
 .compare-table-div table tr td{
-    width: 26.66vw;
+    width: var(--table-col-width);
     text-align: center;
     border-bottom: 1px solid  black;
     padding: 15px;
@@ -93,6 +93,6 @@
     width: 100%;
     border: none;
     padding: 4px;
-    background-color: #FF8A00;
+    background-color: var(--primary-color);
     color: white;
 }

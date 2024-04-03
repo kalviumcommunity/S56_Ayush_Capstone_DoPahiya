@@ -1,4 +1,4 @@
-import React , {useContext, useState} from 'react'
+import React , {useContext, useEffect} from 'react'
 import {useNavigate , Link} from 'react-router-dom'
 import LoginPage from './LoginPage'
 import Register from './Register.jsx'
@@ -19,9 +19,12 @@ const Home = () => {
   
   const navigate = useNavigate()
 
-  window.scrollTo({
-    top:0
-  })
+  useEffect(()=>{
+    window.scrollTo({
+      top:0
+    })
+  },[])
+  
   const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
 
   let handleExplore = () =>{

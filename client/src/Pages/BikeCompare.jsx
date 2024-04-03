@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import "./BikeCompare.css"
 import "./Bikes.css"
 import Navbar from '../Components/Navbar'
@@ -42,9 +42,19 @@ let data = [
 
 const BikeCompare = () => {
 
-    window.scrollTo({
-        top:0
-      })
+    useEffect(()=>{
+        window.scrollTo({
+          top:0
+        })
+      },[])
+
+    let mappedData = Object.keys(data[0]).map((el , i)=>{
+        return <tr key={i}>
+                    <td>{typeof(data[0][el]) === "object" ? data[0][el].join(", ") : data[0][el]}</td>
+                    <td>{el}</td>
+                    <td>{typeof(data[1][el]) === "object" ? data[1][el].join(", ") : data[1][el]}</td>
+                </tr> 
+    })
 
   return (
     <div className='compare-body-main'>
@@ -59,10 +69,10 @@ const BikeCompare = () => {
         <div className='compare-main-div'>
             <div className='compare-img-div flex jus-spBet align-cen'>
                 <div className='flex jus-cen'>
-                    <img src={R15}/>
+                    <img src={R15} alt='r15Img'/>
                 </div>
                 <div className='flex jus-cen'>
-                    <img src={R15}/>
+                    <img src={R15} alt='r15Img'/>
                 </div>
             </div>
 
@@ -79,16 +89,10 @@ const BikeCompare = () => {
             </div>
 
             <div className='compare-table-div'>
-                <table class="table">
+                <table className="table">
                     <tbody>
                         {
-                            Object.keys(data[0]).map((el , i)=>{
-                                return <tr>
-                                            <td>{typeof(data[0][el]) === "object" ? data[0][el].join(", ") : data[0][el]}</td>
-                                            <td>{el}</td>
-                                            <td>{typeof(data[1][el]) === "object" ? data[1][el].join(", ") : data[1][el]}</td>
-                                        </tr> 
-                            })
+                            mappedData
                         }
                     </tbody>
                 </table>
