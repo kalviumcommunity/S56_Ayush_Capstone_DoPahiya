@@ -26,9 +26,9 @@ const LoginPage = () => {
         axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/login" , inputvals)
             .then((res)=>{
                 if (res.data == "User Does not exist"){
-                    toast.update(note, {render: "User Does not Exist", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true})
+                    toast.update(note, {render: "User Does not Exist", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true, theme:"colored"})
                 }else if (res.data == "Wrong Password"){
-                    toast.update(note, {render: "Wrong Password..!", type: "error", isLoading: false , autoClose:1000 , hideProgressBar:true})
+                    toast.update(note, {render: "Wrong Password..!", type: "error", isLoading: false , autoClose:1000 , hideProgressBar:true, theme:"colored"})
                 }else{
                     toast.update(note, {render: "Logged in Successfully", type: "success", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
                     setTimeout(()=>{

@@ -1,5 +1,5 @@
 import React , {useContext, useState} from 'react'
-import {useNavigate} from 'react-router-dom'
+import {useNavigate , Link} from 'react-router-dom'
 import LoginPage from './LoginPage'
 import Register from './Register.jsx'
 import Navbar from '../Components/Navbar'
@@ -54,7 +54,7 @@ const Home = () => {
 
           <p>Explore detailed comparisons of different bike models, from performance to features and beyond. Whether you're a seasoned rider or just starting your biking journey, our comprehensive insights empower you to make informed decisions and ride with confidence. Discover your ideal bike today and elevate your biking experience like never before.</p>
 
-          <button className='home-section-btn'>Know More</button>
+          <Link to={"/compare"} className='links'><button className='home-section-btn'>Know More</button></Link>
         </div>
       </div>
 

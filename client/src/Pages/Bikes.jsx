@@ -11,6 +11,10 @@ const Bikes = () => {
 
     const navigate = useNavigate()
 
+    window.scrollTo({
+        top:0
+      })
+
     let handleExplore = (id) =>{
         document.getElementById(`${id}-img`).style.visibility = "visible"
         document.getElementById(`${id}`).classList.add("slide-out-bck-bottom")
