@@ -3,6 +3,7 @@ import "./Navbar.css"
 import Logo from "../assets/LogoNoBg.png"
 import {Context} from "../App.jsx"
 import { GiHamburgerMenu } from "react-icons/gi";
+import { Link } from 'react-router-dom';
 
 const Navbar = ({color}) => {
 
@@ -29,8 +30,8 @@ const Navbar = ({color}) => {
 
         <div className='navbar-links-div'>
             <ul className='navbar-links-list flex' style={{color:color}}>
-                <li>Home</li>
-                <li>Bikes</li>
+                <li><Link className='links' to={"/"}>Home</Link></li>
+                <li><Link className='links' to={"/bikes"}>Bikes</Link></li>
                 <li>Compare</li>
                 <li>FindMyPerfectBike</li>
                 <li>Feedback</li>

@@ -13,6 +13,7 @@
     padding: 1.5vw 3vw;
     border-radius: 5px;
     width: fit-content;
+    backdrop-filter: blur(4px);
 }
 
 .searchbike-body h3{
