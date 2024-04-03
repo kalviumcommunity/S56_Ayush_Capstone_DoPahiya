@@ -2,7 +2,6 @@ import React from 'react'
 import "./Bikes.css"
 import Navbar from "../Components/Navbar.jsx"
 import SearchBike from '../Components/SearchBike.jsx'
-import Pulsar from "../assets/Pulsar.webp"
 import MB from "../assets/Motorcycle.png"
 import { useNavigate } from 'react-router-dom'
 import Footer from '../Components/Footer.jsx'

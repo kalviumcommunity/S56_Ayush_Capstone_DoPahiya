@@ -19,6 +19,11 @@
     width: 100px;
 }
 
+.links{
+    color: inherit !important;
+    text-decoration: none;
+}
+
 .navbar-links-list{
     list-style-type: none;
     gap: 30px;
