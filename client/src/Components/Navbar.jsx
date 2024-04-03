@@ -32,7 +32,7 @@ const Navbar = ({color}) => {
             <ul className='navbar-links-list flex' style={{color:color}}>
                 <li><Link className='links' to={"/"}>Home</Link></li>
                 <li><Link className='links' to={"/bikes"}>Bikes</Link></li>
-                <li>Compare</li>
+                <li><Link className='links' to={"/compare"}>Compare</Link></li>
                 <li>FindMyPerfectBike</li>
                 <li>Feedback</li>
             </ul>
@@ -40,7 +40,7 @@ const Navbar = ({color}) => {
 
         <div className='navbar-btn-div flex align-cen'>
             <button onClick={handleLoginBtn}>{sessionStorage.getItem("loggedin") == "true" ? "Logout" : "Login"}</button>
-            <GiHamburgerMenu className='hamburger'/>
+            <GiHamburgerMenu className='hamburger' style={{color:color}}/>
         </div>
     </div>
   )

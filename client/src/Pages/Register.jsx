@@ -24,9 +24,9 @@ const Register = () => {
         axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/register" , inputvals)
           .then((res)=>{
             if (res.data == "User already Exists"){
-              toast.update(note, {render: "User Already Exists.!!", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true})
+              toast.update(note, {render: "User Already Exists.!!", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true , theme:"colored"})
             }else{
-              toast.update(note, {render: "Registration Successful..! Login to Continue", type: "success", isLoading: false , autoClose: 1000 , hideProgressBar:true});
+              toast.update(note, {render: "Registration Successful..! Login to Continue", type: "success", isLoading: false , autoClose: 1000 , hideProgressBar:true, theme:"colored"});
               setTimeout(()=>{
                 setRegisterModal(!RegisterModal)
                 setLoginModal(!LoginModal)

@@ -1,0 +1,98 @@
+.compare-main-section{
+    background-image: url("../assets/CompareBg.png");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 5vw;
+    box-shadow: inset 0 0 0px 500px #00000089;
+}
+
+.compare-main-content{
+    margin-top: 12vw;
+    width: 100%;
+    text-align: center;
+    flex-direction: column;
+}
+
+.compare-main-content h1{
+    font-size: 3.5vw;
+    color: var(--primary-color);
+}
+
+.compare-main-content h4{
+    margin-top: 20px;
+    margin-bottom: 20vw;
+    color: white;
+    font-size: 1.5vw;
+    width: 55vw;
+}
+
+.compare-main-div{
+    width: 100%;
+    padding: 2vw 10vw;
+}
+
+.compare-select-div{
+    text-align: center;
+}
+
+.compare-select-div select{
+    width: var(--table-col-width);
+    text-align: center;
+    padding: 10px 0px;
+    border: none;
+    box-shadow: 0 4px 8px 0 #0000004d;
+}
+
+.compare-select-div p{
+    font-weight: 500;
+    font-size: 20px;
+    width: 26.66vw;
+    margin: 0;
+}
+
+.compare-img-div{
+    margin-bottom: 30px;
+}
+
+.compare-img-div div{
+    width: var(--table-col-width);
+}
+
+.compare-table-div table{
+    margin: 70px 0px;
+}
+
+.compare-table-div table tr td{
+    width: var(--table-col-width);
+    text-align: center;
+    border-bottom: 1px solid  black;
+    padding: 15px;
+    font-weight: 500;
+}
+
+.compare-table-div table tr td:nth-child(2){
+    background-color: #ff8800e2;
+    color: white;
+    text-transform: capitalize;
+}
+
+.compare-card{
+    text-align: center;
+    background-color: white;
+    padding: 25px 40px;
+    border-radius: 5px;
+}
+
+.compare-card h4 , p{
+    margin: 0;
+}
+
+.compare-card button{
+    margin-top: 20px;
+    width: 100%;
+    border: none;
+    padding: 4px;
+    background-color: var(--primary-color);
+    color: white;
+}

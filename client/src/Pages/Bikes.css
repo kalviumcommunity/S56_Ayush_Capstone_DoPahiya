@@ -26,6 +26,8 @@
     background-color: #D9D9D9;
     padding: 20px;
     border-radius: 0 0 10px 10px !important;
+    overflow-x: auto;
+    gap: 20px;
 }
 
 .active{

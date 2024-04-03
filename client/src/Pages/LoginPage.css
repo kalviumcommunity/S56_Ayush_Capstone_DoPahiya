@@ -73,7 +73,7 @@ input[type="text"] , input[type="password"]{
 
 input[type="submit"]{
     font-family: "Fuzzy Bubbles", sans-serif;
-    background-color: #FF8A00;
+    background-color: var(--primary-color);
     border: none;
     padding: 10px 30px;
     color: white;
@@ -111,7 +111,7 @@ input[type="submit"]:active{
 }
 
 .registertext span{
-    color: #FF8A00;
+    color: var(--primary-color);
     font-weight: 700;
     cursor: pointer;
 }

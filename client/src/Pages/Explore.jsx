@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useEffect} from 'react'
 import Navbar from '../Components/Navbar'
 import "./Explore.css"
 import BikeBrandLogo from "../BrandLogo.js"
@@ -6,10 +6,13 @@ import Footer from '../Components/Footer.jsx'
 
 const Explore = () => {
 
+  useEffect(()=>{
     window.scrollTo({
-        top:0
+      top:0
     })
-    console.log(BikeBrandLogo)
+  },[])
+
+  console.log(BikeBrandLogo)
 
   return (
     <div className='explore-main-div '>

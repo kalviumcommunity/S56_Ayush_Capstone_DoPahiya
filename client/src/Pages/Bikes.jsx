@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useEffect}from 'react'
 import "./Bikes.css"
 import Navbar from "../Components/Navbar.jsx"
 import SearchBike from '../Components/SearchBike.jsx'
@@ -10,6 +10,12 @@ import BikePageCard from '../Components/BikePageCard.jsx'
 const Bikes = () => {
 
     const navigate = useNavigate()
+
+    useEffect(()=>{
+        window.scrollTo({
+          top:0
+        })
+      },[])
 
     let handleExplore = (id) =>{
         document.getElementById(`${id}-img`).style.visibility = "visible"

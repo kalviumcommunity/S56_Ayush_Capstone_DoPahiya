@@ -9,7 +9,7 @@
 }
 
 .searchbike-body > div{
-    background-color: #FF8A00;
+    background-color: var(--primary-color);
     padding: 1.5vw 3vw;
     border-radius: 5px;
     width: fit-content;
