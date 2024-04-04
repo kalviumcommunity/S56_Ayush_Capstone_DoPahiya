@@ -36,15 +36,19 @@
 }
 
 .card{
-    width: fit-content;
-    padding: 10px;
+    width: 200px;
+    padding: 30px 10px;
     text-align: center;
     cursor: pointer;
+    position: relative; /* Add shadow to the card */
+    transform-style: preserve-3d;
+    height: 200px; 
 }
 
 .card img{
     margin:auto;
     width: 180px;
+    will-change: opacity;
 }
 
 .nav button{
@@ -60,4 +64,80 @@
     font-size: 20px;
     font-family: "Jua", sans-serif;
     cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-40px); /* Move the text slightly from below */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-120px);
+    }
+}
+
+.card:hover .card-content {
+    opacity: 1; /* Move the content up on hover */
+}
+
+.card:hover .hidden-text {
+    opacity: 1; /* Make the text visible on hover */
+    animation: fadeIn 0.5s ease forwards; /* Apply fade-in animation */
+}
+
+.hidden-text{
+    opacity: 0;
+}
+
+.hidden-content{
+    position: absolute;
+    /* top: 50%; */
+    left: 50%;
+    transform: translate(-50%);
+    /* bottom: 0; */
+    width: 100%;
+}
+
+.hidden-content p{
+    font-weight: 500;
+    line-height: 2;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(0px); /* Move the text slightly from below */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(40px);
+    }
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1; /* Ensure the image is above other elements */
+}
+
+.visible-content{
+    text-align: center;
+    transition: transform 0.3s ease; /* Add transition for smooth movement */
+}
+
+.card:hover .visible-content {
+    transform: translateY(-80%); /* Move the image up on hover */
+}
+
+.card:hover img{
+    opacity: 0;
+}
+
+.card-content {
+    width: 100%;
+    text-align: center;
+    opacity: 0; /* Initially hide the content */
+    color: black;
 }

@@ -70,7 +70,7 @@ const Home = () => {
 
           <p>Embark on a personalized journey to discover your perfect bike with our FindMyPerfectBike section. Answer a few simple questions about your preferences, riding style, and desired features, and let us guide you to the bike that suits you best. Whether you crave speed, seek adventure, or prioritize comfort, we're here to match you with the ideal ride that will elevate your biking experience to new heights</p>
 
-          <button className='home-section-btn'>Know More</button>
+          <Link to={"/findmyperfectbike"} className='links'><button className='home-section-btn'>Know More</button></Link>
         </div>
       </div>
 

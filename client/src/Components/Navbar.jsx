@@ -33,7 +33,7 @@ const Navbar = ({color}) => {
                 <li><Link className='links' to={"/"}>Home</Link></li>
                 <li><Link className='links' to={"/bikes"}>Bikes</Link></li>
                 <li><Link className='links' to={"/compare"}>Compare</Link></li>
-                <li>FindMyPerfectBike</li>
+                <li><Link className='links' to={"/findmyperfectbike"}>FindMyPerfectBike</Link></li>
                 <li>Feedback</li>
             </ul>
         </div>
