@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@100..700&display=swap');
+
+.fmpb-content{
+    width: 100%;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.fmpb-head-content{
+    width: 70%;
+    text-align: center;
+}
+
+.fmpb-head-content h1{
+    font-family: "Arima", system-ui;
+    font-size: 5vw;
+    color: var(--primary-color);
+}
+
+.fmpb-head-content h4{
+    margin: 30px 0px;
+}
+
+.ques-div{
+    margin-top: 30px;
+}
+
+.ques-btn{
+    width: 25%;
+    padding: 0.5vw;
+    font-family: "Arima", system-ui;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 2px;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.fav{
+    width: 25%;
+    padding: 0.5vw;
+    font-family: "Arima", system-ui;
+    border-radius: 2px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
+
+.fmpb-ques-cont{
+    margin-top: 100px;
+    width: 100%;
+    text-align: start;
+}
+
+.ques{
+    font-size: 20px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.options-div{
+    flex-direction: column;
+    margin: 30px;
+}
+
+.options-div div{
+    margin: 0;
+}
+
+.options-div label{
+    margin-left: 30px;
+    font-size: 18px;
+}
+
+input[type="radio"]{
+    width: 15px;
+    height: 15px;
+}
+
+input[type="submit"]{
+    padding: 10px 20px;
+    border-radius: 2px;
+}
+
+#ques-cont-main{
+    width: 100%;
+    padding: 20px;
+}
+
+.fmpb-bikelist-maindiv{
+    text-align: start;
+    width: 100%;
+    flex-direction: column;
+    margin-top: 100px;
+}
+
+.fmpb-bikelist-maindiv > div{
+    min-width: 55vw;
+}
+
+.fmpb-bikelist-maindiv h2{
+    margin-bottom: 30px;
+}
+
+.bikelist-card{
+    width: 100%;
+    box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.493);
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.bikelist-card p{
+    color: rgba(0, 0, 0, 0.555);
+}
+
+.bikelist-card button{
+    width: 150px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.bikelist-card button:nth-child(1){
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+}
+
+.nextbtn{
+    width: 100px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px;
+}
+
+@media all and (max-width:800px){
+    .bikelist-card{
+        flex-direction: column;
+    }
+}
