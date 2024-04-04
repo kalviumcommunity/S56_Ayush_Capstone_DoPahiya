@@ -55,13 +55,13 @@ const FindMyPerfectBike = () => {
     const [answers , setAnswers] = useState([])
 
     let handleFormBtn = ()=>{
-        if (currQues == questions.length-1){
-            setShowQues(!showQues)
-            setShowList(!showBikeList)
-            console.log(answers)
-        }else{
-            setCurrQues(currQues + 1)
-        }
+        setCurrQues(currQues + 1)
+    }
+
+    let handleSubmit = () =>{
+        setShowQues(!showQues)
+        setShowList(!showBikeList)
+        console.log(answers)
     }
 
     const handleOptionSelect = (option) => {
@@ -69,6 +69,8 @@ const FindMyPerfectBike = () => {
         newAnswers[currQues] = option;
         setAnswers(newAnswers);
     };
+
+    console.log(currQues)
 
     let handleClick = () =>{
         setShowQues(true)
@@ -81,6 +83,12 @@ const FindMyPerfectBike = () => {
         setShowQues(false)
         setShowList(false)
         setshowFav(true)
+    }
+
+    let handleBack = () =>{
+        if (currQues > 0){
+            setCurrQues(currQues-1)
+        }
     }
 
   return (
@@ -96,7 +104,7 @@ const FindMyPerfectBike = () => {
             </div>
             <hr />
             { showQues && <div id='ques-cont-main flex jus-cen'>
-                <div className='fmpb-ques-cont' id='form'>
+                <form className='fmpb-ques-cont' id='form'>
                     {
                         <div className='ques-div'>
                             <p className='ques' key={currQues}>{currQues + 1}. {questions[currQues].ques}</p>
@@ -110,8 +118,12 @@ const FindMyPerfectBike = () => {
                             </div>
                         </div>
                     }
-                    <button onClick={handleFormBtn} className='nextbtn'>{currQues == questions.length-1 ? "Submit" : "Next"}</button>
-                </div>
+                    
+                    {
+                        currQues == questions.length - 1 ? <input type="button" className='nextbtn' value={"SUBMIT"} onClick={handleSubmit}/> : <input onClick={handleFormBtn} className='nextbtn' value="Next" type="button"/>
+                    }
+                    <button className='nextbtn' style={{marginLeft:"20px"}} onClick={handleBack}>Back</button>
+                </form>
             </div>}
 
             { showBikeList && <div className='flex jus-cen align-cen fmpb-bikelist-maindiv'>

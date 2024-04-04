@@ -48,6 +48,7 @@
 .card img{
     margin:auto;
     width: 180px;
+    will-change: opacity;
 }
 
 .nav button{
