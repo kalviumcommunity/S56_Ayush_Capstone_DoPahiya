@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Jua&family=Fuzzy+Bubbles:wght@400;700&display=swap');
+
+
 :root{
     --primary-color: #FF8A00;
     --table-col-width: 26.66vw;
+    --fuzzy-font: "Fuzzy Bubbles", sans-serif;
 }
 
 .flex{

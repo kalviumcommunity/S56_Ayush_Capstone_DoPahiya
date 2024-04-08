@@ -13,15 +13,28 @@ const FeedBackForm = () => {
 
     let handleSubmit = (e) =>{
         e.preventDefault()
-        console.log(firstName , lastName , email , message)
-        toast.success("We will get back to you soon..!!" , {
-            position:"top-center",
-            autoClose : 1000
-        })
-        setFirstName("")
-        setLastName("")
-        setEmail("")
-        setMessage("")
+        if (firstName == "" || lastName == "" || email == "" || message == ""){
+            toast.error("Enter valid Data..!" ,{
+                position:"top-center",
+                autoClose : 1000
+            })
+        }else if (!/^\S+@\S+$/i.test(email)){
+            toast.error("Enter valid Email..!" ,{
+                position:"top-center",
+                autoClose : 1000
+            })
+        }
+        else{
+
+            toast.success("We will get back to you soon..!!" , {
+                position:"top-center",
+                autoClose : 1000
+            })
+            setFirstName("")
+            setLastName("")
+            setEmail("")
+            setMessage("")
+        }
     }
 
   return (
@@ -46,7 +59,7 @@ const FeedBackForm = () => {
                 <form onSubmit={handleSubmit}>
                     <input type="text" value={firstName} placeholder='Enter First Name' onChange={(e)=>setFirstName(e.target.value)}/>
                     <input type="text" value={lastName} placeholder='Enter Last Name' onChange={(e)=>setLastName(e.target.value)}/>
-                    <input type="text" value={email} placeholder='Enter Email' onChange={(e)=>setEmail(e.target.value)} />
+                    <input type="email" value={email} placeholder='Enter Email' onChange={(e)=>setEmail(e.target.value)} />
                     <textarea value={message} cols="30" rows="8" placeholder='Enter Message'onChange={(e)=>setMessage(e.target.value)}></textarea>
                     <div className='flex jus-end align-cen'>
                         <input type="submit" />
