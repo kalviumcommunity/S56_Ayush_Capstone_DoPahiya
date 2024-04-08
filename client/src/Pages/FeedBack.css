@@ -57,6 +57,18 @@
     border: 2px solid var(--primary-color);
 }
 
+.feedback-form-div form input[type="email"]{
+    font-family: "Fuzzy Bubbles", sans-serif;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    margin: 3px 0px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+}
+
 .cancel-btn{
     cursor: pointer;
     padding: 10px 20px;
