@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Batang&family=Jua&family=Fuzzy+Bubbles:wght@400;700&display=swap');
+/* font-family: "Gowun Batang", serif; */
+
+.feedback-content-main{
+    width: 100%;
+    /* height: calc(100vh - 100px); */
+}
+
+.feedback-content{
+    width: 50%;
+    font-family: "Gowun Batang", serif;
+    padding: 0vw 5vw 0vw 10vw;
+}
+
+.feedback-content h1{
+    font-size: 60px;
+}
+
+.feedback-content > p{
+    margin: 50px 0px;
+}
+
+.feedback-content h4{
+    font-weight: bold;
+}
+
+.feedback-form-div{
+    width: 50%;
+    padding: 6vw 12vw 0vw 12vw;
+}
+
+.feedback-form-div form input{
+    border: 2px solid black;
+    margin-bottom: 10px;
+}
+
+.feedback-form-div form textarea{
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-family: var(--fuzzy-font);
+    padding: 10px;
+    font-weight: 700;
+}
+
+.feedback-form-div form > div{
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.feedback-form-div form input[type="submit"]{
+    cursor: pointer;
+    padding: 10px 20px;
+    font-family: "Fuzzy Bubbles", sans-serif;
+    background-color: var(--primary-color);
+    margin: 0;
+    border: 2px solid var(--primary-color);
+}
+
+.feedback-form-div form input[type="email"]{
+    font-family: "Fuzzy Bubbles", sans-serif;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    font-weight: 700;
+    margin: 3px 0px;
+    border: 2px solid black;
+    margin-bottom: 10px;
+}
+
+.cancel-btn{
+    cursor: pointer;
+    padding: 10px 20px;
+    font-family: "Fuzzy Bubbles", sans-serif;
+    background-color: white;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+}
