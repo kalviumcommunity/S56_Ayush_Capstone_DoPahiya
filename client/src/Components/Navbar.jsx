@@ -34,7 +34,7 @@ const Navbar = ({color}) => {
                 <li><Link className='links' to={"/bikes"}>Bikes</Link></li>
                 <li><Link className='links' to={"/compare"}>Compare</Link></li>
                 <li><Link className='links' to={"/findmyperfectbike"}>FindMyPerfectBike</Link></li>
-                <li>Feedback</li>
+                <li><Link className='links' to={"/feedback"}>Feedback</Link></li>
             </ul>
         </div>
 

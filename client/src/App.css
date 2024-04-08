@@ -11,6 +11,10 @@
     justify-content: center;
 }
 
+.jus-end{
+    justify-content: end;
+}
+
 .jus-spBet{
     justify-content: space-between;
 }
