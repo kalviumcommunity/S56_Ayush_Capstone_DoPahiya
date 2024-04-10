@@ -19,18 +19,7 @@ const Navbar = ({color}) => {
             setLoginModal(!LoginModal)
         }
     }
-
-    // document.addEventListener('DOMContentLoaded', function() {
-    //     const progressBar = document.getElementById('progressBar');
-      
-    //     document.addEventListener('scroll', function() {
-    //       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-    //       const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    //       const scrollProgress = (scrollTop / scrollHeight) * 100;
-      
-    //       progressBar.style.width = scrollProgress + '%';
-    //     });
-    // });
+    
     useEffect(() => {
         function handleScroll() {
           const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;

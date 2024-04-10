@@ -13,7 +13,7 @@
 
 .fmpb-head-content h1{
     font-family: "Arima", system-ui;
-    font-size: 80px;
+    font-size: 5rem;
     color: var(--primary-color);
 }
 
