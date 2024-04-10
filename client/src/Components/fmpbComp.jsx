@@ -5,7 +5,7 @@ import "../Pages/fmpb.css"
 
 const FmpbComp = () => {
   return (
-    <div className='bikelist-card flex align-cen jus-spBet'>
+    <div className='bikelist-card flex align-cen jus-cen'>
         <div>
             <img src={R15}/>
         </div>

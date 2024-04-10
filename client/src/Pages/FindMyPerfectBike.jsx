@@ -119,10 +119,10 @@ const FindMyPerfectBike = () => {
                         </div>
                     }
                     
+                    <button className='nextbtn' style={{marginRight:"20px"}} onClick={handleBack}>Back</button>
                     {
                         currQues == questions.length - 1 ? <input type="button" className='nextbtn' value={"SUBMIT"} onClick={handleSubmit}/> : <input onClick={handleFormBtn} className='nextbtn' value="Next" type="button"/>
                     }
-                    <button className='nextbtn' style={{marginLeft:"20px"}} onClick={handleBack}>Back</button>
                 </form>
             </div>}
 
