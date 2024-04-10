@@ -55,6 +55,10 @@
     margin-bottom: 30px;
 }
 
+.compare-img-div img{
+    width: 40vw;
+}
+
 .compare-img-div div{
     width: var(--table-col-width);
 }
