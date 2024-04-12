@@ -3,38 +3,73 @@ import Navbar from '../Components/Navbar'
 import "./FeedBack.css"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const FeedBackForm = () => {
 
-    const [firstName , setFirstName] = useState("")
-    const [lastName , setLastName] = useState("")
-    const [email , setEmail] = useState("")
-    const [message , setMessage] = useState("")
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [message, setMessage] = useState('');
+    const [errors, setErrors] = useState({});
 
     let handleSubmit = (e) =>{
-        e.preventDefault()
-        if (firstName == "" || lastName == "" || email == "" || message == ""){
-            toast.error("Enter valid Data..!" ,{
-                position:"top-center",
-                autoClose : 1000
-            })
-        }else if (!/^\S+@\S+$/i.test(email)){
-            toast.error("Enter valid Email..!" ,{
-                position:"top-center",
-                autoClose : 1000
-            })
-        }
-        else{
+        e.preventDefault();
+        const validationErrors = {};
 
-            toast.success("We will get back to you soon..!!" , {
-                position:"top-center",
-                autoClose : 1000
-            })
-            setFirstName("")
-            setLastName("")
-            setEmail("")
-            setMessage("")
+        // Validate first name
+        if (!firstName.trim()) {
+            validationErrors.firstName = 'First name is required';
+        } else if (/\d/.test(firstName)) {
+            validationErrors.firstName = 'First name must not contain number';
         }
+
+        // Validate last name
+        if (!lastName.trim()) {
+            validationErrors.lastName = 'Last name is required';
+        } else if (/\d/.test(lastName)) {
+            validationErrors.lastName = 'Last name must not contain number';
+        }
+
+        // Validate email
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.trim()) {
+            validationErrors.email = 'Email is required';
+        } else if (!emailPattern.test(email)) {
+            validationErrors.email = 'Invalid email address';
+        }
+
+        // Validate message
+        if (!message.trim()) {
+            validationErrors.message = 'Message is required';
+        }
+
+        // If there are validation errors, set them and prevent form submission
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            return;
+        }
+        
+        axios.post("http://localhost:3200/feedback" , {firstName : firstName , lastName : lastName , email : email , message : message})
+            .then((res)=>{
+                toast.success("We will get back to you soon..!!" , {
+                    position:"top-center",
+                    autoClose : 1000
+                })
+                setFirstName("")
+                setLastName("")
+                setEmail("")
+                setMessage("")
+                setErrors({})
+            })
+            .catch((err)=>{
+                console.log(err)
+                toast.error("Some Error Occured.!!")
+            })
+
+        
+        console.log({firstName : firstName , lastName : lastName , email : email , message : message})
+        
     }
 
   return (
@@ -47,7 +82,7 @@ const FeedBackForm = () => {
                 <div className='flex jus-spBet align-cen'>
                     <div>
                         <h4>EMAIL</h4>
-                        <p>ghodkeayush22@gmail.com</p>
+                        <p>dopahiya.feedback@gmail.com</p>
                     </div>
                     <div>
                         <h4>Phone</h4>
@@ -57,10 +92,22 @@ const FeedBackForm = () => {
             </div>
             <div className='feedback-form-div'>
                 <form onSubmit={handleSubmit}>
-                    <input type="text" value={firstName} placeholder='Enter First Name' onChange={(e)=>setFirstName(e.target.value)}/>
-                    <input type="text" value={lastName} placeholder='Enter Last Name' onChange={(e)=>setLastName(e.target.value)}/>
-                    <input type="email" value={email} placeholder='Enter Email' onChange={(e)=>setEmail(e.target.value)} />
-                    <textarea value={message} cols="30" rows="8" placeholder='Enter Message'onChange={(e)=>setMessage(e.target.value)}></textarea>
+                    <div>
+                        <input type="text" value={firstName} placeholder='Enter First Name' onChange={(e) => setFirstName(e.target.value)} />
+                        {errors.firstName && <span className="error">{errors.firstName}</span>}
+                    </div>
+                    <div>
+                        <input type="text" value={lastName} placeholder='Enter Last Name' onChange={(e) => setLastName(e.target.value)} />
+                        {errors.lastName && <span className="error">{errors.lastName}</span>}
+                    </div>
+                    <div>
+                        <input type="text" value={email} placeholder='Enter Email' onChange={(e) => setEmail(e.target.value)} />
+                        {errors.email && <span className="error">{errors.email}</span>}
+                    </div>
+                    <div>
+                        <textarea value={message} cols="30" rows="8" placeholder='Enter Message' onChange={(e) => setMessage(e.target.value)}></textarea>
+                        {errors.message && <span className="error">{errors.message}</span>}
+                    </div>
                     <div className='flex jus-end align-cen'>
                         <input type="submit" />
                     </div>

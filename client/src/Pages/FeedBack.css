@@ -26,7 +26,7 @@
 
 .feedback-form-div{
     width: 50%;
-    padding: 6vw 12vw 0vw 12vw;
+    padding: 5vw 12vw 0vw 12vw;
 }
 
 .feedback-form-div form input{
@@ -45,7 +45,7 @@
 
 .feedback-form-div form > div{
     gap: 10px;
-    margin-top: 20px;
+    margin: 10px 0px;
 }
 
 .feedback-form-div form input[type="submit"]{
@@ -64,9 +64,7 @@
     border: none;
     border-radius: 5px;
     font-weight: 700;
-    margin: 3px 0px;
     border: 2px solid black;
-    margin-bottom: 10px;
 }
 
 .cancel-btn{
@@ -76,4 +74,47 @@
     background-color: white;
     border: 2px solid var(--primary-color);
     color: var(--primary-color);
+}
+
+.error{
+    color: red;
+    font-weight: bold;
+    font-family: "Gowun Batang", serif;
+}
+
+@media all and (max-width:950px){
+    .feedback-content-main{
+        margin-top: 100px;
+    }
+    .feedback-content > div{
+        gap: 30px;
+        text-align: center;
+        flex-direction: column;
+    }
+}
+
+@media all and (max-width:700px){
+    .feedback-content-main{
+        flex-direction: column;
+    }
+
+    .feedback-form-div{
+        width: 80%;
+    }
+    .feedback-content{
+        width: 80%;
+    }
+    .feedback-content > h1{
+        text-align: center;
+        font-size: 10vw;
+    }
+}
+
+@media all and (max-width:500px){
+    .feedback-form-div{
+        width: 90%;
+    }
+    .feedback-content{
+        width: 90%;
+    }
 }
