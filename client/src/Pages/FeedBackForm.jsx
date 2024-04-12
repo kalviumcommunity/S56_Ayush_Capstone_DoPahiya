@@ -46,21 +46,34 @@ const FeedBackForm = () => {
             return;
         }
         
+        let note = toast.loading("Please Wait ..." , {
+            position: "top-center"
+        })
+
         axios.post("http://localhost:3200/feedback" , {firstName : firstName , lastName : lastName , email : email , message : message})
             .then((res)=>{
-                toast.success("We will get back to you soon..!!" , {
-                    position:"top-center",
-                    autoClose : 1000
-                })
-                setFirstName("")
-                setLastName("")
-                setEmail("")
-                setMessage("")
-                setErrors({})
+                if (res.data == "FeedBack taken.!!"){
+                    toast.update(note , {render : "We will get back to you soon..!!" , 
+                    type: "success", isLoading: false , autoClose: 1000 , hideProgressBar:true, theme:"colored"
+                    })
+                    setFirstName("")
+                    setLastName("")
+                    setEmail("")
+                    setMessage("")
+                    setErrors({})
+                }else{
+                    toast.update(note , {
+                        render : "Some Error Occurred",
+                        type: "error", isLoading: false , autoClose: 1000 , hideProgressBar:true, theme:"colored"
+                    })
+                }
             })
             .catch((err)=>{
                 console.log(err)
-                toast.error("Some Error Occured.!!")
+                toast.update(note , {
+                    render : "Some Error Occurred",
+                    type: "error", isLoading: false , autoClose: 1000 , hideProgressBar:true, theme:"colored"
+                })
             })
 
         

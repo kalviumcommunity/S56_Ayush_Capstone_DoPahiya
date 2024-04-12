@@ -46,8 +46,8 @@ app.post("/feedback" , async(req , res)=>{
     console.log(req.body)
     var mailOptions = {
         from: {
-        name : "DoPahiya",
-        address : 'dopahiya.feedback@gmail.com'
+            name : "DoPahiya",
+            address : 'dopahiya.feedback@gmail.com'
         },
         to: req.body.email,
         subject: 'Thank You for Your Feedback from DoPahiya!',
