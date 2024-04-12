@@ -5,8 +5,16 @@ const userSchema = new mongoose.Schema({
     password : String
 })
 
+const feedbackSchema = new mongoose.Schema({
+    firstName : String,
+    lastName : String,
+    email : String,
+    message : String
+})
+
 const userModel = mongoose.model("user-details" , userSchema)
+const feedbackModel = mongoose.model("feedbacks" , feedbackSchema)
 
 module.exports = {
-    userModel
+    userModel , feedbackModel
 }
