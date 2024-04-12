@@ -17,21 +17,18 @@ const FeedBackForm = () => {
         e.preventDefault();
         const validationErrors = {};
 
-        // Validate first name
         if (!firstName.trim()) {
             validationErrors.firstName = 'First name is required';
         } else if (/\d/.test(firstName)) {
             validationErrors.firstName = 'First name must not contain number';
         }
 
-        // Validate last name
         if (!lastName.trim()) {
             validationErrors.lastName = 'Last name is required';
         } else if (/\d/.test(lastName)) {
             validationErrors.lastName = 'Last name must not contain number';
         }
 
-        // Validate email
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!email.trim()) {
             validationErrors.email = 'Email is required';
@@ -39,7 +36,6 @@ const FeedBackForm = () => {
             validationErrors.email = 'Invalid email address';
         }
 
-        // Validate message
         if (!message.trim()) {
             validationErrors.message = 'Message is required';
         }

@@ -18,8 +18,8 @@ var transporter = nodemailer.createTransport({
     host: "smtp.gmail.com",
     port: 587,
     auth: {
-    user: "dopahiya.feedback@gmail.com",
-    pass: process.env.APP_PASS
+        user: process.env.APP_ADDRESS,
+        pass: process.env.APP_PASS
     }
 });
 
@@ -59,10 +59,11 @@ app.post("/feedback" , async(req , res)=>{
         transporter.sendMail(mailOptions, (error, info) => {
             if (error) {
                 res.send(error)
+            }else{
+                console.log('Email Sent..!');
+                res.send("FeedBack taken.!!")
             }
-            console.log('Email Sent..!');
-            });
-        req.send("FeedBack taken.!!")
+        });
     }catch(err){
         res.send(err)
     }
