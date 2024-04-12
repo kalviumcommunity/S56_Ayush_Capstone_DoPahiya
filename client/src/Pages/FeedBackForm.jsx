@@ -50,7 +50,7 @@ const FeedBackForm = () => {
             position: "top-center"
         })
 
-        axios.post("http://localhost:3200/feedback" , {firstName : firstName , lastName : lastName , email : email , message : message})
+        axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/feedback" , {firstName : firstName , lastName : lastName , email : email , message : message})
             .then((res)=>{
                 if (res.data == "FeedBack taken.!!"){
                     toast.update(note , {render : "We will get back to you soon..!!" , 
