@@ -34,7 +34,7 @@ const LoginPage = () => {
                     setTimeout(()=>{
                         sessionStorage.setItem("loggedin" , true)
                         sessionStorage.setItem("curruser" , res.data.username)
-                        document.cookie = `token=${res.data.token}; expires=Sun, 1 January 9999 12:00:00 UTC`
+                        document.cookie = `token=${res.data.token}; expires=Sun, 1 January 9999 12:00:00 UTC; path=/; Secure; HttpOnly'`
                         setLoginModal(!LoginModal)
                         // window.location.reload()
                     },1500)

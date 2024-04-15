@@ -19,7 +19,7 @@ const Navbar = ({color}) => {
             let cookies = document.cookie.split("; ")
             cookies.forEach((el)=>{
                 let cookie = el.split("=")[0]
-                document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 GMT`
+                document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; Secure`
             })
             navigate("/")
             window.location.reload()
