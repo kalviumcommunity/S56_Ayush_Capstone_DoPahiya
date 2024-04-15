@@ -16,6 +16,11 @@ const Navbar = ({color}) => {
         if (sessionStorage.getItem("loggedin") == "true"){
             sessionStorage.setItem("loggedin" , false)
             sessionStorage.setItem("curruser" , null)
+            let cookies = document.cookie.split("; ")
+            cookies.forEach((el)=>{
+                let cookie = el.split("=")[0]
+                document.cookie = `${cookie}=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/; Secure`
+            })
             navigate("/")
             window.location.reload()
         }else{

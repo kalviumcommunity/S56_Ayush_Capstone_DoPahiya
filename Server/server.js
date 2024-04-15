@@ -6,7 +6,8 @@ const cors = require("cors")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
 const {userModel , feedbackModel , brandsModel , bikesModel} = require("./Database/Schema.js")
-const nodemailer = require("nodemailer")
+const nodemailer = require("nodemailer");
+const { Timestamp } = require("mongodb");
 
 const app = express()
 app.use(cors())
@@ -33,7 +34,9 @@ app.post("/login" , async (req , res)=>{
     if (user){
         let hashedPassword = await bcrypt.compare(password,user.password)
         if (hashedPassword){
-            res.send(user.username)
+            let payload = {...user , timestamp: Date.now()}
+            let token = jwt.sign(payload , process.env.SECRETKEY)
+            res.send({username : user.username , token : token})
         }else{
             res.send("Wrong Password")
         }
