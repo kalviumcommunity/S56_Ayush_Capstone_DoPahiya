@@ -5,7 +5,7 @@ const {connectToDb , isConnected} = require("./Database/db.js")
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
-const {userModel , feedbackModel} = require("./Database/userSchema.js")
+const {userModel , feedbackModel , brandsModel , bikesModel} = require("./Database/Schema.js")
 const nodemailer = require("nodemailer")
 
 const app = express()
@@ -84,6 +84,17 @@ app.post("/register" , async (req , res)=>{
         res.send("Registration Successful")
     }
 })
+
+app.get("/getbrands" , async (req , res)=>{
+    let data = await brandsModel.find({})
+    res.send(data)
+})
+
+app.get("/getbikes" , async (req , res)=>{
+    let data = await bikesModel.find({})
+    res.send(data)
+})
+
 
 app.listen(port , (err)=>{
     if (err){
