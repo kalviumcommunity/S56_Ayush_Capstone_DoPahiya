@@ -72,8 +72,11 @@ app.post("/feedback" , async(req , res)=>{
 app.post("/register" , async (req , res)=>{
     let {username , email , password} = req.body
     let user = await userModel.findOne({ email: email })
+    let dupUser = await userModel.findOne({username : username})
     if (user){
         res.send("User already Exists")
+    }else if (dupUser){
+        res.send("Username Already Taken")
     }
     else{
         let hashedPassword = await bcrypt.hash(password,parseInt(process.env.LEVEL))
