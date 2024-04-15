@@ -23,7 +23,7 @@ const LoginPage = () => {
         let note = toast.loading("Please Wait ..." , {
             position: "top-center"
         })
-        axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/login" , inputvals)
+        axios.post("http://localhost:3200/login" , inputvals)
             .then((res)=>{
                 if (res.data == "User Does not exist"){
                     toast.update(note, {render: "User Does not Exist", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true, theme:"colored"})
@@ -33,6 +33,7 @@ const LoginPage = () => {
                     toast.update(note, {render: "Logged in Successfully", type: "success", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
                     setTimeout(()=>{
                         sessionStorage.setItem("loggedin" , true)
+                        sessionStorage.setItem("curruser" , res.data)
                         setLoginModal(!LoginModal)
                         // window.location.reload()
                     },1500)

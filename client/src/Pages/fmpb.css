@@ -131,6 +131,12 @@ input[type="submit"]{
     border: none;
 }
 
+.fav-btn{
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: white;
+}
+
 .nextbtn{
     width: 100px;
     background-color: var(--primary-color);

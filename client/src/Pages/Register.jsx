@@ -21,7 +21,7 @@ const Register = () => {
         event.preventDefault();
         console.log(inputvals)
         let note = toast.loading("Please Wait ..." , {position:"top-center"})
-        axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/register" , inputvals)
+        axios.post("http://localhost:3200/register" , inputvals)
           .then((res)=>{
             if (res.data == "User already Exists"){
               toast.update(note, {render: "User Already Exists.!!", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true , theme:"colored"})
@@ -64,6 +64,16 @@ const Register = () => {
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <div>
+                            <label>Username</label>
+                            <input type='text' name='username' {...register("username", {
+                                required: true,
+                                pattern:{value: /^[^\d]*$/i, 
+                                message:"Username should not have number.!"
+                              }})}
+                              />
+                            {errors.username && <p className='alert'>{errors.username.message}</p>}
+                        </div>
+                        <div>
                             <label>Email ID </label>
                             <input type="text" name="email" {...register("email" , {
                                 required:"Email is required.!", 
@@ -84,18 +94,6 @@ const Register = () => {
                                     message:"Password cannot be more than 20 characters"}
                                 })} />
                             {errors.password && <p className='alert'>{errors.password.message}</p>}
-                        </div>
-                        <div>
-                            <label>Confirm Password</label>
-                            <input type='password' name='confirm_password' {...register("confirm_password", {
-                                required: true,
-                                validate: (val) => {
-                                  if (watch('password') != val) {
-                                    return "Your passwords do no match";
-                                  }
-                                }, })}
-                              />
-                            {errors.confirm_password && <p className='alert'>{errors.confirm_password.message}</p>}
                         </div>
 
                         <div className='login-btndiv flex jus-cen'>

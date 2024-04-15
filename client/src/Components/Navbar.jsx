@@ -14,6 +14,7 @@ const Navbar = ({color}) => {
         console.log(sessionStorage.getItem("loggedin"))
         if (sessionStorage.getItem("loggedin") == "true"){
             sessionStorage.setItem("loggedin" , false)
+            sessionStorage.setItem("curruser" , null)
             window.location.reload()
         }else{
             setLoginModal(!LoginModal)
