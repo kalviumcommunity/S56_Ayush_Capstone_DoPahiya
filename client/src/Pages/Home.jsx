@@ -25,15 +25,27 @@ const Home = () => {
     })
   },[])
   
+  let handleNavigation = (path) =>{
+    if (sessionStorage.getItem("loggedin") == "true"){
+        navigate(path)
+    }else{
+        setLoginModal(!LoginModal)
+    }
+}
+
   const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
 
   let handleExplore = () =>{
-    document.getElementById("bike-img").style.visibility = "visible"
-    document.getElementById("explore-text").classList.add("slide-out-bck-bottom")
-    document.getElementById("bike-img").classList.add("slide-out-right")
-    setTimeout(()=>{
-      navigate("/bikebrands")
-    },1500)
+    if (sessionStorage.getItem("loggedin") == "true"){
+      document.getElementById("bike-img").style.visibility = "visible"
+      document.getElementById("explore-text").classList.add("slide-out-bck-bottom")
+      document.getElementById("bike-img").classList.add("slide-out-right")
+      setTimeout(()=>{
+        navigate("/bikebrands")
+      },1500)
+    }else{
+        setLoginModal(!LoginModal)
+    }
   }
 
   return (
@@ -57,7 +69,7 @@ const Home = () => {
 
           <p>Explore detailed comparisons of different bike models, from performance to features and beyond. Whether you're a seasoned rider or just starting your biking journey, our comprehensive insights empower you to make informed decisions and ride with confidence. Discover your ideal bike today and elevate your biking experience like never before.</p>
 
-          <Link to={"/compare"} className='links'><button className='home-section-btn'>Know More</button></Link>
+          <button className='home-section-btn' onClick={() => handleNavigation("/compare")}>Know More</button>
         </div>
       </div>
 
@@ -70,7 +82,7 @@ const Home = () => {
 
           <p>Embark on a personalized journey to discover your perfect bike with our FindMyPerfectBike section. Answer a few simple questions about your preferences, riding style, and desired features, and let us guide you to the bike that suits you best. Whether you crave speed, seek adventure, or prioritize comfort, we're here to match you with the ideal ride that will elevate your biking experience to new heights</p>
 
-          <Link to={"/findmyperfectbike"} className='links'><button className='home-section-btn'>Know More</button></Link>
+          <button className='home-section-btn' onClick={() => handleNavigation("/findmyperfectbike")}>Know More</button>
         </div>
       </div>
 
