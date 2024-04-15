@@ -3,24 +3,34 @@ import "./Navbar.css"
 import Logo from "../assets/LogoNoBg.png"
 import {Context} from "../App.jsx"
 import { GiHamburgerMenu } from "react-icons/gi";
-import { Link } from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 
 const Navbar = ({color}) => {
 
     const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
     const [scrollProgress, setScrollProgress] = useState(0);
+    const navigate = useNavigate()
 
     let handleLoginBtn = () =>{
         console.log(sessionStorage.getItem("loggedin"))
         if (sessionStorage.getItem("loggedin") == "true"){
             sessionStorage.setItem("loggedin" , false)
             sessionStorage.setItem("curruser" , null)
+            navigate("/")
             window.location.reload()
         }else{
             setLoginModal(!LoginModal)
         }
     }
     
+    let handleNavigation = (path) =>{
+        if (sessionStorage.getItem("loggedin") == "true"){
+            navigate(path)
+        }else{
+            setLoginModal(!LoginModal)
+        }
+    }
+
     useEffect(() => {
         function handleScroll() {
           const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -47,11 +57,11 @@ const Navbar = ({color}) => {
 
             <div className='navbar-links-div'>
                 <ul className='navbar-links-list flex' style={{color:color}}>
-                    <li><Link className='links' to={"/"}>Home</Link></li>
-                    <li><Link className='links' to={"/bikes"}>Bikes</Link></li>
-                    <li><Link className='links' to={"/compare"}>Compare</Link></li>
-                    <li><Link className='links' to={"/findmyperfectbike"}>FindMyPerfectBike</Link></li>
-                    <li><Link className='links' to={"/feedback"}>Feedback</Link></li>
+                    <li className='links' onClick={() => handleNavigation("/")}>Home</li>
+                    <li className='links' onClick={() => handleNavigation("/bikes")}>Bikes</li>
+                    <li className='links' onClick={() => handleNavigation("/compare")}>Compare</li>
+                    <li className='links' onClick={() => handleNavigation("/findmyperfectbike")}>FindMyPerfectBike</li>
+                    <li className='links' onClick={() => handleNavigation("/feedback")}>Feedback</li>
                 </ul>
             </div>
 

@@ -1,7 +1,19 @@
-import React from 'react'
+import React , {useContext} from 'react'
 import "./SearchBike.css"
+import {Context} from "../App.jsx"
 
 const SearchBike = ({position , background}) => {
+
+    const {LoginModal , setLoginModal} = useContext(Context)
+
+    let handleNavigation = (path) =>{
+        if (sessionStorage.getItem("loggedin") == "true"){
+            
+        }else{
+            setLoginModal(!LoginModal)
+        }
+    }
+
   return (
     <div className='searchbike-body flex jus-cen align-cen' style={{position : position}}>
         <div style={{background : background}}>
@@ -14,7 +26,7 @@ const SearchBike = ({position , background}) => {
                 <select>
                     <option value="model">Model</option>
                 </select>
-                <button>SEARCH</button>
+                <button onClick={() => handleNavigation()}>SEARCH</button>
             </div>
         </div>
     </div>
