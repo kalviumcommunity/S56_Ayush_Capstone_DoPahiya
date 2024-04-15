@@ -33,7 +33,7 @@ app.post("/login" , async (req , res)=>{
     if (user){
         let hashedPassword = await bcrypt.compare(password,user.password)
         if (hashedPassword){
-            res.send("Login Successful")
+            res.send(user.username)
         }else{
             res.send("Wrong Password")
         }
@@ -70,14 +70,17 @@ app.post("/feedback" , async(req , res)=>{
 })
 
 app.post("/register" , async (req , res)=>{
-    let {email , password} = req.body
+    let {username , email , password} = req.body
     let user = await userModel.findOne({ email: email })
+    let dupUser = await userModel.findOne({username : username})
     if (user){
         res.send("User already Exists")
+    }else if (dupUser){
+        res.send("Username Already Taken")
     }
     else{
         let hashedPassword = await bcrypt.hash(password,parseInt(process.env.LEVEL))
-        await userModel.create({email:email , password:hashedPassword})
+        await userModel.create({username: username , email:email , password:hashedPassword})
         res.send("Registration Successful")
     }
 })

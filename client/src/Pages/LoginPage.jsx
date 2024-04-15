@@ -33,6 +33,7 @@ const LoginPage = () => {
                     toast.update(note, {render: "Logged in Successfully", type: "success", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
                     setTimeout(()=>{
                         sessionStorage.setItem("loggedin" , true)
+                        sessionStorage.setItem("curruser" , res.data)
                         setLoginModal(!LoginModal)
                         // window.location.reload()
                     },1500)

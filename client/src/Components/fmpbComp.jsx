@@ -16,7 +16,7 @@ const FmpbComp = () => {
         </div>
         <div>
             <button>Explore</button><br />
-            <button>Add to Fav</button>
+            <button className='fav-btn'>Add to Fav</button>
         </div>
     </div>
   )
