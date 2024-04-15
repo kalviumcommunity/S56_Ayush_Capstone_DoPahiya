@@ -33,7 +33,8 @@ const LoginPage = () => {
                     toast.update(note, {render: "Logged in Successfully", type: "success", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
                     setTimeout(()=>{
                         sessionStorage.setItem("loggedin" , true)
-                        sessionStorage.setItem("curruser" , res.data)
+                        sessionStorage.setItem("curruser" , res.data.username)
+                        document.cookie = `token=${res.data.token}; expires=Sun, 1 January 9999 12:00:00 UTC`
                         setLoginModal(!LoginModal)
                         // window.location.reload()
                     },1500)
@@ -46,12 +47,6 @@ const LoginPage = () => {
         
 
     }
-
-    // useEffect(()=>{
-    //     console.log("Hello")
-    //     showSuccessToast("Logged In Successfully..!!")
-    // },[onsubmit])
-
     let handleCancel = ()=>{setLoginModal(!LoginModal)}
 
     let handleRegisterClick = () =>{
@@ -97,7 +92,6 @@ const LoginPage = () => {
 
                         <div className='login-btndiv flex jus-cen'>
                             <input type="submit" value={"LOGIN"}/>
-                            {/* <Link to={"/"}><button className='cancelbtn'>CANCEL</button></Link> */}
                             <button type="button" className='cancelbtn' onClick={handleCancel}>CANCEL</button>
                         </div>
 

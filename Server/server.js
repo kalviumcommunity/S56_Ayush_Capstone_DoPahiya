@@ -33,7 +33,8 @@ app.post("/login" , async (req , res)=>{
     if (user){
         let hashedPassword = await bcrypt.compare(password,user.password)
         if (hashedPassword){
-            res.send(user.username)
+            let token = jwt.sign(user.username , process.env.SECRETKEY)
+            res.send({username : user.username , token : token})
         }else{
             res.send("Wrong Password")
         }
