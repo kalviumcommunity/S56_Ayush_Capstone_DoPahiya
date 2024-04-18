@@ -1,21 +1,27 @@
-import React , {useEffect , useContext} from 'react'
+import React , {useState , useContext} from 'react'
 import "./LoginPage.css"
 import {Context} from "../App.jsx"
 import {useForm} from "react-hook-form"
-import { Link , useNavigate } from 'react-router-dom'
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
 
-const LoginPage = () => {
+const LoginPage = ({setforgotpass}) => {
 
     const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
+    const [showPassword, setShowPassword] = useState(false);
 
     let display = {
         display : LoginModal ? "inline-flex" : "none"
     }
-
     const {register, handleSubmit, formState: { errors }} = useForm()
+
+    let handleforgotpass = () =>{
+        setLoginModal(!LoginModal)
+        setforgotpass(true)
+    }
 
     let onSubmit = (inputvals,event) =>{
         event.preventDefault();
@@ -78,16 +84,21 @@ const LoginPage = () => {
                         </div>
                         <div>
                             <label>Password</label>
-                            <input type="password" name="password" {...register("password" , {
-                                required:"Password is Required",
-                                minLength: {
-                                    value:5, 
-                                    message:"Password must be more than 4 characters"},
-                                maxLength:{
-                                    value:20, 
-                                    message:"Password cannot be more than 20 characters"}
-                                })} />
+                            <div className='pass-inp'>
+                                <input type={showPassword ? "text" : "password"} name="password" {...register("password" , {
+                                    required:"Password is Required",
+                                    minLength: {
+                                        value:5, 
+                                        message:"Password must be more than 4 characters"},
+                                        maxLength:{
+                                            value:20, 
+                                            message:"Password cannot be more than 20 characters"}
+                                        })} />
+                                {showPassword ? <IoEyeOffOutline className='toggle-btn' onClick={()=>setShowPassword(!showPassword)}/> : <IoEyeOutline className='toggle-btn' onClick={()=>setShowPassword(!showPassword)}/>}
+                                
+                            </div>
                             {errors.password && <p className='alert'>{errors.password.message}</p>}
+                            <h6 onClick={handleforgotpass}>Forgot Password ?</h6>
                         </div>
 
                         <div className='login-btndiv flex jus-cen'>
@@ -102,6 +113,8 @@ const LoginPage = () => {
         </div>
 
         <ToastContainer />
+        
+        
 
     </div>
   )
