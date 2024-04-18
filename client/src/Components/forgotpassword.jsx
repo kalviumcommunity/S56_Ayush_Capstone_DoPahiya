@@ -9,7 +9,7 @@ import { IoEyeOffOutline } from "react-icons/io5";
 
 const Forgotpassword = ({setforgotpass}) => {
 
-  const [steps , setsteps] = useState(2)
+  const [steps , setsteps] = useState(1)
   const [code , setcode] = useState(0)
   const [email , setemail] = useState("")
   const [emailerr , setemailerr] = useState(false)
