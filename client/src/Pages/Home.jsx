@@ -1,4 +1,4 @@
-import React , {useContext, useEffect} from 'react'
+import React , {useContext, useEffect , useState} from 'react'
 import {useNavigate , Link} from 'react-router-dom'
 import LoginPage from './LoginPage'
 import Register from './Register.jsx'
@@ -14,10 +14,13 @@ import Img1 from "../assets/bajaj.png"
 import "./Home.css"
 import Footer from '../Components/Footer.jsx'
 import MB from "../assets/Motorcycle.png"
+import Forgotpassword from '../Components/forgotpassword.jsx'
+
 
 const Home = () => {
   
   const navigate = useNavigate()
+  const [forgotpass , setforgotpass] = useState(false)
 
   useEffect(()=>{
     window.scrollTo({
@@ -106,7 +109,10 @@ const Home = () => {
 
 {/* ------------------------------------------------------------------------------------------------------- */}
       <div className='flex jus-cen align-cen'>
-        {LoginModal ? <LoginPage /> : <Register />}
+        {LoginModal ? <LoginPage setforgotpass={setforgotpass}/> : <Register />}
+      </div>
+      <div>
+        {forgotpass && <Forgotpassword setforgotpass={setforgotpass}/>}
       </div>
     </div>
   )

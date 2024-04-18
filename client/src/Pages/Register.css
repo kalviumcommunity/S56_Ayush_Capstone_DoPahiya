@@ -35,3 +35,17 @@
 .registerformcont .login-btndiv{
     margin-top: 25px;
 }
+
+.pass-inp{
+    position: relative;
+}
+
+.toggle-btn{
+    position: absolute;
+    font-size: 25px;
+    top: 25%;
+    right: 0%;
+    transform: translate(-50%);
+    background-color: white;
+    cursor: pointer;
+}
