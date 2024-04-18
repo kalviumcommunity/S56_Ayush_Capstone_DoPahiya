@@ -3,16 +3,19 @@ import "./Forgotpassword.css"
 import axios from "axios"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { IoEyeOutline } from "react-icons/io5";
+import { IoEyeOffOutline } from "react-icons/io5";
 
 
 const Forgotpassword = ({setforgotpass}) => {
 
-  const [steps , setsteps] = useState(1)
+  const [steps , setsteps] = useState(2)
   const [code , setcode] = useState(0)
   const [email , setemail] = useState("")
   const [emailerr , setemailerr] = useState(false)
   const [newPass , setnewPass] = useState("")
   const [inputCode , setInputCode] = useState("")
+  const [showPassword,setShowPassword] = useState(false)
 
   let handleform1submit = (e) =>{
     e.preventDefault()
@@ -110,8 +113,9 @@ const Forgotpassword = ({setforgotpass}) => {
         <h2>RESET PASSWORD</h2>
         <h6>Enter New Password</h6>
         <form onSubmit={handleform3submit}>
-          <div>
-              <input type="password" name="new_pass" onChange={(e)=>setnewPass(e.target.value)} />
+          <div className='pass-inp'>
+             <input className='forinp' type={showPassword ? "text" : "password"}  name="new_pass" onChange={(e)=>setnewPass(e.target.value)} />
+            {showPassword ? <IoEyeOffOutline className='toggle-btns' onClick={()=>setShowPassword(!showPassword)}/> : <IoEyeOutline className='toggle-btns' onClick={()=>setShowPassword(!showPassword)}/>}
           </div>
           <div className='btn-div flex jus-cen align-cen'>
             <button className='cancel-btn' onClick={()=>setforgotpass(false)}>CANCEL</button>

@@ -1,46 +1,47 @@
-.registerformcont h4{
+.registerformcont h4 {
     font-size: 15px;
     line-height: 0;
 }
 
-.headings{
+.headings {
     text-align: left;
 }
 
-.registerformcont h1{
+.registerformcont h1 {
     font-size: 35px;
     line-height: 2;
 }
 
-.registerformcont input[type="text"] , .registerformcont input[type="password"]{
+.registerformcont input[type="text"],
+.registerformcont input[type="password"] {
     margin: 0;
 }
 
-.registerformcont form{
+.registerformcont form {
     margin: 10px 0px;
 }
 
-.registerImg{
-    height: 70vh;
+.registerImg {
+
     width: 350px;
     background-image: url("../assets/RegisterImg.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.registerformcont form div{
+.registerformcont form div {
     margin-bottom: 10px;
 }
 
-.registerformcont .login-btndiv{
+.registerformcont .login-btndiv {
     margin-top: 25px;
 }
 
-.pass-inp{
+.pass-inp {
     position: relative;
 }
 
-.toggle-btn{
+.toggle-btn {
     position: absolute;
     font-size: 25px;
     top: 25%;
