@@ -8,6 +8,7 @@ const bcrypt = require("bcryptjs")
 const {userModel , feedbackModel , brandsModel , bikesModel} = require("./Database/Schema.js")
 const nodemailer = require("nodemailer");
 const { Timestamp } = require("mongodb");
+const crypto = require("crypto")
 
 const app = express()
 app.use(cors())
@@ -50,7 +51,7 @@ app.post("/feedback" , async(req , res)=>{
     var mailOptions = {
         from: {
             name : "DoPahiya",
-            address : 'dopahiya.feedback@gmail.com'
+            address : process.env.APP_ADDRESS
         },
         to: req.body.email,
         subject: 'Thank You for Your Feedback from DoPahiya!',
@@ -103,13 +104,12 @@ app.post("/forgotpassword" , async (req , res)=>{
     let user = await userModel.findOne({email : email})
     console.log(user)
     if (user){
-        const randomNumber = Math.floor(Math.random() * 1000000);
-        const verificationCode = String(randomNumber).padStart(6, '0');
+        const verificationCode = Math.floor((crypto.randomInt(999999 - 100000 + 1) + 100000));
         
         let mailOptions = {
             from: {
                 name : "DoPahiya",
-                address : 'dopahiya.feedback@gmail.com'
+                address : process.env.APP_ADDRESS
             },
             to: req.body.email,
             subject: 'Verification Code for Reset Password',
