@@ -115,6 +115,10 @@
     cursor: pointer;
 }
 
+.home-brands div img{
+    height: 100px;
+}
+
 @keyframes slide-out-right {
     0% {
         transform: translateX(0);

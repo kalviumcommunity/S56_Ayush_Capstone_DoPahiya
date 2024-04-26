@@ -15,12 +15,14 @@ import "./Home.css"
 import Footer from '../Components/Footer.jsx'
 import MB from "../assets/Motorcycle.png"
 import Forgotpassword from '../Components/forgotpassword.jsx'
+import axios from 'axios'
 
 
 const Home = () => {
   
   const navigate = useNavigate()
   const [forgotpass , setforgotpass] = useState(false)
+  const [brands , setbrands] = useState([])
 
   useEffect(()=>{
     window.scrollTo({
@@ -36,6 +38,16 @@ const Home = () => {
     }
 }
 
+  useEffect(()=>{
+    axios.get("http://localhost:3200/getbrands")
+      .then((res)=>{
+        setbrands(res.data)
+      })
+  } , [])
+
+  let randomBrands = brands.sort(() => Math.random() - 0.5);
+  randomBrands = randomBrands.slice(0,4)
+
   const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
 
   let handleExplore = () =>{
@@ -49,6 +61,10 @@ const Home = () => {
     }else{
         setLoginModal(!LoginModal)
     }
+  }
+
+  let handleClick = (brand_id) =>{
+    navigate(`/brand/${brand_id}`)
   }
 
   return (
@@ -93,10 +109,9 @@ const Home = () => {
         <h1>EXPLORE SOME FAMOUS BRANDS</h1>
 
         <div className='home-brands flex jus-cen align-cen'>
-          <div className='flex jus-cen align-cen'><img src={Img1} /></div>
-          <div className='flex jus-cen align-cen'><img src={Img2} /></div>
-          <div className='flex jus-cen align-cen'><img src={Img3} /></div>
-          <div className='flex jus-cen align-cen'><img src={Img4} /></div>
+          {randomBrands.map(((el,i)=>{
+              return <div key={i} className='flex jus-cen align-cen' onClick={()=>handleClick(el.brand_id)}><img src={el.logo} /></div>
+          }))}
         </div>
 
         <div className='flex explore-btn-div'>

@@ -5,9 +5,8 @@ const {connectToDb , isConnected} = require("./Database/db.js")
 const cors = require("cors")
 const jwt = require("jsonwebtoken")
 const bcrypt = require("bcryptjs")
-const {userModel , feedbackModel , brandsModel , bikesModel} = require("./Database/Schema.js")
+const {userModel , feedbackModel , brandsModel , bikesModel , bikesPhotosModel} = require("./Database/Schema.js")
 const nodemailer = require("nodemailer");
-const { Timestamp } = require("mongodb");
 const crypto = require("crypto")
 
 const app = express()
@@ -94,9 +93,32 @@ app.get("/getbrands" , async (req , res)=>{
     res.send(data)
 })
 
+
+app.get("/getbikephotos" , async (req , res)=>{
+    let data = await bikesPhotosModel.find({})
+    res.send(data)
+})
+
 app.get("/getbikes" , async (req , res)=>{
     let data = await bikesModel.find({})
     res.send(data)
+})
+
+app.get("/getbike/:id" , async (req , res)=>{
+    try {
+        const name = req.params.id;
+        let finalData = {}
+        let data = await bikesModel.findOne({name: name})
+        if (data) {
+            let photoData = await bikesPhotosModel.findOne({name: data.name})
+            finalData = {...data.toObject() , ...photoData.toObject()}
+            res.send(finalData);
+        } else {
+            res.send("Bike not found");
+        }
+    } catch (error) {
+        res.status(500).send("Internal Server Error");
+    }
 })
 
 app.post("/forgotpassword" , async (req , res)=>{

@@ -1,46 +1,20 @@
-import React , {useEffect} from 'react'
+import React , {useEffect , useState} from 'react'
 import "./BikeCompare.css"
 import "./Bikes.css"
 import Navbar from '../Components/Navbar'
 import R15 from "../assets/r15.png"
 import Footer from '../Components/Footer'
 import CompareCard from '../Components/CompareCard'
+import axios from 'axios'
 
-let data = [
-    {
-        "name": "Yamaha R15 V4",
-        "onRoadPrice": "1.70 lakh",
-        "engine": "155cc",
-        "engineType": "Liquid Cooled, Single Cylinder, FI",
-        "cooling": "Liquid Cooling",
-        "maxPower": "19.3 PS @ 10000 rpm",
-        "maxTorque": "14.7 Nm @ 8500 rpm",
-        "cityMileage": "45 kmpl",
-        "fuelCapacity": "11L",
-        "gearBox": "6 Speed",
-        "starting": "Electric Start",
-        "bodyType": ["Sports", "Superbike"],
-        "suitableAge": [18, 35]
-    },
-    {
-        "name": "KTM RC 200",
-        "brand": "KTM",
-        "onRoadPrice": "2.20 lakh",
-        "engine": "199.5cc",
-        "engineType": "Liquid Cooled, Single Cylinder, FI",
-        "cooling": "Liquid Cooling",
-        "maxPower": "25.8 PS @ 10000 rpm",
-        "maxTorque": "19.5 Nm @ 8000 rpm",
-        "cityMileage": "30 kmpl",
-        "fuelCapacity": "9.5L",
-        "gearBox": "6 Speed",
-        "starting": "Electric Start",
-        "bodyType": ["Sports", "Superbike"],
-        "suitableAge": [18, 30]
-    }
-]
 
 const BikeCompare = () => {
+
+    const [bike1Value , setBike1Value] = useState("none")
+    const [bike2Value , setBike2Value] = useState("none")
+    const [bike1Details , setBike1Details] = useState([])
+    const [bike2Details , setBike2Details] = useState([])
+    const [bikeData , setBikeData] = useState([])
 
     useEffect(()=>{
         window.scrollTo({
@@ -48,13 +22,44 @@ const BikeCompare = () => {
         })
       },[])
 
-    let mappedData = Object.keys(data[0]).map((el , i)=>{
-        return <tr key={i}>
-                    <td>{typeof(data[0][el]) === "object" ? data[0][el].join(", ") : data[0][el]}</td>
+    let mappedData = Object.keys(bike1Details).map((el , i)=>{
+        if (el != "banner" && el != "photos"){ 
+            return <tr key={i}>
+                    <td>{typeof(bike1Details[el]) === "object" ? bike1Details[el].join(", ") : bike1Details[el]}</td>
                     <td>{el}</td>
-                    <td>{typeof(data[1][el]) === "object" ? data[1][el].join(", ") : data[1][el]}</td>
+                    <td>{typeof(bike2Details[el]) === "object" ? bike2Details[el].join(", ") : bike2Details[el]}</td>
                 </tr> 
+        }
     })
+
+    let fetchBike1 = async (value) =>{
+        await axios.get(`http://localhost:3200/getbike/${value}`)
+            .then((res)=>{
+                setBike1Details(res.data)
+            })
+    }
+
+    let fetchBike2 = async (value) =>{
+        await axios.get(`http://localhost:3200/getbike/${value}`)
+            .then((res)=>{
+                setBike2Details(res.data)
+            })
+    }
+
+    useEffect(()=>{
+        fetchBike1(bike1Value)
+    },[bike1Value])
+
+    useEffect(()=>{
+        fetchBike2(bike2Value)
+    },[bike2Value])
+
+    useEffect(()=>{
+        axios.get("http://localhost:3200/getbikes")
+            .then((res)=>{
+                setBikeData(res.data)
+        })
+    },[])
 
   return (
     <div className='compare-body-main'>
@@ -69,22 +74,28 @@ const BikeCompare = () => {
         <div className='compare-main-div'>
             <div className='compare-img-div flex jus-spBet align-cen'>
                 <div className='flex jus-cen'>
-                    <img src={R15} alt='r15Img'/>
+                    <img src={bike1Details.banner}/>
                 </div>
                 <div className='flex jus-cen'>
-                    <img src={R15} alt='r15Img'/>
+                    <img src={bike2Details.banner}/>
                 </div>
             </div>
 
             <div className='compare-select-div flex jus-spBet align-cen'>
-                <select>
-                    <option value="option1">Yamaha R15</option>
+                <select onChange={(e)=>setBike1Value(e.target.value)}>
+                    <option value="none">Choose Bike 1</option>
+                    {bikeData.map((el,i)=>{
+                        return <option value={el.name} key={i}>{el.name}</option>
+                    })}
                 </select>
 
                 <p>Area of Comparison</p>
 
-                <select>
-                    <option value="option1">Yamaha R15</option>
+                <select onChange={(e)=>setBike2Value(e.target.value)}>
+                    <option value="none">Choose Bike 2</option>
+                    {bikeData.map((el,i)=>{
+                        return <option value={el.name} key={i}>{el.name}</option>
+                    })}
                 </select>
             </div>
 

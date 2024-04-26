@@ -52,16 +52,20 @@ const bikeDetailsSchema = new mongoose.Schema({
         unique : true,
         index : true,
         ref : "brandsModel"
-    },
+    }
+})
+
+const bikePhotosSchema = new mongoose.Schema({
+    name : String,
     banner : String,
-    frontView : String, 
     photos : Array
 })
 
 const userModel = mongoose.model("user-details" , userSchema)
 const feedbackModel = mongoose.model("feedbacks" , feedbackSchema)
 const bikesModel = mongoose.model("bike-details" , bikeDetailsSchema)
+const bikesPhotosModel = mongoose.model("bike-photos" , bikePhotosSchema)
 
 module.exports = {
-    userModel , feedbackModel , brandsModel , bikesModel
+    userModel , feedbackModel , brandsModel , bikesModel , bikesPhotosModel
 }

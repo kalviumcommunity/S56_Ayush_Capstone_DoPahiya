@@ -1,0 +1,49 @@
+.loader-div-main{
+    height: 100vh;
+}
+
+.centerBike {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: 22px;
+  }
+  
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
+  }
+  
+  #loop {
+    height: 100px;
+    width: 100px;
+    border: #bb5f27 solid 4px;
+    border-radius: 50%;
+  }
+  
+  
+  
+#bike-wrapper {
+    height: 100px;
+    width: 99px;
+    animation: drive 2s linear infinite;
+}
+  
+#bike {
+    height: 24px;
+    width: 25px;
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/133687/motorbike.png");
+}
+  
+@keyframes drive {
+    0% {
+        transform: rotate(360deg);
+        /* margin-left: -50px; */
+    }
+    100% {
+        transform: rotate(-360deg);
+    }
+}

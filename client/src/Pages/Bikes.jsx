@@ -1,4 +1,4 @@
-import React , {useEffect}from 'react'
+import React , {useEffect , useState}from 'react'
 import "./Bikes.css"
 import Navbar from "../Components/Navbar.jsx"
 import SearchBike from '../Components/SearchBike.jsx'
@@ -6,16 +6,22 @@ import MB from "../assets/Motorcycle.png"
 import { useNavigate } from 'react-router-dom'
 import Footer from '../Components/Footer.jsx'
 import BikePageCard from '../Components/BikePageCard.jsx'
+import axios from 'axios'
+import Loader from '../Components/Loader.jsx'
 
 const Bikes = () => {
 
     const navigate = useNavigate()
+    const [bikeDetails , setBikeDetails] = useState([])
+    const [bikePhotos , setBikePhotos] = useState([])
+    const [mergedData , setMergedData] = useState([])
+    const [isLoading , setIsLoading] = useState(true)
 
     useEffect(()=>{
         window.scrollTo({
           top:0
         })
-      },[])
+    },[])
 
     let handleExplore = (id) =>{
         document.getElementById(`${id}-img`).style.visibility = "visible"
@@ -24,11 +30,48 @@ const Bikes = () => {
         setTimeout(()=>{
           navigate("/bikebrands")
         },1500)
-      }
+    }   
+
+    useEffect(()=>{
+        Promise.all([
+            axios.get("http://localhost:3200/getbikephotos"),
+            axios.get("http://localhost:3200/getbikes")
+        ]).then(([photosRes, bikesRes]) => {
+            setBikePhotos(photosRes.data);
+            setBikeDetails(bikesRes.data);
+        }).catch(error => {
+            console.error("Error fetching data:", error);
+        })
+    } , [])
+
+    useEffect(()=>{
+        mergeData()
+    },[bikeDetails , bikePhotos])
+
+    useEffect(()=>{
+        setIsLoading(false)
+    },[mergedData])
+
+    let mergeData = () => {
+        let merged = bikeDetails.map((detail) => {
+            let matchingPhoto = bikePhotos.find((photo) => {
+                return photo.name === detail.name;
+            });
+    
+            if (matchingPhoto) {
+                return { ...detail, ...matchingPhoto };
+            } else {
+                return detail;
+            }
+        });
+        setMergedData(merged)
+    };
 
   return (
     <div className='bikes-main-body'>
-        <div className='bikes-main-section'>
+        {isLoading ? <Loader/> : 
+            <div>
+                <div className='bikes-main-section'>
             <Navbar color={"white"}/>
             <div className='bikes-main-searchSection'>
                 <SearchBike position="static" background="rgba(255, 255, 255, 0.208)" />
@@ -47,39 +90,39 @@ const Bikes = () => {
             </nav>
             <div className="tab-content" id="nav-tabContent">
                 <div className="tab-pane fade show active" id="nav-pop-1" role="tabpanel" aria-labelledby="nav-home-tab" tabIndex="0">
-                    <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                    <div className='section-cont flex jus-spBet' >
+                        {mergedData.map((el,i)=>{
+                            if (el.bodyType.includes("Street")){
+                                return <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-pop-2" role="tabpanel" aria-labelledby="nav-profile-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                        {mergedData.map((el,i)=>{
+                            if (el.bodyType.includes("Adventure")){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-pop-3" role="tabpanel" aria-labelledby="nav-contact-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                        {mergedData.map((el,i)=>{
+                            if (el.bodyType.includes("Cruiser")){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-pop-4" role="tabpanel" aria-labelledby="nav-disabled-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                        {mergedData.map((el,i)=>{
+                            if (el.bodyType.includes("Sports")){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
             </div>
@@ -104,47 +147,47 @@ const Bikes = () => {
             <div className="tab-content" id="nav-tabContent">
                 <div className="tab-pane fade show active" id="nav-price-1" role="tabpanel" aria-labelledby="nav-home-tab" tabIndex="0">
                     <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                    {mergedData.map((el,i)=>{
+                            if (el.exShowroomPrice < 100000){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-price-2" role="tabpanel" aria-labelledby="nav-profile-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                {mergedData.map((el,i)=>{
+                            if (el.exShowroomPrice < 200000 && el.exShowroomPrice > 100000){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-price-3" role="tabpanel" aria-labelledby="nav-contact-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                {mergedData.map((el,i)=>{
+                            if (el.exShowroomPrice < 300000 && el.exShowroomPrice > 200000){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-price-4" role="tabpanel" aria-labelledby="nav-disabled-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                {mergedData.map((el,i)=>{
+                            if (el.exShowroomPrice < 400000 && el.exShowroomPrice > 300000){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-price-5" role="tabpanel" aria-labelledby="nav-disabled-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                {mergedData.map((el,i)=>{
+                            if (el.exShowroomPrice > 400000){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
             </div>
@@ -168,38 +211,38 @@ const Bikes = () => {
             <div className="tab-content" id="nav-tabContent">
                 <div className="tab-pane fade show active" id="nav-mil-1" role="tabpanel" aria-labelledby="nav-home-tab" tabIndex="0">
                     <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                    {mergedData.map((el,i)=>{
+                            if (parseInt(el.cityMileage.split(" ")[0]) >= 5 && parseInt(el.cityMileage.split(" ")[0]) < 15){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-mil-2" role="tabpanel" aria-labelledby="nav-profile-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                {mergedData.map((el,i)=>{
+                            if (parseInt(el.cityMileage.split(" ")[0]) >= 15 && parseInt(el.cityMileage.split(" ")[0]) < 25){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-mil-3" role="tabpanel" aria-labelledby="nav-contact-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                {mergedData.map((el,i)=>{
+                            if (parseInt(el.cityMileage.split(" ")[0]) >= 25 && parseInt(el.cityMileage.split(" ")[0]) < 35){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-mil-4" role="tabpanel" aria-labelledby="nav-disabled-tab" tabIndex="0">
                 <div className='section-cont flex jus-spBet'>
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
-                        <BikePageCard />
+                {mergedData.map((el,i)=>{
+                            if (parseInt(el.cityMileage.split(" ")[0]) >= 35){
+                                return <BikePageCard key={i} el={el}cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                     </div>
                 </div>
             </div>
@@ -211,6 +254,8 @@ const Bikes = () => {
         </div>
 
         <Footer />
+            </div>
+        }
 
     </div>  
   )

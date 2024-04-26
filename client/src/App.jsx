@@ -8,6 +8,7 @@ import BikeCompare from './Pages/BikeCompare'
 import FindMyPerfectBike from './Pages/FindMyPerfectBike'
 import FeedBackForm from './Pages/FeedBackForm'
 import BikeMain from './Pages/BikeMain'
+import Explore2 from './Pages/Explore2'
 
 export const Context = createContext(null)
 
@@ -25,8 +26,9 @@ function App() {
         <Route path='/compare' element={<BikeCompare />}></Route>
         <Route path='/findmyperfectbike' element={<FindMyPerfectBike />}></Route>
         <Route path='/feedback' element={<FeedBackForm />}></Route>
-        <Route path='/bike' element={<BikeMain />}></Route>
+        <Route path='/bike/:id' element={<BikeMain />}></Route>
         <Route path='/bikebrands' element={<Explore />}></Route>
+        <Route path='/brand/:id' element={<Explore2 />}></Route>
       </Routes>
       </Context.Provider>
     </>
