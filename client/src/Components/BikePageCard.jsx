@@ -6,19 +6,19 @@ import { Link } from 'react-router-dom'
 const BikePageCard = ({cardWidth , cardHeight , border ,el}) => {
   console.log(el)
   return (
-    // <Link to={'/bike'} className='links'>
+    <Link to={`/bike/${el._id}`} className='links'>
       <div className="card" style={{width:cardWidth , height:cardHeight , border:border}}>
         <div className='visible-content'>
-          <img src={R15} />
+          <img src={el.banner} />
           <h4 className="card-text">{el.name}</h4>
         </div>
         <div className="hidden-content">
-            <p className="hidden-text">Price : 1.9 Lakh</p>
-            <p className="hidden-text">BodyType : Sports</p>
-            <p className="hidden-text">Mileage : 45 KMPL</p>
+            <p className="hidden-text">Price : {el.exShowroomPrice}</p>
+            <p className="hidden-text">BodyType : {el.bodyType[0]}</p>
+            <p className="hidden-text">Mileage : {el.cityMileage}</p>
         </div>
       </div>
-    // </Link>
+    </Link>
   )
 }
 

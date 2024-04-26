@@ -19,7 +19,7 @@ const Explore = () => {
   },[])
 
   useEffect(()=>{
-    axios.get("http://localhost:3200/getbrands")
+    axios.get("http://s56-ayush-capstone-dopahiya.onrender.com/getbrands")
       .then((res)=>{
         setBikeBrandLogo(res.data)
         setIsLoading(false)
