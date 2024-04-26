@@ -3,7 +3,6 @@ import "./BikeMain.css";
 import Navbar from "../Components/Navbar.jsx"
 import Footer from '../Components/Footer.jsx';
 import FrontView from "../assets/r15front.png"
-import Img from "../assets/feedbackbg.png"
 import BikePageCard from '../Components/BikePageCard.jsx';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
@@ -13,6 +12,7 @@ const BikeMain = () => {
 
     const {id} = useParams()
     const [data , setData] = useState({})
+    const [mergedData , setMergedData] = useState([])
     const [isLoading , setIsLoading] = useState(true)
 
     useEffect(()=>{
@@ -25,11 +25,9 @@ const BikeMain = () => {
     useEffect(()=>{
         axios.get(`http://localhost:3200/getbike/${id}`)
             .then((res)=>{
-                console.log(res)
                 if (res.status == 200){
                     console.log(res.data.photos)
                     setData(res.data)
-                    // setIsLoading(false)
                 }
             })
             .catch((err)=>{
@@ -40,6 +38,15 @@ const BikeMain = () => {
             setIsLoading(false)
         },1000)
     } , [])
+
+    useEffect(()=>{
+        if(data.bodyType){
+            axios.get(`http://localhost:3200/getbikebytype/${data.bodyType[0]}`)
+                .then((res)=>{
+                    setMergedData(res.data)
+                })
+        }
+    },[data])
 
   return (
     <div className='bike-main-body'>
@@ -91,19 +98,16 @@ const BikeMain = () => {
             <div className='bike-category-main'>
                 <h2>BIKES FROM SAME CATEGORY</h2>    
                 <div className='bike-cat-div'>
-                    <BikePageCard cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
-                    <BikePageCard cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
-                    <BikePageCard cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
-                    <BikePageCard cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                {mergedData.map((el,i)=>{
+                            if (el.bodyType.includes(data.bodyType[0]) && i<4){
+                                return <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                            }
+                        })}
                 </div>    
             </div>
 
             < Footer/>
             
-            {/* <div className='spec-modal'>
-                
-            </div> */}
-
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">

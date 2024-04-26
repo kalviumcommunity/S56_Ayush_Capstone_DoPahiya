@@ -49,22 +49,25 @@ const Bikes = () => {
     },[bikeDetails , bikePhotos])
 
     useEffect(()=>{
-        setIsLoading(false)
+        setIsLoading(false) 
     },[mergedData])
 
     let mergeData = () => {
-        let merged = bikeDetails.map((detail) => {
-            let matchingPhoto = bikePhotos.find((photo) => {
-                return photo.name === detail.name;
-            });
+        const photoMap = {};
+        bikePhotos.forEach((photo) => {
+            photoMap[photo.name] = photo;
+        });
     
+        let merged = bikeDetails.map((detail) => {
+            const matchingPhoto = photoMap[detail.name];
             if (matchingPhoto) {
                 return { ...detail, ...matchingPhoto };
             } else {
                 return detail;
             }
         });
-        setMergedData(merged)
+    
+        setMergedData(merged);
     };
 
   return (
