@@ -7,10 +7,6 @@ import { Context } from "../App.jsx"
 import SearchBike from '../Components/SearchBike.jsx'
 import Section1Img from "../assets/Section1Img.png"
 import Section2Img from "../assets/Section2Img.jpg"
-import Img3 from "../assets/ktm.png"
-import Img2 from "../assets/Harley.png"
-import Img4 from "../assets/Re.png"
-import Img1 from "../assets/bajaj.png"
 import "./Home.css"
 import Footer from '../Components/Footer.jsx'
 import MB from "../assets/Motorcycle.png"
@@ -39,7 +35,7 @@ const Home = () => {
 }
 
   useEffect(()=>{
-    axios.get("http://localhost:3200/getbrands")
+    axios.get("http://s56-ayush-capstone-dopahiya.onrender.com/getbrands")
       .then((res)=>{
         setbrands(res.data)
       })

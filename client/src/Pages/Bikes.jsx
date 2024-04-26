@@ -34,8 +34,8 @@ const Bikes = () => {
 
     useEffect(()=>{
         Promise.all([
-            axios.get("http://localhost:3200/getbikephotos"),
-            axios.get("http://localhost:3200/getbikes")
+            axios.get("http://s56-ayush-capstone-dopahiya.onrender.com/getbikephotos"),
+            axios.get("http://s56-ayush-capstone-dopahiya.onrender.com/getbikes")
         ]).then(([photosRes, bikesRes]) => {
             setBikePhotos(photosRes.data);
             setBikeDetails(bikesRes.data);

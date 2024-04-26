@@ -23,7 +23,7 @@ const SearchBike = ({position , background}) => {
 
     useEffect(()=>{
         let getBrands = () =>{
-            axios.get("http://localhost:3200/getbrands")
+            axios.get("http://s56-ayush-capstone-dopahiya.onrender.com/getbrands")
                 .then((res)=>{
                     setBrandData(res.data)
                 })
@@ -36,7 +36,7 @@ const SearchBike = ({position , background}) => {
 
     useEffect(()=>{
         let getBikes = () =>{
-            axios.get("http://localhost:3200/getbikes")
+            axios.get("http://s56-ayush-capstone-dopahiya.onrender.com/getbikes")
                 .then((res)=>{
                     setBikeData(res.data)
                 })
