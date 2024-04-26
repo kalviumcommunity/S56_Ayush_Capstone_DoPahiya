@@ -20,7 +20,7 @@ const Explore2 = () => {
   },[])
 
   useEffect(()=>{
-    axios.get("http://s56-ayush-capstone-dopahiya.onrender.com/getbikephotos")
+    axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikephotos")
       .then((res)=>{
         console.log(id)
         let filteredData = res.data.filter((el,i)=>{

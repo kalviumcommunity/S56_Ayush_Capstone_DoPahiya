@@ -23,7 +23,7 @@ const BikeMain = () => {
 
 
     useEffect(()=>{
-        axios.get(`http://s56-ayush-capstone-dopahiya.onrender.com/getbike/${id}`)
+        axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getbike/${id}`)
             .then((res)=>{
                 if (res.status == 200){
                     console.log(res.data.photos)
@@ -41,7 +41,7 @@ const BikeMain = () => {
 
     useEffect(()=>{
         if(data.bodyType){
-            axios.get(`http://s56-ayush-capstone-dopahiya.onrender.com/getbikebytype/${data.bodyType[0]}`)
+            axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getbikebytype/${data.bodyType[0]}`)
                 .then((res)=>{
                     setMergedData(res.data)
                 })

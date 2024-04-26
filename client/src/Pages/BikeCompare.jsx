@@ -33,14 +33,14 @@ const BikeCompare = () => {
     })
 
     let fetchBike1 = async (value) =>{
-        await axios.get(`http://s56-ayush-capstone-dopahiya.onrender.com/getbike/${value}`)
+        await axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getbike/${value}`)
             .then((res)=>{
                 setBike1Details(res.data)
             })
     }
 
     let fetchBike2 = async (value) =>{
-        await axios.get(`http://s56-ayush-capstone-dopahiya.onrender.com/getbike/${value}`)
+        await axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getbike/${value}`)
             .then((res)=>{
                 setBike2Details(res.data)
             })
@@ -55,7 +55,7 @@ const BikeCompare = () => {
     },[bike2Value])
 
     useEffect(()=>{
-        axios.get("http://s56-ayush-capstone-dopahiya.onrender.com/getbikes")
+        axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikes")
             .then((res)=>{
                 setBikeData(res.data)
         })

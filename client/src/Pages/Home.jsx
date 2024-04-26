@@ -35,7 +35,7 @@ const Home = () => {
 }
 
   useEffect(()=>{
-    axios.get("http://s56-ayush-capstone-dopahiya.onrender.com/getbrands")
+    axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbrands")
       .then((res)=>{
         setbrands(res.data)
       })
