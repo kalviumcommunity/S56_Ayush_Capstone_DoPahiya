@@ -113,12 +113,12 @@ app.get("/getbikes" , async (req , res)=>{
 app.get("/getbikebytype/:type", async (req, res) => {
     try {
         const type = req.params.type;
-        let data = await bikesModel.find({ bodyType: type });
-
+        let data = await bikesModel.find({ bodyType: type })
         if (data.length > 0) {
             data = await Promise.all(data.map(async (el) => {
                 let photoData = await bikesPhotosModel.findOne({ name: el.name });
-                finalData = { ...el.toObject(), ...photoData.toObject() };
+                // return el
+                let finalData = Object.assign({}, el.toObject(), photoData ? photoData.toObject() : {});
                 return finalData;
             }));
 
