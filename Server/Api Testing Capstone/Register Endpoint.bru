@@ -5,7 +5,7 @@ meta {
 }
 
 post {
-  url: https://s56-ayush-capstone-dopahiya.onrender.com/register
+  url: {{API_URL}}/register
   body: json
   auth: none
 }
@@ -13,7 +13,7 @@ post {
 body:json {
   {
     "username" : "Ayush",
-    "email" : "ghodkeayush22@gmail.com",
-    "password" : "12345"
+    "email" : "{{email}}",
+    "password" : "{{password}}"
   }
 }

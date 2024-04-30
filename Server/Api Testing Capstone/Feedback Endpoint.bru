@@ -5,16 +5,16 @@ meta {
 }
 
 post {
-  url: https://s56-ayush-capstone-dopahiya.onrender.com/feedback
+  url: {{API_URL}}/feedback
   body: json
   auth: none
 }
 
 body:json {
   {
-    "firstName" : "Sagar",
-    "lastName" : "Raut",
-    "email" : "sagar.raut@kalvium.community",
+    "firstName" : "Ayush",
+    "lastName" : "Ghodke",
+    "email" : "{{email}}",
     "message" : "Nice Website"
   }
 }
