@@ -93,7 +93,6 @@ app.get("/getbrands" , async (req , res)=>{
     res.send(data)
 })
 
-
 app.get("/getbikephotos" , async (req , res)=>{
     let limit = parseInt(req.query.limit); 
     if (!limit || limit <= 0) {

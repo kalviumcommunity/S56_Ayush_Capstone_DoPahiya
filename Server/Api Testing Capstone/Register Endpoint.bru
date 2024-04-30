@@ -1,0 +1,19 @@
+meta {
+  name: Register Endpoint
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{API_URL}}/register
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "username" : "Ayush",
+    "email" : "{{email}}",
+    "password" : "{{password}}"
+  }
+}
