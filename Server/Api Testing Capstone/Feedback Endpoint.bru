@@ -1,0 +1,20 @@
+meta {
+  name: Feedback Endpoint
+  type: http
+  seq: 10
+}
+
+post {
+  url: https://s56-ayush-capstone-dopahiya.onrender.com/feedback
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "firstName" : "Sagar",
+    "lastName" : "Raut",
+    "email" : "sagar.raut@kalvium.community",
+    "message" : "Nice Website"
+  }
+}
