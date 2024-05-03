@@ -7,6 +7,9 @@ import BikePageCard from '../Components/BikePageCard.jsx';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loader from '../Components/Loader.jsx';
+import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavorite } from "react-icons/md";
+
 
 const BikeMain = () => {
 
@@ -77,7 +80,9 @@ const BikeMain = () => {
                                         </div>
                             }})}
                     </div>
-                    <button data-bs-target="#exampleModal" data-bs-toggle="modal">VIEW SPECIFICATIONS</button>
+                    <div className='flex jus-cen align-cen' style={{gap:"20px"}}>
+                        <button data-bs-target="#exampleModal" data-bs-toggle="modal">VIEW SPECIFICATIONS</button>
+                    </div>
                 </div>
                 <div className='bike-spec-img'>
                     <img src={FrontView}/>

@@ -36,7 +36,7 @@ app.post("/login" , async (req , res)=>{
         if (hashedPassword){
             let payload = {...user , timestamp: Date.now()}
             let token = jwt.sign(payload , process.env.SECRETKEY)
-            res.send({username : user.username , token : token})
+            res.send({username : user.username , token : token, fav : user.fav})
         }else{
             res.send("Wrong Password")
         }
@@ -192,6 +192,23 @@ app.put("/resetpass" , async (req , res)=>{
     })
 
 })
+
+app.post("/handlefav", async (req, res) => {
+    let { id , user} = req.body;
+    console.log(id , user);
+    const Founduser = await userModel.findOne({ username: user });
+    if (Founduser.fav.includes(id)){
+        await userModel.updateOne({ _id: Founduser._id }, { $pull: { fav: id } });
+        console.log(Founduser.fav)
+        const updatedUser = await userModel.findOne({ username: user });
+        res.send({message: "Removed from Favorites" , arr: updatedUser.fav});
+    } else {
+        await userModel.updateOne({ _id: Founduser._id, fav: { $ne: id } }, { $push: { fav: id } });
+        const updatedUser = await userModel.findOne({ username: user });
+        console.log(updatedUser.fav)
+        res.send({message: "Added to Favorites" , arr: updatedUser.fav});
+    }
+});
 
 
 app.listen(port , (err)=>{
