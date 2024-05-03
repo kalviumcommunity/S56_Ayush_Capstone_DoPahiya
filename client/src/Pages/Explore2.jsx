@@ -5,23 +5,11 @@ import Footer from '../Components/Footer.jsx'
 import axios from 'axios'
 import { useParams, useNavigate } from 'react-router-dom'
 import Loader from '../Components/Loader.jsx'
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
 import { MdFavoriteBorder } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-<<<<<<< HEAD
 const { VITE_LocalURL , VITE_DeployedURL } = import.meta.env;
-
-
->>>>>>> Stashed changes
-=======
-
->>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
 
 const Explore2 = () => {
 
@@ -58,11 +46,6 @@ const Explore2 = () => {
 
   console.log(Bikes)
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
   const handleFavoriteClick = (event , id) => {
     event.stopPropagation();
     console.log(id)
@@ -70,11 +53,7 @@ const Explore2 = () => {
   }
 
   let handleAddFav = async (id) =>{
-<<<<<<< HEAD
     await axios.post(`${VITE_DeployedURL}/handlefav` , {id : id , user: sessionStorage.getItem("curruser")})
-=======
-    await axios.post("http://localhost:3200/handlefav" , {id : id , user: sessionStorage.getItem("curruser")})
->>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
       .then((res)=>{
         console.log(res.data)
         setfavList(res.data.arr)
@@ -86,10 +65,7 @@ const Explore2 = () => {
       })
   }
 
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
+
   return (
     <div className='explore-main-div'>
       <Navbar />
