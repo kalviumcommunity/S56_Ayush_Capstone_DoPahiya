@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
         unique : true
     },
     email : String,
-    password : String
+    password : String,
+    fav: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bike' }]
 })
 
 const feedbackSchema = new mongoose.Schema({

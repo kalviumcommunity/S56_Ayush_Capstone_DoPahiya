@@ -7,10 +7,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 const { VITE_LocalURL , VITE_DeployedURL } = import.meta.env;
 >>>>>>> Stashed changes
+=======
+const { VITE_LocalURL } = import.meta.env;
+>>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
 
 const LoginPage = ({setforgotpass}) => {
 
@@ -33,12 +37,17 @@ const LoginPage = ({setforgotpass}) => {
         let note = toast.loading("Please Wait ..." , {
             position: "top-center"
         })
+<<<<<<< HEAD
 <<<<<<< Updated upstream
         axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/login" , inputvals)
 =======
         axios.post(`${VITE_DeployedURL}/login` , inputvals)
 >>>>>>> Stashed changes
+=======
+        axios.post(`${VITE_LocalURL}/login` , inputvals)
+>>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
             .then((res)=>{
+                console.log(res)
                 if (res.data == "User Does not exist"){
                     toast.update(note, {render: "User Does not Exist", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true, theme:"colored"})
                 }else if (res.data == "Wrong Password"){
@@ -48,9 +57,9 @@ const LoginPage = ({setforgotpass}) => {
                     setTimeout(()=>{
                         sessionStorage.setItem("loggedin" , true)
                         sessionStorage.setItem("curruser" , res.data.username)
+                        sessionStorage.setItem("fav", JSON.stringify(res.data.fav))
                         document.cookie = `token=${res.data.token}; expires=Sun, 1 January 9999 12:00:00 UTC; path=/; Secure; HttpOnly'`
                         setLoginModal(!LoginModal)
-                        // window.location.reload()
                     },1500)
                 }
             })

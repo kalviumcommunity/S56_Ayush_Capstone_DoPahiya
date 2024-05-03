@@ -1,56 +1,68 @@
-import React , {useEffect , useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import "./Explore.css"
 import Footer from '../Components/Footer.jsx'
 import axios from 'axios'
-import { useParams , useNavigate } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import Loader from '../Components/Loader.jsx'
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
 import { MdFavoriteBorder } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+<<<<<<< HEAD
 const { VITE_LocalURL , VITE_DeployedURL } = import.meta.env;
 
 
 >>>>>>> Stashed changes
+=======
+
+>>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
 
 const Explore2 = () => {
 
-  const [Bikes , setBikes] = useState([])  
+  const [Bikes, setBikes] = useState([])
   const { id } = useParams()
   const navigate = useNavigate()
-  const [isLoading , setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(true)
+  const [favList , setfavList] = useState(sessionStorage.getItem("fav"))
 
-  useEffect(()=>{
+
+  useEffect(() => {
     window.scrollTo({
-      top:0
+      top: 0
     })
-  },[])
+  }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikephotos")
-      .then((res)=>{
+      .then((res) => {
         console.log(id)
-        let filteredData = res.data.filter((el,i)=>{
-            if (el.brand_id == id){
-                return el
-            }
+        let filteredData = res.data.filter((el, i) => {
+          if (el.brand_id == id) {
+            return el
+          }
         })
         setBikes(filteredData)
         setIsLoading(false)
       })
-  },[])
+  }, [])
 
-  let handleClick = (name) =>{
+  let handleClick = (name) => {
     navigate(`/bike/${name}`)
   }
 
   console.log(Bikes)
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
   const handleFavoriteClick = (event , id) => {
     event.stopPropagation();
     console.log(id)
@@ -58,7 +70,11 @@ const Explore2 = () => {
   }
 
   let handleAddFav = async (id) =>{
+<<<<<<< HEAD
     await axios.post(`${VITE_DeployedURL}/handlefav` , {id : id , user: sessionStorage.getItem("curruser")})
+=======
+    await axios.post("http://localhost:3200/handlefav" , {id : id , user: sessionStorage.getItem("curruser")})
+>>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
       .then((res)=>{
         console.log(res.data)
         setfavList(res.data.arr)
@@ -70,25 +86,42 @@ const Explore2 = () => {
       })
   }
 
+<<<<<<< HEAD
 >>>>>>> Stashed changes
+=======
+>>>>>>> c9d8aab7e3711e5fd6983cd8cde8c7e4395b8d32
   return (
     <div className='explore-main-div'>
       <Navbar />
       <div>
-        {isLoading ? <Loader /> :   
-        <div className='explore-main flex jus-cen align-cen'>
+        {isLoading ? <Loader /> :
+          <div className='explore-main flex jus-cen align-cen'>
             <h1>Explore Bike Brands</h1>
             <div className='explore-grid-cont'>
-                {Bikes.map((el,i)=>{
-                    return <div className='explore-card flex jus-cen align-cen' key={i} style={{flexDirection:"column", gap:"10px"}} onClick={()=>handleClick(el.name)}><img src={el.banner} alt={el.name} /><h6>{el.name}</h6></div>
-                })}
+              {Bikes.map((el, i) => {
+                return <div className='explore-card flex jus-cen align-cen' key={i} style={
+                  { 
+                    flexDirection: "column", 
+                    gap: "10px",
+                    position: "relative" 
+                  }
+                  } onClick={() => handleClick(el.name)}>
+                    <div className="flex jus-cen">
+                      <img src={el.banner} alt={el.name} />
+                      {favList.includes(el._id) ? <MdFavorite style={{position: "absolute" , right:"5%" , top:"8%", zIndex:"100", color:"red"}} onClick={(event) => handleFavoriteClick(event , el._id)}/> : <MdFavoriteBorder  style={{position: "absolute", right:"5%" , top:"8%", zIndex:"100"}} onClick={(event) => handleFavoriteClick(event , el._id)}/>}
+                    </div>
+                  <h6>{el.name}</h6>
+                </div>
+              })}
             </div>
 
-        </div>
+          </div>
         }
       </div>
 
       <Footer />
+
+      <ToastContainer />
     </div>
   )
 }
