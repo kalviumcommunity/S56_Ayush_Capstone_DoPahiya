@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const BikePageCard = ({cardWidth , cardHeight , border ,el}) => {
   console.log(el)
   return (
-    <Link to={`/bike/${el._id}`} className='links'>
+    <Link to={`/bike/${el.name}`} className='links'>
       <div className="card" style={{width:cardWidth , height:cardHeight , border:border}}>
         <div className='visible-content'>
           <img src={el.banner} />

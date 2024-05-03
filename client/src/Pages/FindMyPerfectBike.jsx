@@ -1,7 +1,6 @@
 import React , {useState , useEffect}from 'react'
 import Navbar from '../Components/Navbar'
 import "./fmpb.css"
-import R15 from "../assets/r15.png"
 import FmpbComp from '../Components/fmpbComp'
 import Footer from '../Components/Footer'
 
@@ -70,8 +69,6 @@ const FindMyPerfectBike = () => {
         setAnswers(newAnswers);
     };
 
-    console.log(currQues)
-
     let handleClick = () =>{
         setShowQues(true)
         setShowList(false)
@@ -97,7 +94,7 @@ const FindMyPerfectBike = () => {
         
         <div className='fmpb-content flex jus-cen align-cen'>
             <div className='fmpb-head-content'>
-                <h1>Welcome User, </h1>
+                <h1>Welcome {localStorage.getItem("curruser")}, </h1>
                 <h4>Embark on a personalized journey to discover your perfect bike with our FindMyPerfectBike section. Answer a few simple questions about your preferences, riding style, and desired features, and let us guide you to the bike that suits you best.</h4>
                 <button onClick={handleClick} className='ques-btn'>Take Questions</button><br />
                 <button className='fav' onClick={handlefav}>Favourites</button>

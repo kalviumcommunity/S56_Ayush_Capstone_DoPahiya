@@ -29,8 +29,9 @@ const LoginPage = ({setforgotpass}) => {
         let note = toast.loading("Please Wait ..." , {
             position: "top-center"
         })
-        axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/login" , inputvals)
+        axios.post("http://localhost:3200/login" , inputvals)
             .then((res)=>{
+                console.log(res)
                 if (res.data == "User Does not exist"){
                     toast.update(note, {render: "User Does not Exist", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true, theme:"colored"})
                 }else if (res.data == "Wrong Password"){
@@ -40,9 +41,9 @@ const LoginPage = ({setforgotpass}) => {
                     setTimeout(()=>{
                         sessionStorage.setItem("loggedin" , true)
                         sessionStorage.setItem("curruser" , res.data.username)
+                        sessionStorage.setItem("fav", JSON.stringify(res.data.fav))
                         document.cookie = `token=${res.data.token}; expires=Sun, 1 January 9999 12:00:00 UTC; path=/; Secure; HttpOnly'`
                         setLoginModal(!LoginModal)
-                        // window.location.reload()
                     },1500)
                 }
             })

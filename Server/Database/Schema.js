@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
         unique : true
     },
     email : String,
-    password : String
+    password : String,
+    fav : Array
 })
 
 const feedbackSchema = new mongoose.Schema({
