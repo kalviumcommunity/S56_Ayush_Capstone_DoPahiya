@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
     },
     email : String,
     password : String,
-    fav : Array
+    fav: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Bike' }]
 })
 
 const feedbackSchema = new mongoose.Schema({

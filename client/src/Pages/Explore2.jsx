@@ -7,6 +7,8 @@ import { useParams, useNavigate } from 'react-router-dom'
 import Loader from '../Components/Loader.jsx'
 import { MdFavoriteBorder } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Explore2 = () => {
@@ -59,6 +61,7 @@ const Explore2 = () => {
       })
       .catch((err)=>{
         console.log(err)
+        toast.error("Error occurred while adding to favorites. Please try again later.")
       })
   }
 
@@ -92,6 +95,8 @@ const Explore2 = () => {
       </div>
 
       <Footer />
+
+      <ToastContainer />
     </div>
   )
 }

@@ -7,6 +7,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
+const { VITE_LocalURL } = import.meta.env;
 
 const LoginPage = ({setforgotpass}) => {
 
@@ -29,7 +30,7 @@ const LoginPage = ({setforgotpass}) => {
         let note = toast.loading("Please Wait ..." , {
             position: "top-center"
         })
-        axios.post("http://localhost:3200/login" , inputvals)
+        axios.post(`${VITE_LocalURL}/login` , inputvals)
             .then((res)=>{
                 console.log(res)
                 if (res.data == "User Does not exist"){

@@ -203,7 +203,7 @@ app.post("/handlefav", async (req, res) => {
         const updatedUser = await userModel.findOne({ username: user });
         res.send({message: "Removed from Favorites" , arr: updatedUser.fav});
     } else {
-        await userModel.updateOne({ fav: { $ne: id } }, { $push: { fav: id } });
+        await userModel.updateOne({ _id: Founduser._id, fav: { $ne: id } }, { $push: { fav: id } });
         const updatedUser = await userModel.findOne({ username: user });
         console.log(updatedUser.fav)
         res.send({message: "Added to Favorites" , arr: updatedUser.fav});
