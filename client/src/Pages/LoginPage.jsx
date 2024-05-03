@@ -7,6 +7,10 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
+<<<<<<< Updated upstream
+=======
+const { VITE_LocalURL , VITE_DeployedURL } = import.meta.env;
+>>>>>>> Stashed changes
 
 const LoginPage = ({setforgotpass}) => {
 
@@ -29,7 +33,11 @@ const LoginPage = ({setforgotpass}) => {
         let note = toast.loading("Please Wait ..." , {
             position: "top-center"
         })
+<<<<<<< Updated upstream
         axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/login" , inputvals)
+=======
+        axios.post(`${VITE_DeployedURL}/login` , inputvals)
+>>>>>>> Stashed changes
             .then((res)=>{
                 if (res.data == "User Does not exist"){
                     toast.update(note, {render: "User Does not Exist", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true, theme:"colored"})

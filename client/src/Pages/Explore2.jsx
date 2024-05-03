@@ -5,6 +5,16 @@ import Footer from '../Components/Footer.jsx'
 import axios from 'axios'
 import { useParams , useNavigate } from 'react-router-dom'
 import Loader from '../Components/Loader.jsx'
+<<<<<<< Updated upstream
+=======
+import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavorite } from "react-icons/md";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+const { VITE_LocalURL , VITE_DeployedURL } = import.meta.env;
+
+
+>>>>>>> Stashed changes
 
 const Explore2 = () => {
 
@@ -39,6 +49,28 @@ const Explore2 = () => {
 
   console.log(Bikes)
 
+<<<<<<< Updated upstream
+=======
+  const handleFavoriteClick = (event , id) => {
+    event.stopPropagation();
+    console.log(id)
+    handleAddFav(id)
+  }
+
+  let handleAddFav = async (id) =>{
+    await axios.post(`${VITE_DeployedURL}/handlefav` , {id : id , user: sessionStorage.getItem("curruser")})
+      .then((res)=>{
+        console.log(res.data)
+        setfavList(res.data.arr)
+        sessionStorage.setItem("fav" , JSON.stringify(res.data.arr))
+      })
+      .catch((err)=>{
+        console.log(err)
+        toast.error("Error occurred while adding to favorites. Please try again later.")
+      })
+  }
+
+>>>>>>> Stashed changes
   return (
     <div className='explore-main-div'>
       <Navbar />
