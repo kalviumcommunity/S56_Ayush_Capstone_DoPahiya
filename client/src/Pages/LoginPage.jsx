@@ -32,7 +32,7 @@ const LoginPage = ({setforgotpass}) => {
         let note = toast.loading("Please Wait ..." , {
             position: "top-center"
         })
-        axios.post(`${VITE_DeployedURL}/login` , inputvals)
+        axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/login` , inputvals)
             .then((res)=>{
                 console.log(res)
                 if (res.data == "User Does not exist"){
