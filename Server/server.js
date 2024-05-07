@@ -28,6 +28,12 @@ app.get("/" , (req , res)=>{
     res.json({"Database" : `${isConnected() ? "Connected" : "Not Connected"}`})
 })
 
+app.get("/getuser/:name" , async (req , res)=>{
+    let name = req.params.name
+    let data = await userModel.find({username: name})
+    res.send(data)
+})
+
 app.post("/login" , async (req , res)=>{
     let {email , password} = req.body
     let user = await userModel.findOne({ email: email })
@@ -36,7 +42,7 @@ app.post("/login" , async (req , res)=>{
         if (hashedPassword){
             let payload = {...user , timestamp: Date.now()}
             let token = jwt.sign(payload , process.env.SECRETKEY)
-            res.send({username : user.username , token : token, fav : user.fav})
+            res.send({username : user.username , token : token, fav : user.fav, profileImg: user.profileImg})
         }else{
             res.send("Wrong Password")
         }
@@ -195,21 +201,65 @@ app.put("/resetpass" , async (req , res)=>{
 
 app.post("/handlefav", async (req, res) => {
     let { id , user} = req.body;
-    console.log(id , user);
     const Founduser = await userModel.findOne({ username: user });
     if (Founduser.fav.includes(id)){
         await userModel.updateOne({ _id: Founduser._id }, { $pull: { fav: id } });
-        console.log(Founduser.fav)
         const updatedUser = await userModel.findOne({ username: user });
         res.send({message: "Removed from Favorites" , arr: updatedUser.fav});
     } else {
         await userModel.updateOne({ _id: Founduser._id, fav: { $ne: id } }, { $push: { fav: id } });
         const updatedUser = await userModel.findOne({ username: user });
-        console.log(updatedUser.fav)
         res.send({message: "Added to Favorites" , arr: updatedUser.fav});
     }
 });
 
+app.delete("/deleteuser/:id" , async (req , res)=>{
+    let id = req.params.id
+    console.log(id)
+    await userModel.deleteOne({_id : id})
+        .then((el)=>{
+            res.send(el)
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
+})
+
+app.put("/updatebio/:id" , async (req , res)=>{
+    let id = req.params.id
+    let {bio} = req.body
+    await userModel.updateOne({_id : id} , {
+        $set : {bio : bio}
+    })
+    .then((el)=>{
+        res.send("Bio Updated")
+    })
+    .catch((err)=>{
+        res.send(err)
+    })
+})
+
+app.put("/updateprofile/:id" , async (req , res)=>{
+    let id = req.params.id
+    let {username , email} = req.body
+    let data = await userModel.findOne({username : username})
+    let data2 = await userModel.findOne({email : email})
+    if (data){
+        res.send("Username Already Taken")
+    }else if(data2){
+        res.send("Email Already Taken")
+    }else{
+        await userModel.updateOne({_id : id} , {
+            $set : {username : username , email : email}
+        })
+        .then((el)=>{
+            res.send("Profile Updated")
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
+    }
+})
 
 app.listen(port , (err)=>{
     if (err){
