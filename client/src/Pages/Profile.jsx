@@ -19,7 +19,7 @@ const Profile = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get(`http://localhost:3200/getuser/${sessionStorage.getItem("curruser")}`)
+        axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getuser/${sessionStorage.getItem("curruser")}`)
             .then((res) => {
                 console.log(res.data)
                 setUserData(res.data[0])
@@ -68,7 +68,7 @@ const Profile = () => {
 
     let handlefav = (e,id) =>{
         e.preventDefault()
-        axios.post(`http://localhost:3200/handlefav` , {id : id , user: sessionStorage.getItem("curruser")})
+        axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/handlefav` , {id : id , user: sessionStorage.getItem("curruser")})
             .then((res)=>{
                 let obj = {...userData , fav: res.data.arr}
                 setUserData(obj)
@@ -79,7 +79,7 @@ const Profile = () => {
     let handleDelete = (id) =>{
         let note = prompt("Are you sure you want to delete your account? This action is irreversible. If you are sure, type 'DELETE' in the box below.")
         if (note === "DELETE"){
-            axios.delete(`http://localhost:3200/deleteuser/${id}`)
+            axios.delete(`https://s56-ayush-capstone-dopahiya.onrender.com/deleteuser/${id}`)
             .then((res)=>{
                 console.log(res.data)
                 sessionStorage.setItem("loggedin" , false)
@@ -105,7 +105,7 @@ const Profile = () => {
         let note = toast.loading("Updating Bio..!!" , {
             position: "top-center"
         })
-        axios.put(`http://localhost:3200/updatebio/${userData._id}` , {bio : bio.trim()})
+        axios.put(`https://s56-ayush-capstone-dopahiya.onrender.com/updatebio/${userData._id}` , {bio : bio.trim()})
             .then((res)=>{
                 let obj = {...userData , bio: bio}
                 setUserData(obj)
@@ -122,7 +122,7 @@ const Profile = () => {
         let note = toast.loading("Updating Profile..!!" , {
             position: "top-center"
         })
-        axios.put(`http://localhost:3200/updateprofile/${userData._id}` , {username : username.trim() , email : email.trim()})
+        axios.put(`https://s56-ayush-capstone-dopahiya.onrender.com/updateprofile/${userData._id}` , {username : username.trim() , email : email.trim()})
             .then((res)=>{
                 if (res.data == "Username Already Taken"){
                     return toast.update(note, {render: "Username Already Taken", type: "warning", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
