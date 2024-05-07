@@ -8,6 +8,7 @@ const bcrypt = require("bcryptjs")
 const {userModel , feedbackModel , brandsModel , bikesModel , bikesPhotosModel} = require("./Database/Schema.js")
 const nodemailer = require("nodemailer");
 const crypto = require("crypto")
+const mongoose = require("mongoose")
 
 const app = express()
 app.use(cors())
@@ -29,9 +30,13 @@ app.get("/" , (req , res)=>{
 })
 
 app.get("/getuser/:name" , async (req , res)=>{
-    let name = req.params.name
-    let data = await userModel.find({username: name})
-    res.send(data)
+    try {
+        let name = req.params.name
+        let data = await userModel.find({username: name})
+        res.send(data)
+    } catch (error) {
+        res.status(500).send("User Not Found")
+    }
 })
 
 app.post("/login" , async (req , res)=>{
@@ -215,7 +220,6 @@ app.post("/handlefav", async (req, res) => {
 
 app.delete("/deleteuser/:id" , async (req , res)=>{
     let id = req.params.id
-    console.log(id)
     await userModel.deleteOne({_id : id})
         .then((el)=>{
             res.send(el)
@@ -225,41 +229,54 @@ app.delete("/deleteuser/:id" , async (req , res)=>{
         })
 })
 
-app.put("/updatebio/:id" , async (req , res)=>{
-    let id = req.params.id
-    let {bio} = req.body
-    await userModel.updateOne({_id : id} , {
-        $set : {bio : bio}
-    })
-    .then((el)=>{
-        res.send("Bio Updated")
-    })
-    .catch((err)=>{
-        res.send(err)
-    })
-})
+app.put("/updatebio/:id", async (req, res) => {
+    try {
+        if (!req.params.id) {
+            return res.status(400).send("ID parameter is required");
+        }
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).send("Invalid ID parameter");
+        }
 
-app.put("/updateprofile/:id" , async (req , res)=>{
-    let id = req.params.id
-    let {username , email} = req.body
-    let data = await userModel.findOne({username : username})
-    let data2 = await userModel.findOne({email : email})
-    if (data){
-        res.send("Username Already Taken")
-    }else if(data2){
-        res.send("Email Already Taken")
-    }else{
-        await userModel.updateOne({_id : id} , {
-            $set : {username : username , email : email}
-        })
-        .then((el)=>{
-            res.send("Profile Updated")
-        })
-        .catch((err)=>{
-            res.send(err)
-        })
+        if (!req.body.bio) {
+            return res.status(400).send("Bio parameter is required");
+        }
+
+        let id = req.params.id;
+        let { bio } = req.body;
+        await userModel.updateOne({ _id: id }, { $set: { bio: bio } });
+
+        res.send("Bio Updated");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
     }
-})
+});
+
+app.put("/updateprofile/:id", async (req, res) => {
+    try {
+        let id = req.params.id;
+        let { username, email } = req.body;
+
+        const existingUserWithUsername = await userModel.findOne({ username: username });
+        if (existingUserWithUsername && existingUserWithUsername._id.toString() !== id) {
+            return res.status(400).send("Username Already Taken");
+        }
+
+        const existingUserWithEmail = await userModel.findOne({ email: email });
+        if (existingUserWithEmail && existingUserWithEmail._id.toString() !== id) {
+            return res.status(400).send("Email Already Taken");
+        }
+
+        await userModel.updateOne({ _id: id }, { $set: { username: username, email: email } });
+
+        res.send("Profile Updated");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
 
 app.listen(port , (err)=>{
     if (err){
