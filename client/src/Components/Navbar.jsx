@@ -1,14 +1,17 @@
-import React , {useContext , useState , useEffect} from 'react'
+import React , {useContext , useState , useEffect , useRef} from 'react'
 import "./Navbar.css"
 import Logo from "../assets/LogoNoBg.png"
 import {Context} from "../App.jsx"
 import { GiHamburgerMenu } from "react-icons/gi";
-import {useNavigate} from 'react-router-dom';
+import {useNavigate , Link} from 'react-router-dom';
+import axios from 'axios';
 
 const Navbar = ({color}) => {
 
     const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
     const [scrollProgress, setScrollProgress] = useState(0);
+    const [showDropdown , setShowDropdown] = useState(false)
+    const dropdownRef = useRef(null);
     const navigate = useNavigate()
 
     let handleLoginBtn = () =>{
@@ -36,6 +39,19 @@ const Navbar = ({color}) => {
         }
     }
 
+    const handleClickOutside = (event) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+            setShowDropdown(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
+
     useEffect(() => {
         function handleScroll() {
           const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -50,33 +66,45 @@ const Navbar = ({color}) => {
         };
       }, [])
 
-  return (
+return (
     <div className='navbar-body'>
-        <div className="progress-container">
-            <div className="progress-bar" id="progressBar" style={{width:`${scrollProgress}%`}}></div>
-        </div>
-        <div className='navbar-body-main flex jus-spBet align-cen'>
-            <div className='navbar-logo-div'>
-                <img src={Logo}/>
+            <div className="progress-container">
+                    <div className="progress-bar" id="progressBar" style={{width:`${scrollProgress}%`}}></div>
             </div>
+            <div className='navbar-body-main flex jus-spBet align-cen'>
+                    <div className='navbar-logo-div'>
+                            <img src={Logo}/>
+                    </div>
 
-            <div className='navbar-links-div'>
-                <ul className='navbar-links-list flex' style={{color:color}}>
-                    <li className='links' onClick={() => handleNavigation("/")}>Home</li>
-                    <li className='links' onClick={() => handleNavigation("/bikes")}>Bikes</li>
-                    <li className='links' onClick={() => handleNavigation("/compare")}>Compare</li>
-                    <li className='links' onClick={() => handleNavigation("/findmyperfectbike")}>FindMyPerfectBike</li>
-                    <li className='links' onClick={() => handleNavigation("/feedback")}>Feedback</li>
-                </ul>
-            </div>
+                    <div className='navbar-links-div'>
+                            <ul className='navbar-links-list flex' style={{color:color}}>
+                                    <li className='links' onClick={() => handleNavigation("/")}>Home</li>
+                                    <li className='links' onClick={() => handleNavigation("/bikes")}>Bikes</li>
+                                    <li className='links' onClick={() => handleNavigation("/compare")}>Compare</li>
+                                    <li className='links' onClick={() => handleNavigation("/findmyperfectbike")}>FindMyPerfectBike</li>
+                                    <li className='links' onClick={() => handleNavigation("/feedback")}>Feedback</li>
+                            </ul>
+                    </div>
 
-            <div className='navbar-btn-div flex align-cen'>
-                <button onClick={handleLoginBtn}>{sessionStorage.getItem("loggedin") == "true" ? "Logout" : "Login"}</button>
-                <GiHamburgerMenu className='hamburger' style={{color:color}}/>
+                    {sessionStorage.getItem("loggedin") == "true" ? <div className="dropdown" ref={dropdownRef}>
+                            <button className="dropbtn" onClick={() => setShowDropdown(!showDropdown)}>
+                                <img src={sessionStorage.getItem("profileImg")} alt="profileImg" />
+                            </button>
+                            <ul className="dropdown-content" style={{display : showDropdown ? "block" : "none"}}>
+                                <li>
+                                    <Link to={"/profile"}>My Profile</Link>
+                                </li>
+                                <li onClick={handleLoginBtn}>
+                                    Logout
+                                </li>
+                            </ul>
+                            </div> : <div className='navbar-btn-div flex align-cen'>
+                            <button onClick={handleLoginBtn}>{sessionStorage.getItem("loggedin") == "true" ? "Logout" : "Login"}</button>
+                            <GiHamburgerMenu className='hamburger' style={{color:color}}/>
+                    </div>}
             </div>
-        </div>
     </div>
-  )
+)
 }
 
 export default Navbar

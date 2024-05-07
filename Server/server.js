@@ -8,6 +8,7 @@ const bcrypt = require("bcryptjs")
 const {userModel , feedbackModel , brandsModel , bikesModel , bikesPhotosModel} = require("./Database/Schema.js")
 const nodemailer = require("nodemailer");
 const crypto = require("crypto")
+const mongoose = require("mongoose")
 
 const app = express()
 app.use(cors())
@@ -28,6 +29,16 @@ app.get("/" , (req , res)=>{
     res.json({"Database" : `${isConnected() ? "Connected" : "Not Connected"}`})
 })
 
+app.get("/getuser/:name" , async (req , res)=>{
+    try {
+        let name = req.params.name
+        let data = await userModel.find({username: name})
+        res.send(data)
+    } catch (error) {
+        res.status(500).send("User Not Found")
+    }
+})
+
 app.post("/login" , async (req , res)=>{
     let {email , password} = req.body
     let user = await userModel.findOne({ email: email })
@@ -36,7 +47,7 @@ app.post("/login" , async (req , res)=>{
         if (hashedPassword){
             let payload = {...user , timestamp: Date.now()}
             let token = jwt.sign(payload , process.env.SECRETKEY)
-            res.send({username : user.username , token : token, fav : user.fav})
+            res.send({username : user.username , token : token, fav : user.fav, profileImg: user.profileImg})
         }else{
             res.send("Wrong Password")
         }
@@ -195,18 +206,74 @@ app.put("/resetpass" , async (req , res)=>{
 
 app.post("/handlefav", async (req, res) => {
     let { id , user} = req.body;
-    console.log(id , user);
     const Founduser = await userModel.findOne({ username: user });
     if (Founduser.fav.includes(id)){
         await userModel.updateOne({ _id: Founduser._id }, { $pull: { fav: id } });
-        console.log(Founduser.fav)
         const updatedUser = await userModel.findOne({ username: user });
         res.send({message: "Removed from Favorites" , arr: updatedUser.fav});
     } else {
         await userModel.updateOne({ _id: Founduser._id, fav: { $ne: id } }, { $push: { fav: id } });
         const updatedUser = await userModel.findOne({ username: user });
-        console.log(updatedUser.fav)
         res.send({message: "Added to Favorites" , arr: updatedUser.fav});
+    }
+});
+
+app.delete("/deleteuser/:id" , async (req , res)=>{
+    let id = req.params.id
+    await userModel.deleteOne({_id : id})
+        .then((el)=>{
+            res.send(el)
+        })
+        .catch((err)=>{
+            res.send(err)
+        })
+})
+
+app.put("/updatebio/:id", async (req, res) => {
+    try {
+        if (!req.params.id) {
+            return res.status(400).send("ID parameter is required");
+        }
+        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+            return res.status(400).send("Invalid ID parameter");
+        }
+
+        if (!req.body.bio) {
+            return res.status(400).send("Bio parameter is required");
+        }
+
+        let id = req.params.id;
+        let { bio } = req.body;
+        await userModel.updateOne({ _id: id }, { $set: { bio: bio } });
+
+        res.send("Bio Updated");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+    }
+});
+
+app.put("/updateprofile/:id", async (req, res) => {
+    try {
+        let id = req.params.id;
+        let { username, email } = req.body;
+
+        const existingUserWithUsername = await userModel.findOne({ username: username });
+        if (existingUserWithUsername && existingUserWithUsername._id.toString() !== id) {
+            return res.status(400).send("Username Already Taken");
+        }
+
+        const existingUserWithEmail = await userModel.findOne({ email: email });
+        if (existingUserWithEmail && existingUserWithEmail._id.toString() !== id) {
+            return res.status(400).send("Email Already Taken");
+        }
+
+        await userModel.updateOne({ _id: id }, { $set: { username: username, email: email } });
+
+        res.send("Profile Updated");
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
     }
 });
 
