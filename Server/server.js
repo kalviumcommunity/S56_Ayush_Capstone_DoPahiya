@@ -9,6 +9,7 @@ const {userModel , feedbackModel , brandsModel , bikesModel , bikesPhotosModel} 
 const nodemailer = require("nodemailer");
 const crypto = require("crypto")
 const mongoose = require("mongoose")
+const { router } = require("./uploadrouter.js")
 
 const app = express()
 app.use(cors())
@@ -24,6 +25,8 @@ var transporter = nodemailer.createTransport({
         pass: process.env.APP_PASS
     }
 });
+
+app.use(router);
 
 app.get("/" , (req , res)=>{
     res.json({"Database" : `${isConnected() ? "Connected" : "Not Connected"}`})
@@ -276,7 +279,6 @@ app.put("/updateprofile/:id", async (req, res) => {
         res.status(500).send("Internal Server Error");
     }
 });
-
 
 app.listen(port , (err)=>{
     if (err){
