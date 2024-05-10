@@ -147,7 +147,7 @@ const Profile = () => {
         let file = e.target.files[0]
         let formData = new FormData()
         formData.append("image" , file)
-        axios.post(`http://localhost:3200/upload/${userData._id}` , formData)
+        axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/upload/${userData._id}` , formData)
             .then((res)=>{
                 let obj = {...userData , profileImg: res.data.url}
                 setUserData(obj)
