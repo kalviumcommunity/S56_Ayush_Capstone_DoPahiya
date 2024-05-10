@@ -21,7 +21,6 @@ const Profile = () => {
     useEffect(() => {
         axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getuser/${sessionStorage.getItem("curruser")}`)
             .then((res) => {
-                console.log(res.data)
                 setUserData(res.data[0])
             })
             .catch((err) => {   
@@ -81,7 +80,6 @@ const Profile = () => {
         if (note === "DELETE"){
             axios.delete(`https://s56-ayush-capstone-dopahiya.onrender.com/deleteuser/${id}`)
             .then((res)=>{
-                console.log(res.data)
                 sessionStorage.setItem("loggedin" , false)
                 sessionStorage.setItem("curruser" , null)
                 let cookies = document.cookie.split("; ")
@@ -141,6 +139,27 @@ const Profile = () => {
             })   
     }
 
+    let handleFileUpload = (e) => {
+        console.log(e.target.value)
+        let note = toast.loading("Uploading Image..!!" , {
+            position: "top-center"
+        })
+        let file = e.target.files[0]
+        let formData = new FormData()
+        formData.append("image" , file)
+        axios.post(`http://localhost:3200/upload/${userData._id}` , formData)
+            .then((res)=>{
+                let obj = {...userData , profileImg: res.data.url}
+                setUserData(obj)
+                sessionStorage.setItem("profileImg" , res.data.url)
+                toast.update(note, {render: "Image Uploaded Successfully", type: "success", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
+            })
+            .catch((err)=>{
+                console.log(err)
+                toast.update(note, {render: "Error Uploading Image", type: "error", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
+            })
+    }
+
     return (
         <div>
             <Navbar />
@@ -150,12 +169,10 @@ const Profile = () => {
                         <div className='profile-img'>
                             <img src={userData.profileImg} alt="profile-img" />
                         </div>
-                        <button>
+                        <label>
                             Change Profile Picture
-                        </button>
-                        <button>
-                            Remove Profile Picture
-                        </button>
+                            <input type="file" name="image" style={{display:"none"}} onChange={(e)=>handleFileUpload(e)}/>
+                        </label>
                     </div>
                     <div className='profile-content-div'>
                         <div className='profile-userDetails'>
@@ -168,33 +185,33 @@ const Profile = () => {
                                 <h4>{userData.email}</h4>
                             </div>
                             <div className='profile-btn-div flex jus-end'>
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-2">Edit</button>
+                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-2">Edit</button>
                                 <button onClick={()=>handleDelete(userData._id)}>Delete Account</button>
                             </div>
                         </div>
 
-                        <div class="modal fade" id="exampleModal-2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit Profile</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div className="modal fade" id="exampleModal-2" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div className="modal-dialog">
+                                <div className="modal-content">
+                                <div className="modal-header">
+                                    <h1 className="modal-title fs-5" id="exampleModalLabel">Edit Profile</h1>
+                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
-                                <div class="modal-body">
-                                    <form>
-                                        <div class="mb-3">
-                                            <label for="recipient-name" class="col-form-label">Username</label>
-                                            <input type="text" defaultValue={userData.username} class="form-control" id="recipient-name"/>
+                                <div className="modal-body">
+                                    <form>Name
+                                        <div className="mb-3">
+                                            <label htmlFor="recipient-name" className="col-form-label">Username</label>
+                                            <input type="text" defaultValue={userData.username} className="form-control" id="recipient-name"/>
                                         </div>
-                                        <div class="mb-3">
-                                            <label for="email" class="col-form-label">Email</label>
-                                            <input type="email" defaultValue={userData.email} class="form-control" id="email"/>
+                                        <div className="mb-3">
+                                            <label htmlFor="email" className="col-form-label">Email</label>
+                                            <input type="email" defaultValue={userData.email} className="form-control" id="email"/>
                                         </div>
                                     </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary" onClick={handleSaveProfile} data-bs-dismiss="modal">Save changes</button>
+                                <div className="modal-footer">
+                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="button" className="btn btn-primary" onClick={handleSaveProfile} data-bs-dismiss="modal">Save changes</button>
                                 </div>
                                 </div>
                             </div>
@@ -234,19 +251,19 @@ const Profile = () => {
                                 <h6>BIO</h6>
                                 <BsPencilFill style={{ cursor: "pointer" }} data-bs-toggle="modal" data-bs-target="#exampleModal"/>
 
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Write new Bio</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h1 className="modal-title fs-5" id="exampleModalLabel">Write new Bio</h1>
+                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
-                                            <div class="modal-body">
+                                            <div className="modal-body">Name
                                                 <textarea id="bio-text" defaultValue={userData.bio}></textarea>
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                <button type="button" class="btn btn-primary" onClick={handleSaveBio} data-bs-dismiss="modal">Save changes</button>
+                                            <div className="modal-footer">
+                                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" className="btn btn-primary" onClick={handleSaveBio} data-bs-dismiss="modal">Save changes</button>
                                             </div>
                                         </div>
                                     </div>
