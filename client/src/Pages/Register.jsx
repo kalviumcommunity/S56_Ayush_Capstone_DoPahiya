@@ -23,6 +23,8 @@ const Register = () => {
     let onSubmit = (inputvals,event) =>{
         event.preventDefault();
         console.log(inputvals)
+        inputvals = {...inputvals , profileImg : "https://res.cloudinary.com/dvvfavgey/image/upload/v1714982148/Profile%20Pictures/profile-picture_hnqliq.jpg" , bio: "Hello, I am Bike Entusiast.!!" , fav: []}
+        
         let note = toast.loading("Please Wait ..." , {position:"top-center"})
         axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/register" , inputvals)
           .then((res)=>{
