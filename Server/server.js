@@ -9,7 +9,8 @@ const {userModel , feedbackModel , brandsModel , bikesModel , bikesPhotosModel} 
 const nodemailer = require("nodemailer");
 const crypto = require("crypto")
 const mongoose = require("mongoose")
-const { router } = require("./uploadrouter.js")
+const { router } = require("./uploadrouter.js");
+const { register } = require("module");
 
 const app = express()
 app.use(cors())
@@ -97,7 +98,7 @@ app.post("/register" , async (req , res)=>{
     }
     else{
         let hashedPassword = await bcrypt.hash(password,parseInt(process.env.LEVEL))
-        await userModel.create({username: username , email:email , password:hashedPassword})
+        await userModel.create({username: username , email:email , password:hashedPassword , fav:[] , bio:req.body.bio , profileImg:req.body.profileImg})
         res.send("Registration Successful")
     }
 })
