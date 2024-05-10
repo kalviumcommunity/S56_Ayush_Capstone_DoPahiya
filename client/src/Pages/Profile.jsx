@@ -171,7 +171,7 @@ const Profile = () => {
                         </div>
                         <label>
                             Change Profile Picture
-                            <input type="file" style={{display:"none"}} onChange={(e)=>handleFileUpload(e)}/>
+                            <input type="file" name="image" style={{display:"none"}} onChange={(e)=>handleFileUpload(e)}/>
                         </label>
                     </div>
                     <div className='profile-content-div'>
