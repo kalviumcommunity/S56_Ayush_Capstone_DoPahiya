@@ -1,12 +1,26 @@
-import React from 'react'
+import React , {useContext} from 'react'
 import "./Footer.css"
 import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import LogoNoBg from "../assets/LogoNoBg.png"
-import { Link } from 'react-router-dom';
+import { Link , useNavigate} from 'react-router-dom';
+import {Context} from "../App.jsx"
+
 
 const Footer = () => {
+
+    const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
+    const navigate = useNavigate()
+
+    let handleNavigation = (path) =>{
+        if (sessionStorage.getItem("loggedin") == "true"){
+            navigate(path)
+        }else{
+            setLoginModal(!LoginModal)
+        }
+    }
+
   return (
     <div className='footer-main'>
         <div className='footer-content'>
@@ -18,11 +32,11 @@ const Footer = () => {
                     <h2>Quick Links</h2>
 
                     <ul>
-                        <Link to={"/"} className='links'><li>Home</li></Link>
-                        <Link to={"/bikes"} className='links'><li>Bikes</li></Link>
-                        <Link to={"/compare"} className='links'><li>Compare</li></Link>
-                        <Link to={"/findmyperfectbike"} className='links'><li>FindMyPerfectBike</li></Link>
-                        <Link to={"/feedback"} className='links'><li>FeedBack</li></Link>
+                        <li onClick={()=>handleNavigation("/")}>Home</li>
+                        <li onClick={()=>handleNavigation("/bikes")}>Bikes</li>
+                        <li onClick={()=>handleNavigation("/compare")}>Compare</li>
+                        <li onClick={()=>handleNavigation("/findmyperfectbike")}>FindMyPerfectBike</li>
+                        <li onClick={()=>handleNavigation("/feedback")}>FeedBack</li>
                     </ul>
                 </div>
                 <div className='footer-contact'>
