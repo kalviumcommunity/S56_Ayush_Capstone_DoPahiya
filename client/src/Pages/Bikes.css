@@ -116,7 +116,8 @@
 }
 
 .card img {
-    width: 100%;
+    width: 200px;
+    height: 200px;
     height: auto;
     position: relative;
     z-index: 1; /* Ensure the image is above other elements */

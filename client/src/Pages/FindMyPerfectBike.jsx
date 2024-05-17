@@ -39,7 +39,7 @@ let questions = [
     }
 ]
 
-const FindMyPerfectBike = () => {
+const FindMyPerfectBike = ({mergedData}) => {
 
     useEffect(()=>{
         window.scrollTo({
@@ -52,6 +52,7 @@ const FindMyPerfectBike = () => {
     const [showFav , setshowFav] = useState(false)
     const [currQues , setCurrQues] = useState(0)
     const [answers , setAnswers] = useState([])
+    const [favs , setFavs] = useState([])
 
     let handleFormBtn = ()=>{
         setCurrQues(currQues + 1)
@@ -87,6 +88,12 @@ const FindMyPerfectBike = () => {
             setCurrQues(currQues-1)
         }
     }
+
+    useEffect(()=>{
+        if (sessionStorage.getItem("fav")){
+            setFavs(JSON.parse(sessionStorage.getItem("fav")))
+        }
+    },[])
 
   return (
     <div className='fmpb-main-div'>
@@ -126,20 +133,26 @@ const FindMyPerfectBike = () => {
             { showBikeList && <div className='flex jus-cen align-cen fmpb-bikelist-maindiv'>
                 <div>
                     <h2>BikeList</h2>
-                    <FmpbComp />
-                    <FmpbComp />
-                    <FmpbComp />
-                    <FmpbComp />
+                    <FmpbComp el={mergedData[0]}/>
+                    <FmpbComp el={mergedData[0]}/>
+                    <FmpbComp el={mergedData[0]}/>
+                    <FmpbComp el={mergedData[0]}/>
                 </div>
             </div>}
 
             { showFav && <div className='flex jus-cen align-cen fmpb-bikelist-maindiv'>
                 <div>
                     <h2>Favourite Bikes </h2>
+                    {mergedData.map((el,i)=>{
+                        console.log(el._id , favs)
+                        if (favs.includes(el._id)){
+                            return <FmpbComp key={i} el={el}/>
+                        }
+                    })}
+                    {/* <FmpbComp />
                     <FmpbComp />
                     <FmpbComp />
-                    <FmpbComp />
-                    <FmpbComp />
+                    <FmpbComp /> */}
                 </div>
             </div>}
 

@@ -1,5 +1,4 @@
 import React from 'react'
-import R15 from "../assets/r15.png"
 import "../Pages/Bikes.css"
 import { Link } from 'react-router-dom'
 
