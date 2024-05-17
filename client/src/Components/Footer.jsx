@@ -4,6 +4,8 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import LogoNoBg from "../assets/LogoNoBg.png"
+import { Link } from 'react-router-dom';
+
 const Footer = () => {
   return (
     <div className='footer-main'>
@@ -16,12 +18,11 @@ const Footer = () => {
                     <h2>Quick Links</h2>
 
                     <ul>
-                        <li>Home</li>
-                        <li>Bikes</li>
-                        <li>Compare</li>
-                        <li>FindMyPerfectBike</li>
-                        <li>FeedBack</li>
-                        <li>Contact Details</li>
+                        <Link to={"/"} className='links'><li>Home</li></Link>
+                        <Link to={"/bikes"} className='links'><li>Bikes</li></Link>
+                        <Link to={"/compare"} className='links'><li>Compare</li></Link>
+                        <Link to={"/findmyperfectbike"} className='links'><li>FindMyPerfectBike</li></Link>
+                        <Link to={"/feedback"} className='links'><li>FeedBack</li></Link>
                     </ul>
                 </div>
                 <div className='footer-contact'>
