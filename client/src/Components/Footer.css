@@ -12,18 +12,28 @@
     width: 300px;
 }
 
+.footer-links{
+    text-align: center;
+}
+
 .footer-content{
     display: grid;
     grid-template-columns: 20vw 40vw;
     justify-content: center;
     align-items: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     gap: 30px;
+    font-weight: bold;
 }
 
 .footer-content ul{
-    list-style-type: none;  
+    list-style-type: none; 
+    padding: 0; 
 }   
+
+.footer-content h2{
+    font-size: 1.8rem;
+}
 
 .footer-content ul li {
     margin: 5px;
@@ -36,6 +46,14 @@
 
 .footer-maincontent{
     flex-wrap: wrap;
+}
+
+.links{
+    color: black;
+}
+
+.footer-rights h5{
+    font-size: 13px;
 }
 
 @media all and (max-width:800px) {
