@@ -98,7 +98,7 @@ const Bikes = () => {
                             .filter(el => el.bodyType.includes("Street")) 
                             .slice(0, 5)
                             .map((el, i) => (
-                                <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                                <BikePageCard key={i} el={el} />
                             ))}
                     </div>
                 </div>
@@ -108,7 +108,7 @@ const Bikes = () => {
                         .filter(el => el.bodyType.includes("Adventure")) 
                         .slice(0, 5)
                         .map((el, i) => (
-                            <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                            <BikePageCard key={i} el={el} />
                         ))}
                     </div>
                 </div>
@@ -118,7 +118,7 @@ const Bikes = () => {
                         .filter(el => el.bodyType.includes("Cruiser")) 
                         .slice(0, 5)
                         .map((el, i) => (
-                            <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                            <BikePageCard key={i} el={el} />
                         ))}
                     </div>
                 </div>
@@ -128,7 +128,7 @@ const Bikes = () => {
                         .filter(el => el.bodyType.includes("Sports")) 
                         .slice(0, 5)
                         .map((el, i) => (
-                            <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                            <BikePageCard key={i} el={el} />
                         ))}
                     </div>
                 </div>
@@ -158,7 +158,7 @@ const Bikes = () => {
                     .filter(el => el.exShowroomPrice < 100000) 
                     .slice(0, 5)
                     .map((el, i) => (
-                        <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                        <BikePageCard key={i} el={el}/>
                     ))}
                     </div>
                 </div>
@@ -168,7 +168,7 @@ const Bikes = () => {
                 .filter(el => el.exShowroomPrice < 200000 && el.exShowroomPrice > 100000) 
                 .slice(0, 5)
                 .map((el, i) => (
-                    <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                    <BikePageCard key={i} el={el}/>
                 ))}
                     </div>
                 </div>
@@ -178,7 +178,7 @@ const Bikes = () => {
                 .filter(el => el.exShowroomPrice < 300000 && el.exShowroomPrice > 200000) 
                 .slice(0, 5)
                 .map((el, i) => (
-                    <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                    <BikePageCard key={i} el={el}/>
                 ))}
                     </div>
                 </div>
@@ -188,7 +188,7 @@ const Bikes = () => {
                 .filter(el => el.exShowroomPrice < 400000 && el.exShowroomPrice > 300000) 
                 .slice(0, 5)
                 .map((el, i) => (
-                    <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                    <BikePageCard key={i} el={el}/>
                 ))}
                     </div>
                 </div>
@@ -198,7 +198,7 @@ const Bikes = () => {
                 .filter(el => el.exShowroomPrice > 400000) 
                 .slice(0, 5)
                 .map((el, i) => (
-                    <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                    <BikePageCard key={i} el={el} />
                 ))}
                     </div>
                 </div>
@@ -227,7 +227,7 @@ const Bikes = () => {
                         .filter(el => parseInt(el.cityMileage.split(" ")[0]) >= 5 && parseInt(el.cityMileage.split(" ")[0]) < 25) 
                         .slice(0, 5)
                         .map((el, i) => (
-                            <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                            <BikePageCard key={i} el={el} />
                     ))}
                     </div>
                 </div>
@@ -237,7 +237,7 @@ const Bikes = () => {
                 .filter(el => parseInt(el.cityMileage.split(" ")[0]) >= 25 && parseInt(el.cityMileage.split(" ")[0]) < 35) 
                 .slice(0, 5)
                 .map((el, i) => (
-                    <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                    <BikePageCard key={i} el={el}/>
                 ))}
                     </div>
                 </div>
@@ -247,7 +247,7 @@ const Bikes = () => {
                 .filter(el => parseInt(el.cityMileage.split(" ")[0]) >= 35 && parseInt(el.cityMileage.split(" ")[0]) < 50) 
                 .slice(0, 5)
                 .map((el, i) => (
-                    <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                    <BikePageCard key={i} el={el}/>
                 ))}
                     </div>
                 </div>
@@ -257,7 +257,7 @@ const Bikes = () => {
                 .filter(el => parseInt(el.cityMileage.split(" ")[0]) >= 50) 
                 .slice(0, 5)
                 .map((el, i) => (
-                    <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"} />
+                    <BikePageCard key={i} el={el}/>
                 ))}
                     </div>
                 </div>

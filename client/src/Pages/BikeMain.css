@@ -164,3 +164,73 @@ body::-webkit-scrollbar{
     display: grid;
     grid-template-columns: auto auto auto auto;
 }
+
+.card-2{
+    width: 300px;
+    height: 150px; 
+    padding: 30px 10px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.card-2 img{
+    margin:auto;
+    width: 200px;
+}
+
+.card-2:hover .card-2-content {
+    opacity: 1; 
+}
+
+.card-2:hover .hidden-text {
+    opacity: 1; 
+    animation: fadeIn-2 0.5s ease forwards; 
+}
+
+.hidden-text{
+    opacity: 0;
+}
+
+.hidden-content{
+    position: absolute;
+    /* top: 50%; */
+    left: 50%;
+    transform: translate(-50%);
+    /* bottom: 0; */
+    width: 100%;
+}
+
+.hidden-content p{
+    font-weight: 500;
+}
+
+@keyframes fadeIn-2 {
+    from {
+        opacity: 0;
+        transform: translateY(0px); 
+    }
+    to {
+        opacity: 1;
+        transform: translateY(-80px);
+    }
+}
+
+.card-2 img {
+    height: auto;
+    position: relative;
+    z-index: 1; 
+}
+
+.card-2 .visible-content{
+    text-align: center;
+    transition: transform 0.3s ease; 
+}
+
+.card-2:hover .visible-content {
+    transform: translateY(-60%); 
+}
+
+.card-2:hover img{
+    opacity: 0;
+}

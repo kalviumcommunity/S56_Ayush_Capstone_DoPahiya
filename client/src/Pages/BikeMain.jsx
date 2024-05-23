@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar.jsx"
 import Footer from '../Components/Footer.jsx';
 import FrontView from "../assets/r15front.png"
 import BikePageCard from '../Components/BikePageCard.jsx';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Loader from '../Components/Loader.jsx';
 import { MdFavoriteBorder } from "react-icons/md";
@@ -17,6 +17,7 @@ const BikeMain = () => {
     const [data , setData] = useState({})
     const [mergedData , setMergedData] = useState([])
     const [isLoading , setIsLoading] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(()=>{
         window.scrollTo({
@@ -105,7 +106,17 @@ const BikeMain = () => {
                 <div className='bike-cat-div'>
                 {mergedData.map((el,i)=>{
                             if (el.bodyType.includes(data.bodyType[0]) && i<4){
-                                return <BikePageCard key={i} el={el} cardWidth={"100%"} cardHeight={"100%"} border={"none"}/>
+                                return <div className="card-2" onClick={() => navigate(`/bike/${el.name}`)}>
+                                  <div className='visible-content'>
+                                    <img src={el.banner} />
+                                    <h4 className="card-2-text">{el.name}</h4>
+                                  </div>
+                                  <div className="hidden-content">
+                                      <p className="hidden-text">Price : {el.exShowroomPrice}</p>
+                                      <p className="hidden-text">BodyType : {el.bodyType[0]}</p>
+                                      <p className="hidden-text">Mileage : {el.cityMileage}</p>
+                                  </div>
+                              </div>
                             }
                         })}
                 </div>    

@@ -37,6 +37,9 @@
 
 .footer-content ul li {
     margin: 5px;
+}
+
+.footer-links li{
     cursor: pointer;
 }
 

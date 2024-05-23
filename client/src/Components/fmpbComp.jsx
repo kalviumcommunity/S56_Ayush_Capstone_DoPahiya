@@ -4,7 +4,7 @@ import "../Pages/fmpb.css"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const FmpbComp = ({el}) => {
+const FmpbComp = ({el , setshowFav}) => {
 
   const handleFavoriteClick = (event , id) => {
     event.stopPropagation();
