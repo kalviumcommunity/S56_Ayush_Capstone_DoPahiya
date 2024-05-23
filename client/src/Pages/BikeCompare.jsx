@@ -23,7 +23,7 @@ const BikeCompare = () => {
       },[])
 
     let mappedData = Object.keys(bike1Details).map((el , i)=>{
-        if (el != "banner" && el != "photos"){ 
+        if (el != "banner" && el != "photos" && el != "_id" && el != "brand_id"){ 
             return <tr key={i}>
                     <td>{typeof(bike1Details[el]) === "object" ? bike1Details[el].join(", ") : bike1Details[el]}</td>
                     <td>{el}</td>
@@ -82,7 +82,7 @@ const BikeCompare = () => {
             </div>
 
             <div className='compare-select-div flex jus-spBet align-cen'>
-                <select onChange={(e)=>setBike1Value(e.target.value)}>
+                <select onChange={(e)=>setBike1Value(e.target.value)} value={bike1Value}>
                     <option value="none">Choose Bike 1</option>
                     {bikeData.map((el,i)=>{
                         return <option value={el.name} key={i}>{el.name}</option>
@@ -91,7 +91,7 @@ const BikeCompare = () => {
 
                 <p>Area of Comparison</p>
 
-                <select onChange={(e)=>setBike2Value(e.target.value)}>
+                <select onChange={(e)=>setBike2Value(e.target.value)} value={bike2Value}>
                     <option value="none">Choose Bike 2</option>
                     {bikeData.map((el,i)=>{
                         return <option value={el.name} key={i}>{el.name}</option>
@@ -122,20 +122,20 @@ const BikeCompare = () => {
             <div className="tab-content" id="nav-tabContent">
                 <div className="tab-pane fade show active" id="nav-pop-1" role="tabpanel" aria-labelledby="nav-home-tab" tabIndex="0">
                     <div className='section-cont flex jus-spBet'>
-                        <CompareCard />
-                        <CompareCard />
-                        <CompareCard />
-                        <CompareCard />
-                        <CompareCard />
+                        <CompareCard bike1={"Hero Splendor Plus"} bike2={"Honda Shine 100"} setBike1Value={setBike1Value} setBike2Value={setBike2Value}/>
+                        <CompareCard bike1={"Bajaj Pulsar N160"} bike2={"TVS Apache RTR 160"} setBike1Value={setBike1Value} setBike2Value={setBike2Value}/>
+                        <CompareCard bike1={"KTM 390 Duke"} bike2={"Bajaj Dominar 400"} setBike1Value={setBike1Value} setBike2Value={setBike2Value}/>
+                        <CompareCard bike1={"Royal Enfield Classic 350"} bike2={"Jawa Forty Two"} setBike1Value={setBike1Value} setBike2Value={setBike2Value}/>
+                        <CompareCard bike1={"BMW R 1250 GS Adventure"} bike2={"Harley Davidson PanAmerica 1250"} setBike1Value={setBike1Value} setBike2Value={setBike2Value}/>
                     </div>
                 </div>
                 <div className="tab-pane fade" id="nav-pop-2" role="tabpanel" aria-labelledby="nav-profile-tab" tabIndex="0">
                     <div className='section-cont flex jus-spBet'>
-                        <CompareCard />
-                        <CompareCard />
-                        <CompareCard />
-                        <CompareCard />
-                        <CompareCard />
+                        <CompareCard bike1={"Honda Activa 6G"} bike2={"TVS Jupiter"} setBike1Value={setBike1Value} setBike2Value={setBike2Value}/>
+                        <CompareCard bike1={"Suzuki Access 125"} bike2={"Yamaha Fascino 125"} setBike1Value={setBike1Value} setBike2Value={setBike2Value}/>
+                        <CompareCard bike1={"Aprilia SR Storm"} bike2={"TVS NTORQ 125"} setBike1Value={setBike1Value} setBike2Value={setBike2Value}/>
+                        <CompareCard bike1={"Bajaj Chetak"} bike2={"TVS iQube Electric S"} setBike1Value={setBike1Value} setBike2Value={setBike2Value}/>
+                        <CompareCard bike1={"Suzuki Access 125"} bike2={"TVS Jupiter"} setBike1Value={setBike1Value} setBike2Value={setBike2Value}/>
                     </div>
                 </div>
             </div>

@@ -44,7 +44,7 @@ const FindMyPerfectBike = ({mergedData}) => {
     useEffect(()=>{
         window.scrollTo({
           top:0
-        })
+        }) 
       },[])
 
     const [showQues , setShowQues] = useState(false)
@@ -93,7 +93,7 @@ const FindMyPerfectBike = ({mergedData}) => {
         if (sessionStorage.getItem("fav")){
             setFavs(JSON.parse(sessionStorage.getItem("fav")))
         }
-    },[])
+    },[showFav])
 
   return (
     <div className='fmpb-main-div'>
@@ -133,10 +133,10 @@ const FindMyPerfectBike = ({mergedData}) => {
             { showBikeList && <div className='flex jus-cen align-cen fmpb-bikelist-maindiv'>
                 <div>
                     <h2>BikeList</h2>
-                    <FmpbComp el={mergedData[0]}/>
-                    <FmpbComp el={mergedData[0]}/>
-                    <FmpbComp el={mergedData[0]}/>
-                    <FmpbComp el={mergedData[0]}/>
+                    <FmpbComp el={mergedData[0]} setshowFav={setshowFav}/>
+                    <FmpbComp el={mergedData[0]} setshowFav={setshowFav}/>
+                    <FmpbComp el={mergedData[0]} setshowFav={setshowFav}/>
+                    <FmpbComp el={mergedData[0]} setshowFav={setshowFav}/>
                 </div>
             </div>}
 
