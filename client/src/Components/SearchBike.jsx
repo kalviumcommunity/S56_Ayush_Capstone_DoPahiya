@@ -15,7 +15,12 @@ const SearchBike = ({position , background}) => {
 
     let handleNavigation = () =>{
         if (sessionStorage.getItem("loggedin") == "true"){
-            navigate(`/bike/${modelValue}`)
+            if(brandValue !== "brand" && modelValue !== "model"){
+                navigate(`/bike/${modelValue}`)
+            }else{
+                console.log("hello")
+                alert("Please Select Brand and Model")
+            }
         }else{
             setLoginModal(!LoginModal)
         }
@@ -75,6 +80,7 @@ const SearchBike = ({position , background}) => {
                 <button onClick={() => handleNavigation()}>SEARCH</button>
             </div>
         </div>
+
     </div>
   )
 }

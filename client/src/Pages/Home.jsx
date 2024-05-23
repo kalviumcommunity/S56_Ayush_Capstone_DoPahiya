@@ -60,7 +60,11 @@ const Home = () => {
   }
 
   let handleClick = (brand_id) =>{
-    navigate(`/brand/${brand_id}`)
+    if (sessionStorage.getItem("loggedin") == "true"){
+      navigate(`/brand/${brand_id}`)
+    }else{
+        setLoginModal(!LoginModal)
+    }
   }
 
   return (
