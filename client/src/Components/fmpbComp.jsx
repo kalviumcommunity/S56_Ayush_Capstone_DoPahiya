@@ -1,4 +1,4 @@
-import React from 'react'
+import React , {useState} from 'react'
 import R15 from "../assets/r15.png"
 import "../Pages/fmpb.css"
 import { Link } from 'react-router-dom'
@@ -6,11 +6,15 @@ import axios from 'axios'
 
 const FmpbComp = ({el , setshowFav}) => {
 
+  const [favList , setFavList] = useState(JSON.parse(sessionStorage.getItem("fav")))
+
   const handleFavoriteClick = (event , id) => {
     event.stopPropagation();
     console.log(id)
     handleAddFav(id)
   }
+
+  console.log(favList)
 
   let handleAddFav = async (id) =>{
     await axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/handlefav` , {id : id , user: sessionStorage.getItem("curruser")})
@@ -36,7 +40,7 @@ const FmpbComp = ({el , setshowFav}) => {
         </div>
         <div>
             <Link to={`/bike/${el.name}`}><button>Explore</button></Link><br />
-            <button className='fav-btn' onClick={(e)=>handleFavoriteClick(e , el._id)}>Remove from Fav</button>
+            <button className='fav-btn' onClick={(e)=>handleFavoriteClick(e , el._id)}>{favList.includes(el._id) ? "Remove from Fav" : "Add to Fav"}</button>
         </div>
     </div>
   )
