@@ -1,40 +1,41 @@
-import React , {useState , useEffect}from 'react'
+import React , {useState , useEffect, useContext}from 'react'
 import Navbar from '../Components/Navbar'
 import "./fmpb.css"
 import FmpbComp from '../Components/fmpbComp'
 import Footer from '../Components/Footer'
+import { Context } from '../App'
 
 let questions = [
     {
         ques : "Do you prefer a bike with gears or a single-speed bike ?",
         options : [
-            "Bike with Gears",
-            "Single Speed Bike",
-            "Comfortable with both"
+            ["Bike with Gears", ["6 Speed","5 Speed","4 Speed"]],
+            ["Single Speed Bike", ["CVT","Automatic"]],
+            ["Comfortable with both", ["6 Speed","5 Speed","4 Speed","CVT","Automatic"]]
         ]
     },
     {
         ques : "What type of riding do you plan to do ?",
         options : [
-            "Street Riding",
-            "Touring",
-            "Sports Riding",
-            "Adventure Riding"
+            ["Street Riding", ["Street" , "Naked"]],
+            ["Touring", ["Tourer , Cruiser"]],
+            ["Sports Riding", ["Sports", "Naked"]],
+            ["Adventure Riding", ["Adventure" , "Adventure"]]
         ]
     },
     {
         ques : "Is Mileage a big concern for you ?",
         options : [
-            "Yes",
-            "No"
+            ["Yes",40],
+            ["No",5]
         ]
     },
     {
         ques : "What is your budget ?",
         options : [
-            "Under 2 Lakh",
-            "2-4 Lakh",
-            "Flexible with Budget"
+            ["Under 2 Lakh", [0,170000]],
+            ["2-4 Lakh",[170000,370000]],
+            ["Flexible with Budget",[0,1000000]]
         ]
     }
 ]
@@ -52,7 +53,9 @@ const FindMyPerfectBike = ({mergedData}) => {
     const [showFav , setshowFav] = useState(false)
     const [currQues , setCurrQues] = useState(0)
     const [answers , setAnswers] = useState([])
+    const [bikeListData , setBikeListData] = useState([])
     const [favs , setFavs] = useState([])
+    const {completeData} = useContext(Context)
 
     let handleFormBtn = ()=>{
         setCurrQues(currQues + 1)
@@ -62,6 +65,12 @@ const FindMyPerfectBike = ({mergedData}) => {
         setShowQues(!showQues)
         setShowList(!showBikeList)
         console.log(answers)
+        let filteredData = completeData.filter((el,i)=>{
+            if(answers[0].includes(el.gearBox) && (answers[0].length == 2 ? el.bodyType.includes("Scooter") : (el.bodyType.includes(answers[1][0]) || el.bodyType.includes(answers[1][1]))) && parseInt(el.cityMileage.split(" ")[0]) >= answers[2] && el.exShowroomPrice > answers[3][0] && el.exShowroomPrice < answers[3][1]){
+                return el
+            }
+        })
+        setBikeListData(filteredData)
     }
 
     const handleOptionSelect = (option) => {
@@ -115,8 +124,8 @@ const FindMyPerfectBike = ({mergedData}) => {
                             <div className='options-div flex'>
                                 {questions[currQues].options.map((ele,index)=>{
                                     return <div className='flex align-cen' key={index}>
-                                        <input type="radio" key={index} name={questions[currQues].ques} value={ele} onChange={() => handleOptionSelect(ele)} checked={answers[currQues] === ele}/> 
-                                        <label>{ele}</label>
+                                        <input type="radio" key={index} name={questions[currQues].ques} value={ele[1]} onChange={() => handleOptionSelect(ele[1])} checked={answers[currQues] === ele[1]}/> 
+                                        <label>{ele[0]}</label>
                                     </div>
                                 })}
                             </div>
@@ -133,10 +142,11 @@ const FindMyPerfectBike = ({mergedData}) => {
             { showBikeList && <div className='flex jus-cen align-cen fmpb-bikelist-maindiv'>
                 <div>
                     <h2>BikeList</h2>
-                    <FmpbComp el={mergedData[0]} setshowFav={setshowFav}/>
-                    <FmpbComp el={mergedData[0]} setshowFav={setshowFav}/>
-                    <FmpbComp el={mergedData[0]} setshowFav={setshowFav}/>
-                    <FmpbComp el={mergedData[0]} setshowFav={setshowFav}/>
+                    <div className='flex jus-cen align-cen' style={{flexDirection: "column"}}>
+                        {bikeListData.length == 0 ? <h6>Bike Not Found</h6> : bikeListData.map((el,i)=>{
+                            return <FmpbComp key={i} el={el} setshowFav={setshowFav}/>
+                        })}
+                    </div>
                 </div>
             </div>}
 
@@ -144,15 +154,10 @@ const FindMyPerfectBike = ({mergedData}) => {
                 <div>
                     <h2>Favourite Bikes </h2>
                     {mergedData.map((el,i)=>{
-                        console.log(el._id , favs)
                         if (favs.includes(el._id)){
                             return <FmpbComp key={i} el={el}/>
                         }
                     })}
-                    {/* <FmpbComp />
-                    <FmpbComp />
-                    <FmpbComp />
-                    <FmpbComp /> */}
                 </div>
             </div>}
 

@@ -5,7 +5,6 @@ import Navbar from '../Components/Navbar'
 import R15 from "../assets/r15.png"
 import Footer from '../Components/Footer'
 import CompareCard from '../Components/CompareCard'
-import axios from 'axios'
 import { Context } from '../App'
 
 const BikeCompare = () => {
