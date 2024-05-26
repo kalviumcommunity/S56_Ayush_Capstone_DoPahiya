@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 const SearchBike = ({position , background}) => {
 
-    const {LoginModal , setLoginModal} = useContext(Context)
+    const {LoginModal , setLoginModal, bikeBrands, completeData} = useContext(Context)
     const [brandData , setBrandData] = useState([])
     const [bikeData , setBikeData] = useState([])
     const [brandValue , setBrandValue] = useState("brand")
@@ -27,30 +27,12 @@ const SearchBike = ({position , background}) => {
     }
 
     useEffect(()=>{
-        let getBrands = () =>{
-            axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbrands")
-                .then((res)=>{
-                    setBrandData(res.data)
-                })
-                .catch((err)=>{
-                    setBrandData(["No Data Found"])
-                })
-        }
-        getBrands()
-    } , [])
+        setBrandData(bikeBrands)
+    } , [bikeBrands])
 
     useEffect(()=>{
-        let getBikes = () =>{
-            axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikes")
-                .then((res)=>{
-                    setBikeData(res.data)
-                })
-                .catch((err)=>{
-                    setBikeData(["No Data Found"])
-                })
-        }
-        getBikes()
-    } , [brandValue])
+        setBikeData(completeData)
+    } , [brandValue , completeData])
 
     let filteredData = brandValue == "brand" ? bikeData : bikeData.filter((el,i)=>{
         if (el.brand_id == brandValue){

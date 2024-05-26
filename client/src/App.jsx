@@ -18,54 +18,51 @@ function App() {
 
   const [LoginModal , setLoginModal] = useState(false)
   const [RegisterModal , setRegisterModal] = useState(false)
-  const [bikeDetails , setBikeDetails] = useState([])
-  const [bikePhotos , setBikePhotos] = useState([])
-  const [mergedData , setMergedData] = useState([])
+  const [completeData , setCompleteData] = useState([])
+  const [bikeBrands , setBikeBrands] = useState([])
 
-  useEffect(()=>{
-    Promise.all([
-        axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikephotos"),
-        axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikes")
-    ]).then(([photosRes, bikesRes]) => {
-        setBikePhotos(photosRes.data);
-        setBikeDetails(bikesRes.data);
-    }).catch(error => {
-        console.error("Error fetching data:", error);
-    })
-  } , [])
+  let mergeData = (bikedata , photosdata) => {
+    const photoMap = {};
+    photosdata ?.forEach((photo) => {
+        photoMap[photo.name] = photo;
+    });
 
-  useEffect(()=>{
-      mergeData()
-  },[bikeDetails , bikePhotos])
-
-  let mergeData = () => {
-      const photoMap = {};
-      bikePhotos.forEach((photo) => {
-          photoMap[photo.name] = photo;
-      });
-
-      let merged = bikeDetails.map((detail) => {
-          const matchingPhoto = photoMap[detail.name];
-          if (matchingPhoto) {
-              return { ...detail, ...matchingPhoto };
-          } else {
-              return detail;
-          }
-      });
-
-      setMergedData(merged);
+    let merged = bikedata?.map((detail) => {
+        const matchingPhoto = photoMap[detail.name];
+        if (matchingPhoto) {
+            return { ...detail, ...matchingPhoto };
+        } else {
+            return detail;
+        }
+    });
+    setCompleteData(merged);
   };
+
+  useEffect(()=>{
+    if(completeData.length === 0){
+      Promise.all([
+        axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikephotos"),
+        axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikes"),
+        axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbrands")
+      ]).then(([photosRes, bikesRes, brandsRes]) => {
+        mergeData(bikesRes.data, photosRes.data)
+        setBikeBrands(brandsRes.data)
+      }).catch(error => {
+        console.error("Error fetching data:", error);
+      })
+    }
+  } , [])
 
   return (
     <>
-    <Context.Provider value={{ LoginModal , setLoginModal , RegisterModal , setRegisterModal}}>
+    <Context.Provider value={{ LoginModal , setLoginModal , RegisterModal , setRegisterModal , completeData , bikeBrands}}>
       <Routes>
         <Route path='/' element={<Home />}></Route>
         <Route path='/bikes' element={<Bikes />}></Route>
         <Route path='/compare' element={<BikeCompare />}></Route>
-        <Route path='/findmyperfectbike' element={<FindMyPerfectBike mergedData={mergedData} />}></Route>
+        <Route path='/findmyperfectbike' element={<FindMyPerfectBike mergedData={completeData} />}></Route>
         <Route path='/feedback' element={<FeedBackForm />}></Route>
-        <Route path='/bike/:id' element={<BikeMain />}></Route>
+        <Route path='/bike/:id' element={<BikeMain/>}></Route>
         <Route path='/bikebrands' element={<Explore />}></Route>
         <Route path='/brand/:id' element={<Explore2 />}></Route>
         <Route path='/profile' element={<Profile />}></Route>

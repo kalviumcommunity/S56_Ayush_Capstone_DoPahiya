@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState , useContext} from 'react'
 import Navbar from '../Components/Navbar'
 import "./Explore.css"
 import Footer from '../Components/Footer.jsx'
@@ -9,6 +9,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Context} from "../App"
 const { VITE_LocalURL , VITE_DeployedURL } = import.meta.env;
 
 const Explore2 = () => {
@@ -18,6 +19,7 @@ const Explore2 = () => {
   const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(true)
   const [favList , setfavList] = useState(sessionStorage.getItem("fav"))
+  const {completeData} = useContext(Context)
 
 
   useEffect(() => {
@@ -26,25 +28,21 @@ const Explore2 = () => {
     })
   }, [])
 
-  useEffect(() => {
-    axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikephotos")
-      .then((res) => {
-        console.log(id)
-        let filteredData = res.data.filter((el, i) => {
-          if (el.brand_id == id) {
-            return el
-          }
-        })
-        setBikes(filteredData)
-        setIsLoading(false)
-      })
-  }, [])
+  useEffect(()=>{
+    let filteredData = completeData.filter((el , i)=>{
+      if (el.brand_id == id) {
+        return el
+      }
+    })
+
+    setBikes(filteredData)
+    setIsLoading(false)
+  },[completeData])
+
 
   let handleClick = (name) => {
     navigate(`/bike/${name}`)
   }
-
-  console.log(Bikes)
 
   const handleFavoriteClick = (event , id) => {
     event.stopPropagation();

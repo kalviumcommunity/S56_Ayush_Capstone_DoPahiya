@@ -11,14 +11,13 @@ import "./Home.css"
 import Footer from '../Components/Footer.jsx'
 import MB from "../assets/Motorcycle.png"
 import Forgotpassword from '../Components/forgotpassword.jsx'
-import axios from 'axios'
-
 
 const Home = () => {
   
   const navigate = useNavigate()
   const [forgotpass , setforgotpass] = useState(false)
   const [brands , setbrands] = useState([])
+  const {bikeBrands} = useContext(Context)
 
   useEffect(()=>{
     window.scrollTo({
@@ -35,11 +34,8 @@ const Home = () => {
 }
 
   useEffect(()=>{
-    axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbrands")
-      .then((res)=>{
-        setbrands(res.data)
-      })
-  } , [])
+    setbrands(bikeBrands)
+  } , [bikeBrands])
 
   let randomBrands = brands.sort(() => Math.random() - 0.5);
   randomBrands = randomBrands.slice(0,4)

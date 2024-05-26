@@ -1,4 +1,4 @@
-import React , {useEffect , useState} from 'react'
+import React , {useEffect , useState, useContext} from 'react'
 import "./BikeCompare.css"
 import "./Bikes.css"
 import Navbar from '../Components/Navbar'
@@ -6,15 +6,16 @@ import R15 from "../assets/r15.png"
 import Footer from '../Components/Footer'
 import CompareCard from '../Components/CompareCard'
 import axios from 'axios'
-
+import { Context } from '../App'
 
 const BikeCompare = () => {
 
     const [bike1Value , setBike1Value] = useState("none")
     const [bike2Value , setBike2Value] = useState("none")
-    const [bike1Details , setBike1Details] = useState([])
+    const [bike1Details , setBike1Details] = useState({})
     const [bike2Details , setBike2Details] = useState([])
     const [bikeData , setBikeData] = useState([])
+    const {completeData} = useContext(Context)
 
     useEffect(()=>{
         window.scrollTo({
@@ -32,34 +33,33 @@ const BikeCompare = () => {
         }
     })
 
-    let fetchBike1 = async (value) =>{
-        await axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getbike/${value}`)
-            .then((res)=>{
-                setBike1Details(res.data)
-            })
-    }
-
-    let fetchBike2 = async (value) =>{
-        await axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getbike/${value}`)
-            .then((res)=>{
-                setBike2Details(res.data)
-            })
-    }
-
     useEffect(()=>{
+        let fetchBike1 = async (value) =>{
+            let filteredData = completeData.filter((el,i)=>{
+                if(el.name == value){
+                    return el
+                }
+            })
+            setBike1Details(filteredData[0] ? filteredData[0] : "Bike Not Found")
+        }
         fetchBike1(bike1Value)
-    },[bike1Value])
+    },[completeData, bike1Value])
 
     useEffect(()=>{
+        let fetchBike2 = async (value) =>{
+            let filteredData = completeData.filter((el,i)=>{
+                if(el.name == value){
+                    return el
+                }
+            })
+            setBike2Details(filteredData[0] ? filteredData[0] : "Bike Not Found")
+        }
         fetchBike2(bike2Value)
-    },[bike2Value])
+    },[completeData , bike2Value])
 
     useEffect(()=>{
-        axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikes")
-            .then((res)=>{
-                setBikeData(res.data)
-        })
-    },[])
+        setBikeData(completeData)
+    },[completeData])
 
   return (
     <div className='compare-body-main'>

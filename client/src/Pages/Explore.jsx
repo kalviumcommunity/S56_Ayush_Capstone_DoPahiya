@@ -24,13 +24,11 @@ const Explore = () => {
         setBikeBrandLogo(res.data)
         setIsLoading(false)
       })
-  })
+  },[])
 
   let handleClick = (brand_id) =>{
     navigate(`/brand/${brand_id}`)
   }
-
-  console.log(BikeBrandLogo)
 
   return (
     <div className='explore-main-div '>
