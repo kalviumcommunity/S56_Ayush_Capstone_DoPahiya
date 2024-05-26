@@ -1,4 +1,4 @@
-import React , {useEffect , useState}from 'react'
+import React , {useContext, useEffect , useState}from 'react'
 import "./Bikes.css"
 import Navbar from "../Components/Navbar.jsx"
 import SearchBike from '../Components/SearchBike.jsx'
@@ -6,8 +6,8 @@ import MB from "../assets/Motorcycle.png"
 import { useNavigate } from 'react-router-dom'
 import Footer from '../Components/Footer.jsx'
 import BikePageCard from '../Components/BikePageCard.jsx'
-import axios from 'axios'
 import Loader from '../Components/Loader.jsx'
+import { Context } from '../App.jsx'
 
 const Bikes = () => {
 
@@ -16,6 +16,7 @@ const Bikes = () => {
     const [bikePhotos , setBikePhotos] = useState([])
     const [mergedData , setMergedData] = useState([])
     const [isLoading , setIsLoading] = useState(true)
+    const {completeData} = useContext(Context)
 
     useEffect(()=>{
         window.scrollTo({
@@ -33,42 +34,12 @@ const Bikes = () => {
     }   
 
     useEffect(()=>{
-        Promise.all([
-            axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikephotos"),
-            axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikes")
-        ]).then(([photosRes, bikesRes]) => {
-            setBikePhotos(photosRes.data);
-            setBikeDetails(bikesRes.data);
-        }).catch(error => {
-            console.error("Error fetching data:", error);
-        })
-    } , [])
-
-    useEffect(()=>{
-        mergeData()
-    },[bikeDetails , bikePhotos])
+        setMergedData(completeData)
+    },[completeData])
 
     useEffect(()=>{
         setIsLoading(false) 
     },[mergedData])
-
-    let mergeData = () => {
-        const photoMap = {};
-        bikePhotos.forEach((photo) => {
-            photoMap[photo.name] = photo;
-        });
-    
-        let merged = bikeDetails.map((detail) => {
-            const matchingPhoto = photoMap[detail.name];
-            if (matchingPhoto) {
-                return { ...detail, ...matchingPhoto };
-            } else {
-                return detail;
-            }
-        });
-    
-        setMergedData(merged);
-    };
 
   return (
     <div className='bikes-main-body'>

@@ -1,14 +1,11 @@
-import React , {useEffect , useState}from 'react';
+import React , {useEffect , useState , useContext}from 'react';
 import "./BikeMain.css";
 import Navbar from "../Components/Navbar.jsx"
 import Footer from '../Components/Footer.jsx';
 import FrontView from "../assets/r15front.png"
-import BikePageCard from '../Components/BikePageCard.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
 import Loader from '../Components/Loader.jsx';
-import { MdFavoriteBorder } from "react-icons/md";
-import { MdFavorite } from "react-icons/md";
+import {Context} from "../App.jsx"
 
 
 const BikeMain = () => {
@@ -16,41 +13,30 @@ const BikeMain = () => {
     const {id} = useParams()
     const [data , setData] = useState({})
     const [mergedData , setMergedData] = useState([])
-    const [isLoading , setIsLoading] = useState(true)
+    const [isLoading , setIsLoading] = useState(true)   
     const navigate = useNavigate()
+    const {completeData} = useContext(Context)
 
+    useEffect(()=>{
+        if(completeData.length > 0){
+            let temp = completeData.filter((el)=>el.name == id)
+            console.log(temp)
+            setData(completeData.filter((el)=>el.name == id)[0])
+            setMergedData(completeData)
+        }else{
+            setIsLoading(true)
+        }
+    },[completeData])
+
+    useEffect(()=>{
+        setIsLoading(false)
+    },[mergedData])
+    
     useEffect(()=>{
         window.scrollTo({
           top:0
         })
-      },[])
-
-
-    useEffect(()=>{
-        axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getbike/${id}`)
-            .then((res)=>{
-                if (res.status == 200){
-                    console.log(res.data.photos)
-                    setData(res.data)
-                }
-            })
-            .catch((err)=>{
-                console.log(err)
-            })
-        
-        setTimeout(()=>{
-            setIsLoading(false)
-        },1000)
-    } , [])
-
-    useEffect(()=>{
-        if(data.bodyType){
-            axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getbikebytype/${data.bodyType[0]}`)
-                .then((res)=>{
-                    setMergedData(res.data)
-                })
-        }
-    },[data])
+    },[])
 
   return (
     <div className='bike-main-body'>
@@ -60,9 +46,9 @@ const BikeMain = () => {
             <div className='bike-hero-section flex jus-cen align-cen'>
                 <h1 style={
                     {
-                        fontSize: data.brand.length < 8 ? "18vw" : "10vw",
-                        marginBottom: data.brand.length < 8 ? "16vw" : "22vw",
-                        marginTop: data.brand.length < 8 ? "3vw" : "7vw",
+                        fontSize: data?.brand?.length < 8 ? "18vw" : "10vw",
+                        marginBottom: data?.brand?.length < 8 ? "16vw" : "22vw",
+                        marginTop: data?.brand?.length < 8 ? "3vw" : "7vw",
                     }
                 }>{data.brand}</h1>
                 <img src={data.banner}/>
@@ -93,7 +79,7 @@ const BikeMain = () => {
             <div className='bike-img-main flex jus-cen align-cen'>
                 <h1>IMAGES OF BIKE</h1>
                 <div className='bike-img-grid'>
-                    {data.photos.map((el , i)=>{
+                    {data?.photos?.map((el , i)=>{
                         return  <div key={i}>
                                     <img src={el} />
                                 </div>
@@ -104,9 +90,9 @@ const BikeMain = () => {
             <div className='bike-category-main'>
                 <h2>BIKES FROM SAME CATEGORY</h2>    
                 <div className='bike-cat-div'>
-                {mergedData.map((el,i)=>{
-                            if (el.bodyType.includes(data.bodyType[0]) && i<4){
-                                return <div className="card-2" onClick={() => navigate(`/bike/${el.name}`)}>
+                {mergedData.filter((el)=>el?.bodyType?.includes(data?.bodyType[0])).slice(0,4).map((el,i)=>{
+                            if (el?.bodyType?.includes(data?.bodyType[0])){
+                                return <div className="card-2" onClick={() => navigate(`/bike/${el.name}`)} key={i}>
                                   <div className='visible-content'>
                                     <img src={el.banner} />
                                     <h4 className="card-2-text">{el.name}</h4>
