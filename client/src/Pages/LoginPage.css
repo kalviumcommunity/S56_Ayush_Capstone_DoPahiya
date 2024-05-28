@@ -3,6 +3,10 @@
 /* font-family: "Inknut Antiqua", serif; */
 /* font-family: "Fuzzy Bubbles", sans-serif; */
 
+.googlelogin-btn{
+    margin-top: 20px;
+}
+
 .loginbody{
     width: calc(100vw);
     height: 100vh;
@@ -94,6 +98,7 @@ input[type="submit"]:active{
 
 .loginformcont form{
     margin: 50px 0px;
+    margin-bottom: 0px;
 }
 
 .login-btndiv{

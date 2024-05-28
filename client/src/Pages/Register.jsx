@@ -8,6 +8,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
+import { GoogleOAuthProvider } from '@react-oauth/google'
+import { GoogleLogin } from '@react-oauth/google'
 
 const Register = () => {
 
@@ -55,6 +57,29 @@ const Register = () => {
     let handleLoginClick = () =>{
       setRegisterModal(!RegisterModal)
       setLoginModal(!LoginModal)
+    }
+
+    let handleGoogleRegister = (data) =>{
+      console.log(data)
+      let note = toast.loading("Please Wait ..." , {position:"top-center"})
+      axios.post("http://localhost:3200/googleregister" , data)
+        .then((res)=>{
+          if (res.data == "User already Exists"){
+            toast.update(note, {render: "User Already Exists.!!", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true , theme:"colored"})
+          }else if (res.data == "Username Already Taken"){
+            toast.update(note , {render: "Username already Taken.!!", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true , theme:"colored"})
+          }
+          else{
+            toast.update(note, {render: "Registration Successful..! Login to Continue", type: "success", isLoading: false , autoClose: 1000 , hideProgressBar:true, theme:"colored"});
+            setTimeout(()=>{
+              setRegisterModal(!RegisterModal)
+              setLoginModal(!LoginModal)
+            },1500)
+          }
+        })
+        .catch((err)=>{
+          console.log(err)
+        })
     }
 
   return (
@@ -114,6 +139,11 @@ const Register = () => {
                         </div>
 
                         <p className='registertext'>Already a User ? <span onClick={handleLoginClick}>Login</span></p>
+                        <div className='flex jus-cen align-cen'>
+                          <GoogleOAuthProvider clientId='702578085661-04kerhil3rakkbn7m8ve9lr716joojo7.apps.googleusercontent.com'>
+                            <GoogleLogin onSuccess={handleGoogleRegister} text='signup_with'/>
+                          </GoogleOAuthProvider>
+                        </div>
                     </form>
                 </div>
             </div>

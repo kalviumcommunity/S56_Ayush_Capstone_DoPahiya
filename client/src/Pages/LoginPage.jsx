@@ -7,9 +7,9 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
+import { GoogleOAuthProvider } from "@react-oauth/google"
+import { GoogleLogin } from "@react-oauth/google"
 const { VITE_LocalURL , VITE_DeployedURL } = import.meta.env;
-
-
 
 const LoginPage = ({setforgotpass}) => {
 
@@ -64,6 +64,31 @@ const LoginPage = ({setforgotpass}) => {
         setLoginModal(!LoginModal)
         setRegisterModal(!RegisterModal)
     }
+
+    let handleGoogleLogin = (res) =>{
+        let note = toast.loading("Please Wait ..." , {position:"top-center"})
+        axios.post("http://localhost:3200/googlelogin",res)
+            .then((resp)=>{
+                console.log(resp)
+                if (resp.data == "User Does not exist"){
+                    toast.update(note, {render: "User Does not Exist", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true, theme:"colored"})
+                }else{
+                    toast.update(note, {render: "Logged in Successfully", type: "success", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
+                    setTimeout(()=>{
+                        sessionStorage.setItem("loggedin" , true)
+                        sessionStorage.setItem("curruser" , resp.data.username)
+                        sessionStorage.setItem("fav", JSON.stringify(resp.data.fav))
+                        sessionStorage.setItem("profileImg" , resp.data.profileImg)
+                        document.cookie = `token=${resp.data.token}; expires=Sun, 1 January 9999 12:00:00 UTC; path=/; Secure; HttpOnly'`
+                        setLoginModal(!LoginModal)
+                    },1500)
+                }
+            })
+            .catch((err)=>{
+                console.log(err)
+            })
+
+    }
     
   return (
     <div className='loginbody flex jus-cen align-cen' style={display}>
@@ -112,6 +137,13 @@ const LoginPage = ({setforgotpass}) => {
                         </div>
 
                         <p className='registertext'>Don't have a Account ? <span onClick={handleRegisterClick}>Register</span></p>
+                        <div className='flex jus-cen align-cen googlelogin-btn' style={{marginBottom:0}}>
+                            <GoogleOAuthProvider clientId='702578085661-04kerhil3rakkbn7m8ve9lr716joojo7.apps.googleusercontent.com'>
+                                <GoogleLogin onSuccess={handleGoogleLogin} onError={()=>{
+                                    toast.error("Google Login Failed..!")
+                                }} />
+                            </GoogleOAuthProvider>
+                        </div>
                     </form>
                 </div>
             </div>
