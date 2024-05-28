@@ -62,7 +62,7 @@ const Register = () => {
     let handleGoogleRegister = (data) =>{
       console.log(data)
       let note = toast.loading("Please Wait ..." , {position:"top-center"})
-      axios.post("http://localhost:3200/googleregister" , data)
+      axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/googleregister" , data)
         .then((res)=>{
           if (res.data == "User already Exists"){
             toast.update(note, {render: "User Already Exists.!!", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true , theme:"colored"})
