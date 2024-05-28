@@ -18,7 +18,7 @@ let questions = [
         ques : "What type of riding do you plan to do ?",
         options : [
             ["Street Riding", ["Street" , "Naked"]],
-            ["Touring", ["Tourer , Cruiser"]],
+            ["Touring", ["Tourer" , "Cruiser"]],
             ["Sports Riding", ["Sports", "Naked"]],
             ["Adventure Riding", ["Adventure" , "Adventure"]]
         ]
