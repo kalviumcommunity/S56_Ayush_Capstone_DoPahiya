@@ -68,7 +68,6 @@ const LoginPage = ({setforgotpass}) => {
     }
 
     let handleGoogleLogin = (res) =>{
-        console.log(res)
         let note = toast.loading("Please Wait ..." , {position:"top-center"})
         axios.post("http://localhost:3200/googlelogin",res)
             .then((resp)=>{
