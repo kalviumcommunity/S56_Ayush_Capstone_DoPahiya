@@ -139,9 +139,11 @@ const Register = () => {
                         </div>
 
                         <p className='registertext'>Already a User ? <span onClick={handleLoginClick}>Login</span></p>
-                        <GoogleOAuthProvider clientId='702578085661-04kerhil3rakkbn7m8ve9lr716joojo7.apps.googleusercontent.com'>
-                          <GoogleLogin onSuccess={handleGoogleRegister} text='signup_with'/>
-                        </GoogleOAuthProvider>
+                        <div className='flex jus-cen align-cen'>
+                          <GoogleOAuthProvider clientId='702578085661-04kerhil3rakkbn7m8ve9lr716joojo7.apps.googleusercontent.com'>
+                            <GoogleLogin onSuccess={handleGoogleRegister} text='signup_with'/>
+                          </GoogleOAuthProvider>
+                        </div>
                     </form>
                 </div>
             </div>

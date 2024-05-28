@@ -11,8 +11,6 @@ import { GoogleOAuthProvider } from "@react-oauth/google"
 import { GoogleLogin } from "@react-oauth/google"
 const { VITE_LocalURL , VITE_DeployedURL } = import.meta.env;
 
-
-
 const LoginPage = ({setforgotpass}) => {
 
     const {LoginModal , setLoginModal , RegisterModal , setRegisterModal} = useContext(Context)
@@ -139,12 +137,13 @@ const LoginPage = ({setforgotpass}) => {
                         </div>
 
                         <p className='registertext'>Don't have a Account ? <span onClick={handleRegisterClick}>Register</span></p>
-
-                        <GoogleOAuthProvider clientId='702578085661-04kerhil3rakkbn7m8ve9lr716joojo7.apps.googleusercontent.com'>
-                            <GoogleLogin onSuccess={handleGoogleLogin} onError={()=>{
-                                toast.error("Google Login Failed..!")
-                            }} />
-                        </GoogleOAuthProvider>
+                        <div className='flex jus-cen align-cen googlelogin-btn' style={{marginBottom:0}}>
+                            <GoogleOAuthProvider clientId='702578085661-04kerhil3rakkbn7m8ve9lr716joojo7.apps.googleusercontent.com'>
+                                <GoogleLogin onSuccess={handleGoogleLogin} onError={()=>{
+                                    toast.error("Google Login Failed..!")
+                                }} />
+                            </GoogleOAuthProvider>
+                        </div>
                     </form>
                 </div>
             </div>
