@@ -67,7 +67,7 @@ const LoginPage = ({setforgotpass}) => {
 
     let handleGoogleLogin = (res) =>{
         let note = toast.loading("Please Wait ..." , {position:"top-center"})
-        axios.post("http://localhost:3200/googlelogin",res)
+        axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/googlelogin",res)
             .then((resp)=>{
                 console.log(resp)
                 if (resp.data == "User Does not exist"){
