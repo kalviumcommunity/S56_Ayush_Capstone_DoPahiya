@@ -1,5 +1,4 @@
 import React , {useState} from 'react'
-import R15 from "../assets/r15.png"
 import "../Pages/fmpb.css"
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -13,9 +12,7 @@ const FmpbComp = ({el , setshowFav}) => {
     console.log(id)
     handleAddFav(id)
   }
-
-  console.log(favList)
-
+  
   let handleAddFav = async (id) =>{
     await axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/handlefav` , {id : id , user: sessionStorage.getItem("curruser")})
       .then((res)=>{

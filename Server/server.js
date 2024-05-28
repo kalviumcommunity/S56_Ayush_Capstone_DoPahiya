@@ -11,6 +11,7 @@ const crypto = require("crypto")
 const mongoose = require("mongoose")
 const { router } = require("./uploadrouter.js");
 const { register } = require("module");
+const {router2} = require("./GoogleAuth/route.js")
 
 const app = express()
 app.use(cors())
@@ -28,6 +29,7 @@ var transporter = nodemailer.createTransport({
 });
 
 app.use(router);
+app.use(router2);
 
 app.get("/" , (req , res)=>{
     res.json({"Database" : `${isConnected() ? "Connected" : "Not Connected"}`})
