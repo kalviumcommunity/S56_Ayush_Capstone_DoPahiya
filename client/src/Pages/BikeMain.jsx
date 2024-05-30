@@ -58,6 +58,9 @@ const BikeMain = () => {
                 <div className='bike-spec-content flex jus-cen align-cen'>
                     <h1>SPECIFICATIONS</h1>
                     <p>An R15 is a popular bike model from Yamaha, first introduced in 2009.It is powered by a 150cc single-cylinder engine and can go up to 120 mph, making it a great option for both beginners and experienced riders alike. </p>
+                    <div className='bike-spec-img-2'>
+                        <img src={FrontView}/>
+                    </div>
                     <div className='bike-spec-grid'>
                         {Object.keys(data).map((el , i)=>{
                             if (i<6 && el != "_id"){

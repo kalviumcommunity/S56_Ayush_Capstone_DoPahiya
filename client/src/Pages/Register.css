@@ -50,3 +50,9 @@
     background-color: white;
     cursor: pointer;
 }
+
+@media all and (max-width: 850px){
+    .registerImg{
+        display: none;
+    }
+}
