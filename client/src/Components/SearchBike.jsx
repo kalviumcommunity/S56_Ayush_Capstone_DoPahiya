@@ -1,8 +1,8 @@
 import React , {useContext, useEffect , useState} from 'react'
 import "./SearchBike.css"
 import {Context} from "../App.jsx"
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import { FaSearch } from "react-icons/fa";
 
 const SearchBike = ({position , background}) => {
 
@@ -59,7 +59,7 @@ const SearchBike = ({position , background}) => {
                         return <option key={i} value={el.name}>{el.name}</option>
                     })}
                 </select>
-                <button onClick={() => handleNavigation()}>SEARCH</button>
+                <button onClick={() => handleNavigation()}> <span className='search-txt'>SEARCH</span> <FaSearch className='search-icon'/></button>
             </div>
         </div>
 

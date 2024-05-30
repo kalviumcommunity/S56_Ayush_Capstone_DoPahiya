@@ -125,4 +125,32 @@
     .navbar-links-div{
         display: none;
     }
+
+    .navbar-body-main{
+        height: 70px;
+    }
+
+    .navbar-logo-div img{
+        width: 70px ;
+    }
+
+    .dropbtn{
+        width: 40px;
+        height: 40px;
+    }
+
+    .dropdown-content{
+        border-radius: 5px 0px 5px 5px;
+        right: 0;
+    }
+
+    .dropdown-content li{
+        padding: 5px 10px;
+        font-weight: bold;
+    }
+
+    .activepath{
+        background-color: var(--primary-color);
+        color: white;
+    }
 }

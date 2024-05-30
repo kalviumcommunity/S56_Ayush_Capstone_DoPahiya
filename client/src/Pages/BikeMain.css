@@ -234,3 +234,74 @@ body::-webkit-scrollbar{
 .card-2:hover img{
     opacity: 0;
 }
+
+.bike-spec-img-2{
+    display: none;
+}
+
+@media all and (max-width: 850px){
+    .bike-hero-section h1{
+        font-size: 12vw !important;
+        -webkit-text-stroke: 2px black
+    }
+
+    .bike-hero-section img {
+        width: 60vw;
+        bottom: -10vw;
+    }
+
+    .bike-spec-img-2{
+        display: block;
+        margin-bottom: 50px;
+    }
+    
+    .bike-spec-img-2 img{
+        width: 100%;
+    }
+
+    .bike-spec-img img{
+        display: none;
+    }
+    .bike-spec-content{
+        width: 100%;
+        text-align: center;
+    }
+
+    .bike-img-main h1{
+        font-size: 7vw;
+    }
+
+    .bike-img-grid{
+        grid-template-columns: auto;
+    }
+
+    .bike-category-main h2{
+        font-size: 7vw;
+        text-align: center;
+    }
+
+    .bike-cat-div{
+        grid-template-columns: auto;
+    }
+
+    .bike-category-main{
+        margin-bottom: 100px;
+    }
+
+    .bike-spec-grid {
+        grid-template-columns: auto auto;
+        place-content: center;
+    }
+
+    .bike-spec-main{
+        display: block;
+    }
+
+    .bike-spec-content p{
+        margin: 30px 0px;
+    }
+
+    .modal table th{
+        padding: 15px;
+    }
+}

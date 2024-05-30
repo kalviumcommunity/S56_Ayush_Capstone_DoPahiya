@@ -4,7 +4,6 @@ import Logo from "../assets/LogoNoBg.png"
 import {Context} from "../App.jsx"
 import { GiHamburgerMenu } from "react-icons/gi";
 import {useNavigate , Link} from 'react-router-dom';
-import axios from 'axios';
 
 const Navbar = ({color}) => {
 
@@ -15,6 +14,7 @@ const Navbar = ({color}) => {
     const navigate = useNavigate()
 
     let handleLoginBtn = () =>{
+        setShowDropdown(!showDropdown)
         console.log(sessionStorage.getItem("loggedin"))
         if (sessionStorage.getItem("loggedin") == "true"){
             sessionStorage.setItem("loggedin" , false)
@@ -32,6 +32,7 @@ const Navbar = ({color}) => {
     }
     
     let handleNavigation = (path) =>{
+        setShowDropdown(!showDropdown)
         if (sessionStorage.getItem("loggedin") == "true"){
             navigate(path)
         }else{
@@ -91,6 +92,12 @@ return (
                                 <img src={sessionStorage.getItem("profileImg")} alt="profileImg" />
                             </button>
                             <ul className="dropdown-content" style={{display : showDropdown ? "block" : "none"}}>
+                                <li className={`${window.location.pathname == "/" ? "activepath" : ""}`} onClick={() => handleNavigation("/")}>Home</li>
+                                <li className={`${window.location.pathname == "/bikebrands" ? "activepath" : ""}`} onClick={() => handleNavigation("/bikebrands")}>Explore</li>
+                                <li className={`${window.location.pathname == "/bikes" ? "activepath" : ""}`} onClick={() => handleNavigation("/bikes")}>Bikes</li>
+                                <li className={`${window.location.pathname == "/compare" ? "activepath" : ""}`} onClick={() => handleNavigation("/compare")}>Compare</li>
+                                <li className={`${window.location.pathname == "/findmyperfectbike" ? "activepath" : ""}`} onClick={() => handleNavigation("/findmyperfectbike")}>FindMyPerfectBike</li>
+                                <li className={`${window.location.pathname == "/feedback" ? "activepath" : ""}`} onClick={() => handleNavigation("/feedback")}>Feedback</li>
                                 <li>
                                     <Link to={"/profile"}>My Profile</Link>
                                 </li>
@@ -98,10 +105,27 @@ return (
                                     Logout
                                 </li>
                             </ul>
-                            </div> : <div className='navbar-btn-div flex align-cen'>
-                            <button onClick={handleLoginBtn}>{sessionStorage.getItem("loggedin") == "true" ? "Logout" : "Login"}</button>
-                            <GiHamburgerMenu className='hamburger' style={{color:color}}/>
-                    </div>}
+                            </div> : 
+                            // <div className='navbar-btn-div flex align-cen'>
+                            // <button onClick={handleLoginBtn}>{sessionStorage.getItem("loggedin") == "true" ? "Logout" : "Login"}</button>
+                            // <GiHamburgerMenu className='hamburger' style={{color:color}} onClick={() => setShowDropdown(!showDropdown)}/>
+                            <div className="dropdown" ref={dropdownRef}>
+                            <GiHamburgerMenu className='hamburger' style={{color:color}} onClick={() => setShowDropdown(!showDropdown)}/>
+                            <ul className="dropdown-content" style={{display : showDropdown ? "block" : "none"}}>
+                                <li className={`${window.location.pathname == "/" ? "activepath" : ""}`} onClick={() => handleNavigation("/")}>Home</li>
+                                <li className={`${window.location.pathname == "/bikebrands" ? "activepath" : ""}`} onClick={() => handleNavigation("/bikebrands")}>Explore</li>
+                                <li className={`${window.location.pathname == "/bikes" ? "activepath" : ""}`} onClick={() => handleNavigation("/bikes")}>Bikes</li>
+                                <li className={`${window.location.pathname == "/compare" ? "activepath" : ""}`} onClick={() => handleNavigation("/compare")}>Compare</li>
+                                <li className={`${window.location.pathname == "/findmyperfectbike" ? "activepath" : ""}`} onClick={() => handleNavigation("/findmyperfectbike")}>FindMyPerfectBike</li>
+                                <li className={`${window.location.pathname == "/feedback" ? "activepath" : ""}`} onClick={() => handleNavigation("/feedback")}>Feedback</li>
+                                <hr />
+                                <li onClick={handleLoginBtn}>
+                                    Login
+                                </li>
+                            </ul>
+                            </div>
+                            // </div>
+                    }
             </div>
     </div>
 )

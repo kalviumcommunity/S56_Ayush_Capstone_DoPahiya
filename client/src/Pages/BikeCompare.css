@@ -100,3 +100,32 @@
     background-color: var(--primary-color);
     color: white;
 }
+
+@media all and (max-width:850px){
+    .compare-select-div p{
+        font-size: 15px;
+        width: 80%;
+        text-align: center;
+    }
+
+    .compare-card{
+        padding: 15px 34px;
+    }
+
+    .compare-table-div table tr td:nth-child(2){
+        width: 100px;
+        font-size: 15px;
+        text-wrap: wrap;
+    }
+
+    .compare-main-content h1{
+        font-size: 5.5vw;
+    }
+
+    .compare-main-content h4{
+        font-size: 3vw;
+        font-weight: lighter;
+        letter-spacing: 1.1px;
+        margin-top: 10px;
+    }
+}

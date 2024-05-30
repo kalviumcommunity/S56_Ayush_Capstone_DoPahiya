@@ -8,6 +8,7 @@ import Loader from '../Components/Loader';
 import { Link , useNavigate} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from '../Components/Footer';
 
 const Profile = () => {
 
@@ -274,6 +275,8 @@ const Profile = () => {
                     </div>
                 </div>
             }
+
+            <Footer />
 
             <ToastContainer />
         </div>

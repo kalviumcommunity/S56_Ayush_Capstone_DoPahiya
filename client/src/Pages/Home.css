@@ -159,3 +159,80 @@
       animation: none !important;
     }
 }
+
+@media all and (max-width:850px){
+    .home-hero-section-body{
+        height: 400px;
+        position: relative;
+    }
+
+    .home-hero-section-body h1{
+        font-size: 4vw;
+        width: 80vw;
+    }
+
+    .home-hero-section{
+        padding: 0;
+        margin: 22vw 0vw;
+    }
+
+    .home-section1-img , .home-section2-img{
+        width: 50vw;
+        display: none;
+    }
+
+    .home-section{
+        margin-top: 100px;
+    }
+
+    .section2{
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    .home-section2-content{
+        margin-left: 0;
+    }
+
+    .home-section1-content h1, .home-section2-content h1{
+        font-size: 7vw;
+        margin-bottom: 20px;
+    }
+
+    .home-section1-content p, .home-section2-content p{
+        font-size: 3.3vw;
+        width: 75vw;
+    }
+
+    .home-section-btn{
+        padding: 10px 30px;
+        border-radius: 2px;
+    }
+
+    .home-brands-section-main {
+        margin-top: 100px;
+        padding: 0;
+    }
+
+    .home-brands-section-main h1{
+        font-size: 7vw;
+    }
+
+    .home-brands{
+        flex-wrap: wrap;
+        margin-top: 50px;
+    }
+
+    .home-brands div{
+        width: 140px;
+        height: 70px;
+    }
+
+    .home-brands div img{
+        height: 80%;
+    }
+
+    .explore-btn-div{
+        margin-right: 30px;
+    }
+}
