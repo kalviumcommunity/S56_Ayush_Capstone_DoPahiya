@@ -14,9 +14,10 @@ const Navbar = ({color}) => {
     const navigate = useNavigate()
 
     let handleLoginBtn = () =>{
-        setShowDropdown(!showDropdown)
+        
         console.log(sessionStorage.getItem("loggedin"))
         if (sessionStorage.getItem("loggedin") == "true"){
+            setShowDropdown(!showDropdown)
             sessionStorage.setItem("loggedin" , false)
             sessionStorage.setItem("curruser" , null)
             let cookies = document.cookie.split("; ")
@@ -107,9 +108,10 @@ return (
                             </ul>
                             </div> : 
                             // <div className='navbar-btn-div flex align-cen'>
-                            // <button onClick={handleLoginBtn}>{sessionStorage.getItem("loggedin") == "true" ? "Logout" : "Login"}</button>
+                            
                             // <GiHamburgerMenu className='hamburger' style={{color:color}} onClick={() => setShowDropdown(!showDropdown)}/>
-                            <div className="dropdown" ref={dropdownRef}>
+                            <div className="navbar-btn-div dropdown" ref={dropdownRef}>
+                            <button onClick={handleLoginBtn}>{sessionStorage.getItem("loggedin") == "true" ? "Logout" : "Login"}</button>
                             <GiHamburgerMenu className='hamburger' style={{color:color}} onClick={() => setShowDropdown(!showDropdown)}/>
                             <ul className="dropdown-content" style={{display : showDropdown ? "block" : "none"}}>
                                 <li className={`${window.location.pathname == "/" ? "activepath" : ""}`} onClick={() => handleNavigation("/")}>Home</li>
