@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Khula:wght@300;400;600;700;800&family=Jua&display=swap');
 
+.nav{
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+}
+
+.nav-link{
+    flex: 0 0 auto;
+}
+
 .bikes-main-section{
     background-image: url("../assets/BikesBg.png");
     background-size: 100% 100%;
@@ -22,12 +32,11 @@
 }
 
 .section-cont{
-    width: 100%;
-    background-color: #D9D9D9;
-    padding: 20px;
-    border-radius: 0 0 10px 10px !important;
+    display: flex;
+    flex-wrap: nowrap;
     overflow-x: auto;
     gap: 20px;
+    padding: 20px;
 }
 
 .active{
@@ -36,13 +45,15 @@
 }
 
 .card{
-    width: 400px;
-    height: 270px; 
+    flex: 0 0 auto; 
+    max-width: 400px;
+    height: auto;
     padding: 30px 10px;
     text-align: center;
     cursor: pointer;
     position: relative;
     transform-style: preserve-3d;
+    margin: 0 auto;
 }
 
 .card img{
@@ -67,12 +78,12 @@
 }
 
 .card:hover .card-content {
-    opacity: 1; /* Move the content up on hover */
+    opacity: 1;
 }
 
 .card:hover .hidden-text {
-    opacity: 1; /* Make the text visible on hover */
-    animation: fadeIn 0.5s ease forwards; /* Apply fade-in animation */
+    opacity: 1; 
+    animation: fadeIn 0.5s ease forwards; 
 }
 
 .card .hidden-text{
@@ -81,7 +92,6 @@
 
 .card .hidden-content{
     position: absolute;
-    /* top: 50%; */
     left: 50%;
     bottom: 0;
     width: 100%;
@@ -108,7 +118,7 @@
     height: 200px;
     height: auto;
     position: relative;
-    z-index: 1; /* Ensure the image is above other elements */
+    z-index: 1; 
 }
 
 .card .visible-content{
@@ -117,7 +127,7 @@
 }
 
 .card:hover .visible-content {
-    transform: translateY(-60%); /* Move the image up on hover */
+    transform: translateY(-60%); 
 }
 
 .card:hover img{
@@ -127,6 +137,40 @@
 .card-content {
     width: 100%;
     text-align: center;
-    opacity: 0; /* Initially hide the content */
+    opacity: 0; 
     color: black;
 }
+
+@media all and (max-width: 850px) {
+
+    .section {
+        padding: 0 5vw;
+    }
+
+    .card .hidden-content {
+        display: none;
+    }
+
+    .card {
+        width: fit-content;
+        padding: 20px 10px;
+        transition: none;
+    }
+
+    .card img {
+        width: 100px;
+    }
+
+    .card:hover img{
+        opacity: 1;
+    }
+
+    .card:hover .visible-content {
+        transform: none;
+    }
+
+    .active{
+        overflow-x: auto;
+    }
+} 
+
