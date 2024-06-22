@@ -12,8 +12,6 @@ import { Context } from '../App.jsx'
 const Bikes = () => {
 
     const navigate = useNavigate()
-    const [bikeDetails , setBikeDetails] = useState([])
-    const [bikePhotos , setBikePhotos] = useState([])
     const [mergedData , setMergedData] = useState([])
     const [isLoading , setIsLoading] = useState(true)
     const {completeData} = useContext(Context)

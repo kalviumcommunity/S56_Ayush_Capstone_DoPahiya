@@ -3,7 +3,6 @@
 .nav{
     display: flex;
     flex-wrap: nowrap;
-    overflow-x: auto;
 }
 
 .nav-link{
@@ -37,6 +36,10 @@
     overflow-x: auto;
     gap: 20px;
     padding: 20px;
+}
+
+.section-cont::-webkit-scrollbar {
+    height: 5px;
 }
 
 .active{
@@ -170,6 +173,10 @@
     }
 
     .active{
+        overflow-x: auto;
+    }
+
+    .nav{
         overflow-x: auto;
     }
 } 
