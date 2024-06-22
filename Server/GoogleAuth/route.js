@@ -1,10 +1,11 @@
 const express = require("express")
-const router2 = express.Router();
 const {userModel} = require("../Database/Schema.js")
 const jwt = require("jsonwebtoken")
 require("dotenv").config()
 
-router2.post("/googlelogin", async (req, res) => {
+const GoogleAuthRouter = express.Router();
+
+GoogleAuthRouter.post("/googlelogin", async (req, res) => {
     let data = req.body;
     let {email} =  jwt.decode(data.credential)
     let user = await userModel.findOne({ email: email })
@@ -22,7 +23,7 @@ router2.post("/googlelogin", async (req, res) => {
     }
 })
 
-router2.post("/googleregister", async (req, res) => {
+GoogleAuthRouter.post("/googleregister", async (req, res) => {
     let data = req.body;
     let { email, name, picture } = jwt.decode(data.credential)
     let user = await userModel.findOne({ $or: [{ email: email }, { username: name }] });
@@ -47,4 +48,4 @@ router2.post("/googleregister", async (req, res) => {
     }
 })
 
-module.exports = { router2 };
+module.exports = { GoogleAuthRouter };

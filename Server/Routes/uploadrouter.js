@@ -1,11 +1,12 @@
 const express = require('express');
-const router = express.Router();
-const cloudinary = require('./Cloudinary');
-const upload = require('./multer');
-const { userModel } = require('./Database/Schema');
+const cloudinary = require('../Cloudinary');
+const upload = require('../multer');
+const { userModel } = require('../Database/Schema');
 const fs = require('fs');
 
-router.post('/upload/:id', upload.single('image'), async (req, res) => {
+const UploadRouter = express.Router();
+
+UploadRouter.post('/upload/:id', upload.single('image'), async (req, res) => {
     let id = req.params.id;
     console.log(req.file);
     try {
@@ -38,4 +39,4 @@ router.post('/upload/:id', upload.single('image'), async (req, res) => {
     }
 });
 
-module.exports = { router };
+module.exports = { UploadRouter };
