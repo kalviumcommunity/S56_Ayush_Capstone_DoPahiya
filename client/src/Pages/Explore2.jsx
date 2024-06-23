@@ -50,18 +50,19 @@ const Explore2 = () => {
     handleAddFav(id)
   }
 
-  let handleAddFav = async (id) =>{
-    await axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/handlefav` , {id : id , user: sessionStorage.getItem("curruser")})
-      .then((res)=>{
-        console.log(res.data)
-        setfavList(res.data.arr)
-        sessionStorage.setItem("fav" , JSON.stringify(res.data.arr))
+  let handleAddFav = (id) =>{
+    axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/handlefav` , {id : id} , {
+        headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
       })
-      .catch((err)=>{
-        console.log(err)
-        toast.error("Error occurred while adding to favorites. Please try again later.")
-      })
-  }
+        .then((res)=>{
+            setfavList(res.data.arr)
+            sessionStorage.setItem("fav" , JSON.stringify(res.data.arr))
+        })
+        .catch((err)=>{
+            console.log(err)
+            return toast.error(err.response.data , {autoClose: 1000 , position: "top-center", hideProgressBar: true , theme: "colored"})
+        })
+}
 
 
   return (

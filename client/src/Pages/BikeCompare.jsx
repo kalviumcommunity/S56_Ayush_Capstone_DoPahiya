@@ -2,7 +2,6 @@ import React , {useEffect , useState, useContext} from 'react'
 import "./BikeCompare.css"
 import "./Bikes.css"
 import Navbar from '../Components/Navbar'
-import R15 from "../assets/r15.png"
 import Footer from '../Components/Footer'
 import CompareCard from '../Components/CompareCard'
 import { Context } from '../App'

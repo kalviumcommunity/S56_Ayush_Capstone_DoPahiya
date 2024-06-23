@@ -5,6 +5,7 @@ import Footer from '../Components/Footer.jsx'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import Loader from '../Components/Loader.jsx'
+import { toast } from 'react-toastify'
 
 const Explore = () => {
 
@@ -19,10 +20,18 @@ const Explore = () => {
   },[])
 
   useEffect(()=>{
-    axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbrands")
+    axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbrands" , {
+      headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
+    })
       .then((res)=>{
         setBikeBrandLogo(res.data)
         setIsLoading(false)
+      })
+      .catch((err)=>{
+        console.error(err)
+        if (err.response.status === 401) {
+          toast.error(err.response.data , {autoClose:2000 , theme:'colored' , position:'top-center' , hideProgressBar:true})
+        }
       })
   },[])
 

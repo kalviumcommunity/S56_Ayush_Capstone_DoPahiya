@@ -2,10 +2,11 @@ const express = require('express')
 const { feedbackModel } = require("../Database/Schema.js")
 const { transporter } = require("../Utils/MailTransporter.js")
 require('dotenv').config()
+const { ProtectedRoute } = require("../Middleware/ProtectedRoute")
 
 const FeedbackRouter = express.Router()
 
-FeedbackRouter.post("/feedback" , async(req , res)=>{
+FeedbackRouter.post("/feedback", ProtectedRoute , async(req , res)=>{
     console.log(req.body)
     var mailOptions = {
         from: {
