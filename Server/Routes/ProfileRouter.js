@@ -1,11 +1,14 @@
 const express = require('express')
 const { userModel } = require("../Database/Schema.js")
+const jwt = require("jsonwebtoken")
+require("dotenv").config()
+const { ProtectedRoute } = require("../Middleware/ProtectedRoute.js")
 
 const ProfileRouter = express.Router()
 
-ProfileRouter.get("/getuser/:name" , async (req , res)=>{
+ProfileRouter.get("/getuser", ProtectedRoute , async (req , res)=>{
     try {
-        let name = req.params.name
+        let name = req.user.username
         let data = await userModel.find({username: name})
         res.send(data)
     } catch (error) {
@@ -13,8 +16,8 @@ ProfileRouter.get("/getuser/:name" , async (req , res)=>{
     }
 })
 
-ProfileRouter.delete("/deleteuser/:id" , async (req , res)=>{
-    let id = req.params.id
+ProfileRouter.delete("/deleteuser", ProtectedRoute , async (req , res)=>{
+    let id = req.user._id
     await userModel.deleteOne({_id : id})
         .then((el)=>{
             res.send(el)
@@ -24,20 +27,13 @@ ProfileRouter.delete("/deleteuser/:id" , async (req , res)=>{
         })
 })
 
-ProfileRouter.put("/updatebio/:id", async (req, res) => {
+ProfileRouter.put("/updatebio", ProtectedRoute , async (req, res) => {
     try {
-        if (!req.params.id) {
-            return res.status(400).send("ID parameter is required");
-        }
-        if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-            return res.status(400).send("Invalid ID parameter");
-        }
-
         if (!req.body.bio) {
             return res.status(400).send("Bio parameter is required");
         }
 
-        let id = req.params.id;
+        let id = req.user._id;
         let { bio } = req.body;
         await userModel.updateOne({ _id: id }, { $set: { bio: bio } });
 
@@ -48,9 +44,9 @@ ProfileRouter.put("/updatebio/:id", async (req, res) => {
     }
 });
 
-ProfileRouter.put("/updateprofile/:id", async (req, res) => {
+ProfileRouter.put("/updateprofile", ProtectedRoute , async (req, res) => {
     try {
-        let id = req.params.id;
+        let id = req.user._id;
         let { username, email } = req.body;
 
         const existingUserWithUsername = await userModel.findOne({ username: username });

@@ -27,7 +27,9 @@ const Forgotpassword = ({setforgotpass}) => {
       let note = toast.loading("Sending Mail ..." , {
         position: "top-center"
       })
-      axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/forgotpassword" , {email : email})
+      axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/forgotpassword" , {email : email} , {
+        headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}`}
+      })
       .then((res)=>{
         if (res.data == "User Not Found..!!"){
           toast.update(note, {render: "User Not found..!!", type: "error", isLoading: false , autoClose:1000 , hideProgressBar:true, theme:"colored"})
@@ -39,6 +41,10 @@ const Forgotpassword = ({setforgotpass}) => {
         }
       })
       .catch((err)=>{
+        console.log(err)
+        if (err.response.status == 401){
+          return toast.update(note , { render:err.response.data, type:"warning", isLoading: false , autoClose: 1500 , position: "top-center", hideProgressBar: true , theme: "colored"})
+        }
         toast.update(note, {render: "Some Error Occured..!!", type: "error", isLoading: false , autoClose:1000 , hideProgressBar:true, theme:"colored"})
       })
     }
@@ -61,7 +67,9 @@ const Forgotpassword = ({setforgotpass}) => {
       position: "top-center"
     })
     
-    axios.put("https://s56-ayush-capstone-dopahiya.onrender.com/resetpass" , {email: email , new_pass: newPass})
+    axios.put("https://s56-ayush-capstone-dopahiya.onrender.com/resetpass" , {email: email , new_pass: newPass} , {
+      headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}`}
+    })
     .then((res)=>{
       if (res.data == "Password Updated"){
         toast.update(note, {render: "Password Updated Successfully.!!", type: "success", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
@@ -72,6 +80,13 @@ const Forgotpassword = ({setforgotpass}) => {
       else{
         toast.update(note, {render: "Some Error Occured..!!", type: "error", isLoading: false , autoClose:1000 , hideProgressBar:true, theme:"colored"})
       }
+    })
+    .catch((err)=>{
+      console.log(err)
+      if (err.response.status == 401){
+        return toast.update(note , { render:err.response.data, type:"warning", isLoading: false , autoClose: 1500 , position: "top-center", hideProgressBar: true , theme: "colored"})
+      }
+      toast.update(note, {render: "Some Error Occured..!!", type: "error", isLoading: false , autoClose:1000 , hideProgressBar:true, theme:"colored"})
     })
   }
 

@@ -20,12 +20,17 @@ const Profile = () => {
     const navigate = useNavigate()
 
     useEffect(() => {
-        axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getuser/${sessionStorage.getItem("curruser")}`)
+        axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getuser` , {
+            headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
+          })
             .then((res) => {
                 setUserData(res.data[0])
             })
             .catch((err) => {   
                 console.log(err)
+                if (err.response.status == 401){
+                    return toast.warning(err.response.data , {autoClose:1000 , hideProgressBar:true , theme:"colored"});
+                }
             })
     },[])
 
@@ -68,7 +73,9 @@ const Profile = () => {
 
     let handlefav = (e,id) =>{
         e.preventDefault()
-        axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/handlefav` , {id : id , user: sessionStorage.getItem("curruser")})
+        axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/handlefav` , {id : id} , {
+            headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
+          })
             .then((res)=>{
                 let obj = {...userData , fav: res.data.arr}
                 setUserData(obj)
@@ -76,10 +83,12 @@ const Profile = () => {
             })
     }
 
-    let handleDelete = (id) =>{
+    let handleDelete = () =>{
         let note = prompt("Are you sure you want to delete your account? This action is irreversible. If you are sure, type 'DELETE' in the box below.")
         if (note === "DELETE"){
-            axios.delete(`https://s56-ayush-capstone-dopahiya.onrender.com/deleteuser/${id}`)
+            axios.delete(`https://s56-ayush-capstone-dopahiya.onrender.com/deleteuser` , {
+                headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
+              })
             .then((res)=>{
                 sessionStorage.setItem("loggedin" , false)
                 sessionStorage.setItem("curruser" , null)
@@ -92,6 +101,9 @@ const Profile = () => {
                 window.location.reload()
             })
             .catch((err)=>{
+                if (err.response.status == 401){
+                    return toast.update(note, {render: err.response.data , type: "warning", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
+                }
                 console.log(err)
             })
         }else{
@@ -104,13 +116,18 @@ const Profile = () => {
         let note = toast.loading("Updating Bio..!!" , {
             position: "top-center"
         })
-        axios.put(`https://s56-ayush-capstone-dopahiya.onrender.com/updatebio/${userData._id}` , {bio : bio.trim()})
+        axios.put(`https://s56-ayush-capstone-dopahiya.onrender.com/updatebio` , {bio : bio.trim()} , {
+            headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
+          })
             .then((res)=>{
                 let obj = {...userData , bio: bio}
                 setUserData(obj)
                 toast.update(note, {render: "Bio Updated Successfully", type: "success", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
             })
             .catch((err)=>{
+                if (err.response.status == 401){
+                    return toast.update(note, {render: err.response.data , type: "warning", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
+                }
                 console.log(err)
             })   
     }
@@ -121,7 +138,9 @@ const Profile = () => {
         let note = toast.loading("Updating Profile..!!" , {
             position: "top-center"
         })
-        axios.put(`https://s56-ayush-capstone-dopahiya.onrender.com/updateprofile/${userData._id}` , {username : username.trim() , email : email.trim()})
+        axios.put(`https://s56-ayush-capstone-dopahiya.onrender.com/updateprofile` , {username : username.trim() , email : email.trim()} , {
+            headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
+          })
             .then((res)=>{
                 if (res.data == "Username Already Taken"){
                     return toast.update(note, {render: "Username Already Taken", type: "warning", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
@@ -136,6 +155,9 @@ const Profile = () => {
                 }
             })
             .catch((err)=>{
+                if (err.response.status == 401){
+                    return toast.update(note, {render: err.response.data , type: "warning", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
+                }
                 console.log(err)
             })   
     }
@@ -148,7 +170,9 @@ const Profile = () => {
         let file = e.target.files[0]
         let formData = new FormData()
         formData.append("image" , file)
-        axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/upload/${userData._id}` , formData)
+        axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/upload` , formData , {
+            headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
+          })
             .then((res)=>{
                 let obj = {...userData , profileImg: res.data.url}
                 setUserData(obj)
@@ -156,6 +180,9 @@ const Profile = () => {
                 toast.update(note, {render: "Image Uploaded Successfully", type: "success", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
             })
             .catch((err)=>{
+                if (err.response.status == 401){
+                    return toast.update(note, {render: err.response.data , type: "warning", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
+                }
                 console.log(err)
                 toast.update(note, {render: "Error Uploading Image", type: "error", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
             })
@@ -187,7 +214,7 @@ const Profile = () => {
                             </div>
                             <div className='profile-btn-div flex jus-end'>
                                 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal-2">Edit</button>
-                                <button onClick={()=>handleDelete(userData._id)}>Delete Account</button>
+                                <button onClick={()=>handleDelete()}>Delete Account</button>
                             </div>
                         </div>
 

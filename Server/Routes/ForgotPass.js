@@ -4,10 +4,11 @@ const { transporter } = require("../Utils/MailTransporter.js")
 const bcrypt = require("bcryptjs")
 const crypto = require("crypto")
 require('dotenv').config()
+const { ProtectedRoute } = require("../Middleware/ProtectedRoute")
 
 const ForgotPassRouter = express.Router()
 
-ForgotPassRouter.post("/forgotpassword" , async (req , res)=>{
+ForgotPassRouter.post("/forgotpassword", ProtectedRoute , async (req , res)=>{
     let email = req.body.email
     let user = await userModel.findOne({email : email})
     console.log(user)
@@ -37,7 +38,7 @@ ForgotPassRouter.post("/forgotpassword" , async (req , res)=>{
     }
 })
 
-ForgotPassRouter.put("/resetpass" , async (req , res)=>{
+ForgotPassRouter.put("/resetpass", ProtectedRoute , async (req , res)=>{
     let {email , new_pass} = req.body
     let hashedPassword = await bcrypt.hash(new_pass,parseInt(process.env.LEVEL))
     await userModel.updateOne({email : email} , {
