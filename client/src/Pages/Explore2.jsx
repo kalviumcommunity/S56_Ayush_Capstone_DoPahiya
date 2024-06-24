@@ -83,7 +83,7 @@ const Explore2 = () => {
                   } onClick={() => handleClick(el.name)}>
                     <div className="flex jus-cen">
                       <img src={el.banner} alt={el.name} />
-                      {favList.includes(el._id) ? <MdFavorite style={{position: "absolute" , right:"5%" , top:"8%", zIndex:"100", color:"red"}} onClick={(event) => handleFavoriteClick(event , el._id)}/> : <MdFavoriteBorder  style={{position: "absolute", right:"5%" , top:"8%", zIndex:"100"}} onClick={(event) => handleFavoriteClick(event , el._id)}/>}
+                      {favList.includes(el._id) ? <MdFavorite style={{position: "absolute" , right:"5%" , top:"8%", zIndex:10, color:"red"}} onClick={(event) => handleFavoriteClick(event , el._id)}/> : <MdFavoriteBorder  style={{position: "absolute", right:"5%" , top:"8%", zIndex:10}} onClick={(event) => handleFavoriteClick(event , el._id)}/>}
                     </div>
                   <h6>{el.name}</h6>
                 </div>

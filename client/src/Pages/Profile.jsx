@@ -1,4 +1,4 @@
-import React, { useEffect , useState} from 'react'
+import React, { useEffect , useState , useContext} from 'react'
 import Navbar from '../Components/Navbar'
 import "./Profile.css"
 import { BsPencilFill } from "react-icons/bs";
@@ -9,15 +9,15 @@ import { Link , useNavigate} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from '../Components/Footer';
+import { Context } from '../App';
 
 const Profile = () => {
 
     const [userData, setUserData] = useState({})
-    const [bikeDetails , setBikeDetails] = useState([])
-    const [bikePhotos , setBikePhotos] = useState([])
     const [mergedData , setMergedData] = useState([])
     const [isLoading , setIsLoading] = useState(true)
     const navigate = useNavigate()
+    const { completeData } = useContext(Context)
 
     useEffect(() => {
         axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getuser` , {
@@ -25,6 +25,7 @@ const Profile = () => {
           })
             .then((res) => {
                 setUserData(res.data[0])
+                setMergedData(completeData)
             })
             .catch((err) => {   
                 console.log(err)
@@ -32,44 +33,11 @@ const Profile = () => {
                     return toast.warning(err.response.data , {autoClose:1000 , hideProgressBar:true , theme:"colored"});
                 }
             })
-    },[])
-
-    useEffect(()=>{
-        Promise.all([
-            axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikephotos"),
-            axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikes")
-        ]).then(([photosRes, bikesRes]) => {
-            setBikePhotos(photosRes.data);
-            setBikeDetails(bikesRes.data);
-        }).catch(error => {
-            console.error("Error fetching data:", error);
-        })
-    } , [userData])
-
-    useEffect(()=>{
-        mergeData()
-    },[bikeDetails , bikePhotos])
+    },[completeData])
 
     useEffect(()=>{
         setIsLoading(false) 
     },[mergedData])
-
-    let mergeData = () => {
-        const photoMap = {};
-        bikePhotos.forEach((photo) => {
-            photoMap[photo.name] = photo;
-        });
-    
-        let merged = bikeDetails.map((detail) => {
-            const matchingPhoto = photoMap[detail.name];
-            if (matchingPhoto) {
-                return { ...detail, ...matchingPhoto };
-            } else {
-                return detail;
-            }
-        });
-        setMergedData(merged);
-    };
 
     let handlefav = (e,id) =>{
         e.preventDefault()
