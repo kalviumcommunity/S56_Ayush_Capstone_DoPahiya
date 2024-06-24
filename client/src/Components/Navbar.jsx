@@ -92,7 +92,7 @@ const Navbar = ({ color }) => {
                     <button className="dropbtn" onClick={() => setShowDropdown(!showDropdown)}>
                         <img src={sessionStorage.getItem("profileImg")} alt="profileImg" />
                     </button>
-                    <ul className="dropdown-content" style={{ display: showDropdown ? "block" : "none" }}>
+                    <ul className="dropdown-content" style={{ display: showDropdown ? "block" : "none" , zIndex:50 }}>
                         <li className={`${window.location.pathname == "/" ? "activepath" : ""}`} onClick={() => handleNavigation("/")}>Home</li>
                         <li className={`${window.location.pathname == "/bikebrands" ? "activepath" : ""}`} onClick={() => handleNavigation("/bikebrands")}>Explore</li>
                         <li className={`${window.location.pathname == "/bikes" ? "activepath" : ""}`} onClick={() => handleNavigation("/bikes")}>Bikes</li>
