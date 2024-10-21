@@ -41,9 +41,9 @@ function App() {
   useEffect(()=>{
     if(completeData.length === 0){
       Promise.all([
-        axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikephotos"),
-        axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbikes"),
-        axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbrands")
+        axios.get(`${API_URL}/getbikephotos`),
+        axios.get(`${API_URL}/getbikes`),
+        axios.get(`${API_URL}/getbrands`)
       ]).then(([photosRes, bikesRes, brandsRes]) => {
         mergeData(bikesRes.data, photosRes.data)
         setBikeBrands(brandsRes.data)

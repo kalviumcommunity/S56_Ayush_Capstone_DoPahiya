@@ -48,14 +48,13 @@ ProfileRouter.put("/updateprofile", ProtectedRoute , async (req, res) => {
     try {
         let id = req.user._id;
         let { username, email } = req.body;
-
         const existingUserWithUsername = await userModel.findOne({ username: username });
-        if (existingUserWithUsername && existingUserWithUsername._id.toString() !== id) {
+        if (existingUserWithUsername && existingUserWithUsername._id.toString() !== id.toString()) {
             return res.status(400).send("Username Already Taken");
         }
-
+        
         const existingUserWithEmail = await userModel.findOne({ email: email });
-        if (existingUserWithEmail && existingUserWithEmail._id.toString() !== id) {
+        if (existingUserWithEmail && existingUserWithEmail._id.toString() !== id.toString()) {
             return res.status(400).send("Email Already Taken");
         }
 

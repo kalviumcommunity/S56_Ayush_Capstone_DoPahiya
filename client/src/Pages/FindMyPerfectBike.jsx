@@ -100,7 +100,7 @@ const FindMyPerfectBike = ({mergedData}) => {
 
     useEffect(()=>{
         if (sessionStorage.getItem("fav")){
-            setFavs(JSON.parse(sessionStorage.getItem("fav")))
+            setFavs(sessionStorage.getItem("fav"))
         }
     },[showFav])
 

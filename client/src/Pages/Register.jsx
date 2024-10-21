@@ -28,7 +28,7 @@ const Register = () => {
         inputvals = {...inputvals , profileImg : "https://res.cloudinary.com/dvvfavgey/image/upload/v1714982148/Profile%20Pictures/profile-picture_hnqliq.jpg" , bio: "Hello, I am Bike Entusiast.!!" , fav: []}
 
         let note = toast.loading("Please Wait ..." , {position:"top-center"})
-        axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/register" , inputvals)
+        axios.post(`${API_URL}/register` , inputvals)
           .then((res)=>{
             if (res.data == "User already Exists"){
               toast.update(note, {render: "User Already Exists.!!", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true , theme:"colored"})
@@ -62,7 +62,7 @@ const Register = () => {
     let handleGoogleRegister = (data) =>{
       console.log(data)
       let note = toast.loading("Please Wait ..." , {position:"top-center"})
-      axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/googleregister" , data)
+      axios.post(`${API_URL}/googleregister` , data)
         .then((res)=>{
           if (res.data == "User already Exists"){
             toast.update(note, {render: "User Already Exists.!!", type: "warning", isLoading: false , autoClose: 1000 , hideProgressBar:true , theme:"colored"})
@@ -140,7 +140,7 @@ const Register = () => {
 
                         <p className='registertext'>Already a User ? <span onClick={handleLoginClick}>Login</span></p>
                         <div className='flex jus-cen align-cen'>
-                          <GoogleOAuthProvider clientId='702578085661-04kerhil3rakkbn7m8ve9lr716joojo7.apps.googleusercontent.com'>
+                          <GoogleOAuthProvider clientId={THIRD_PARTY_API_CLIENT_ID}>
                             <GoogleLogin onSuccess={handleGoogleRegister} text='signup_with'/>
                           </GoogleOAuthProvider>
                         </div>

@@ -20,7 +20,7 @@ const Explore = () => {
   },[])
 
   useEffect(()=>{
-    axios.get("https://s56-ayush-capstone-dopahiya.onrender.com/getbrands" , {
+    axios.get(`${API_URL}/getbrands` , {
       headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
     })
       .then((res)=>{
