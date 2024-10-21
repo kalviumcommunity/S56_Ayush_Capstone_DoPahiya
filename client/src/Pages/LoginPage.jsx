@@ -9,7 +9,6 @@ import { IoEyeOutline } from "react-icons/io5";
 import { IoEyeOffOutline } from "react-icons/io5";
 import { GoogleOAuthProvider } from "@react-oauth/google"
 import { GoogleLogin } from "@react-oauth/google"
-const { VITE_LocalURL , VITE_DeployedURL } = import.meta.env;
 
 const LoginPage = ({setforgotpass}) => {
 
@@ -32,7 +31,7 @@ const LoginPage = ({setforgotpass}) => {
         let note = toast.loading("Please Wait ..." , {
             position: "top-center"
         })
-        axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/login` , inputvals)
+        axios.post(`${API_URL}/login` , inputvals)
             .then((res)=>{
                 console.log(res)
                 if (res.data == "User Does not exist"){
@@ -67,7 +66,7 @@ const LoginPage = ({setforgotpass}) => {
 
     let handleGoogleLogin = (res) =>{
         let note = toast.loading("Please Wait ..." , {position:"top-center"})
-        axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/googlelogin",res)
+        axios.post(`${API_URL}/googlelogin`,res)
             .then((resp)=>{
                 console.log(resp)
                 if (resp.data == "User Does not exist"){
@@ -138,7 +137,7 @@ const LoginPage = ({setforgotpass}) => {
 
                         <p className='registertext'>Don't have a Account ? <span onClick={handleRegisterClick}>Register</span></p>
                         <div className='flex jus-cen align-cen googlelogin-btn' style={{marginBottom:0}}>
-                            <GoogleOAuthProvider clientId='702578085661-04kerhil3rakkbn7m8ve9lr716joojo7.apps.googleusercontent.com'>
+                            <GoogleOAuthProvider clientId={THIRD_PARTY_API_CLIENT_ID}>
                                 <GoogleLogin onSuccess={handleGoogleLogin} onError={()=>{
                                     toast.error("Google Login Failed..!")
                                 }} />

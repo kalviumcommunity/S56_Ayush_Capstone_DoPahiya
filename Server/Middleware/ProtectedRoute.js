@@ -9,8 +9,8 @@ const ProtectedRoute = async (req,res,next) =>{
         console.log(token)
         let decodedToken = jwt.verify(token , process.env.SECRETKEY)
         if (!decodedToken) return res.status(401).send("Invalid Token")
-       
-        let user = await userModel.findOne({username : decodedToken._doc.username})
+       console.log(decodedToken)
+        let user = await userModel.findOne({_id : decodedToken._doc._id})
         if (!user) return res.status(401).send("User Not Found")
 
         req.user = user

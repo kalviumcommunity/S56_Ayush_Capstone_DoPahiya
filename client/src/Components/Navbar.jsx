@@ -15,7 +15,6 @@ const Navbar = ({ color }) => {
 
     let handleLoginBtn = () => {
 
-        console.log(sessionStorage.getItem("loggedin"))
         if (sessionStorage.getItem("loggedin") == "true") {
             setShowDropdown(!showDropdown)
             sessionStorage.setItem("loggedin", false)

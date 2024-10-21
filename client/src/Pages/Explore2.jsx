@@ -10,7 +10,6 @@ import { MdFavorite } from "react-icons/md";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Context} from "../App"
-const { VITE_LocalURL , VITE_DeployedURL } = import.meta.env;
 
 const Explore2 = () => {
 
@@ -51,7 +50,7 @@ const Explore2 = () => {
   }
 
   let handleAddFav = (id) =>{
-    axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/handlefav` , {id : id} , {
+    axios.post(`${API_URL}/handlefav` , {id : id} , {
         headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
       })
         .then((res)=>{

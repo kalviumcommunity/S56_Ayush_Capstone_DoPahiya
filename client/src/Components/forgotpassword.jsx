@@ -27,7 +27,7 @@ const Forgotpassword = ({setforgotpass}) => {
       let note = toast.loading("Sending Mail ..." , {
         position: "top-center"
       })
-      axios.post("https://s56-ayush-capstone-dopahiya.onrender.com/forgotpassword" , {email : email} , {
+      axios.post(`${API_URL}/forgotpassword`, {email : email} , {
         headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}`}
       })
       .then((res)=>{
@@ -67,7 +67,7 @@ const Forgotpassword = ({setforgotpass}) => {
       position: "top-center"
     })
     
-    axios.put("https://s56-ayush-capstone-dopahiya.onrender.com/resetpass" , {email: email , new_pass: newPass} , {
+    axios.put(`${API_URL}/resetpass` , {email: email , new_pass: newPass} , {
       headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}`}
     })
     .then((res)=>{

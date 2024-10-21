@@ -20,7 +20,7 @@ const Profile = () => {
     const { completeData } = useContext(Context)
 
     useEffect(() => {
-        axios.get(`https://s56-ayush-capstone-dopahiya.onrender.com/getuser` , {
+        axios.get(`${API_URL}/getuser` , {
             headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
           })
             .then((res) => {
@@ -41,7 +41,7 @@ const Profile = () => {
 
     let handlefav = (e,id) =>{
         e.preventDefault()
-        axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/handlefav` , {id : id} , {
+        axios.post(`${API_URL}/handlefav` , {id : id} , {
             headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
           })
             .then((res)=>{
@@ -54,7 +54,7 @@ const Profile = () => {
     let handleDelete = () =>{
         let note = prompt("Are you sure you want to delete your account? This action is irreversible. If you are sure, type 'DELETE' in the box below.")
         if (note === "DELETE"){
-            axios.delete(`https://s56-ayush-capstone-dopahiya.onrender.com/deleteuser` , {
+            axios.delete(`${API_URL}/deleteuser` , {
                 headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
               })
             .then((res)=>{
@@ -84,7 +84,7 @@ const Profile = () => {
         let note = toast.loading("Updating Bio..!!" , {
             position: "top-center"
         })
-        axios.put(`https://s56-ayush-capstone-dopahiya.onrender.com/updatebio` , {bio : bio.trim()} , {
+        axios.put(`${API_URL}/updatebio` , {bio : bio.trim()} , {
             headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
           })
             .then((res)=>{
@@ -106,12 +106,13 @@ const Profile = () => {
         let note = toast.loading("Updating Profile..!!" , {
             position: "top-center"
         })
-        axios.put(`https://s56-ayush-capstone-dopahiya.onrender.com/updateprofile` , {username : username.trim() , email : email.trim()} , {
+        axios.put(`${API_URL}/updateprofile` , {username : username.trim() , email : email.trim()} , {
             headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
           })
             .then((res)=>{
                 if (res.data == "Username Already Taken"){
-                    return toast.update(note, {render: "Username Already Taken", type: "warning", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
+                    toast.update(note, {render: "Username Already Taken", type: "warning", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
+                    return
                 }else if (res.data == "Email Already Taken"){
                     return toast.update(note, {render: "Email Already Taken", type: "warning", isLoading: false , autoClose:1000 , hideProgressBar:true , theme:"colored"});
                 }else{
@@ -138,7 +139,7 @@ const Profile = () => {
         let file = e.target.files[0]
         let formData = new FormData()
         formData.append("image" , file)
-        axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/upload` , formData , {
+        axios.post(`${API_URL}/upload` , formData , {
             headers: { Authorization: `Bearer ${document.cookie.split("=")[1]}` }
           })
             .then((res)=>{

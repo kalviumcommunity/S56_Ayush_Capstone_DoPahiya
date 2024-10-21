@@ -15,7 +15,7 @@ const BikePageCard = ({el}) => {
   }
 
   let handleAddFav = async (id) =>{
-    await axios.post(`https://s56-ayush-capstone-dopahiya.onrender.com/handlefav` , {id : id , user: sessionStorage.getItem("curruser")})
+    await axios.post(`${API_URL}/handlefav` , {id : id , user: sessionStorage.getItem("curruser")})
       .then((res)=>{
         console.log(res.data)
         setfavList(res.data.arr)
