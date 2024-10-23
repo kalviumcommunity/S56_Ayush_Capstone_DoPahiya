@@ -32,7 +32,7 @@ const Navbar = ({ color }) => {
     }
 
     let handleNavigation = (path) => {
-        setShowDropdown(!showDropdown)
+        setShowDropdown(false)
         if (sessionStorage.getItem("loggedin") == "true") {
             navigate(path)
         } else {
